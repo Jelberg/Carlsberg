@@ -91,7 +91,7 @@ create table PROVEEDORES
    PR_NOMBRE            VARCHAR2(30)  unique    not null,
    PR_CORREO            VARCHAR2(30)  unique    not null,
    PR_TELEFONO          NUMBER(7)               not null,
-   PR_FORMASENVIO       VARCHAR2(10)             not null,                       ------Esto no se sacaba con la entidad envios?O es un check de envios?
+   PR_FORMASENVIO       VARCHAR2(10)            not null,                       ------Esto no se sacaba con la entidad envios?O es un check de envios?
    PR_FORMASPAGO        FORMAPAGO_NT,
    PR_CONTACTOS         CONTACTO,
    PR_RESULTADOEVALUACION RESULTADOEVALUACION_NT,
@@ -116,7 +116,7 @@ create table ENVIOS
    CI_ID                NUMBER(7)               not null,
    PR_ID                NUMBER(7)               not null,
    EN_COSTO             NUMBER(7)               not null,
-   EN_TIEMPO            TIMESTAMP            not null,                                   ----Este tiempo cual es?
+   EN_TIEMPO_HORAS      NUMBER(7)                  not null,                                   ----Este tiempo cual es?
    constraint PK_ENVIOS primary key (EN_ID,CI_ID, PR_ID)
 );
 
@@ -163,7 +163,7 @@ create table EMPRESA
    EM_NOMBRE            VARCHAR2(30)  unique    not null,
    EM_FECHAAPERTURA     DATE                 not null,
    EM_RESUMENH          RESUMENHISTORICO_NT,                                     ------Esto no deberia de ser un LOB, CLOO o algo asi?
-   EM_LOGO              VARCHAR2(10)             not null,                                    ------Esto no deberia de ser un LOB, CLOO o algo asi?
+   EM_LOGO              BLOB             not null,                                    ------Esto no deberia de ser un LOB, CLOO o algo asi?
    EM_PATROCINIO        PATROCINIO_NT,
    EM_RECETAPROCESOBASICO RECETAPROCESOBASICO_NT,
    EMP_EM_ID            NUMBER(7),
@@ -243,9 +243,9 @@ create table MAQUINARIA
 (
    MA_ID                NUMBER(7)               not null,
    MA_NOMBRE            VARCHAR2(30)            not null,
-   MA_PALABRACLV        VARCHAR2(10)             not null,                                           ---- Esto deberia de seer un check
+   MA_PALABRACLV        VARCHAR2(10)             not null,                                           ---- Esto deberia de seer un check -- CONJUNTO DE VARCHAR2
    MA_DESCRIPCION_      CLOB                 not null,
-   MA_TIPO              VARCHAR2(30)            not null,                                           ---- Que es tipo?
+   --MA_TIPO              VARCHAR2(30)            not null,                                           ---- Que es tipo?
    constraint PK_MAQUINARIA primary key (MA_ID)
 );  
 
@@ -259,10 +259,10 @@ create table CATALOGO_PROVEEDOR_EQ
 (
    CA_CODIGO            NUMBER(7)               not null,
    CA_NOMBRE            VARCHAR2(30)            not null,
-   CA_DESCRIPCION       CLOB                 not null,
+   CA_DESCRIPCION       VARCHAR2(50)                 not null,                                           -- PORQUE CLOB?
    CA_PRECIOUNITARIO    NUMBER(7)               not null,
    CA_ESPECIFICAIONESTECNICAS CLOB                 not null,
-   CA_FOTOS             CHAR(10),
+   CA_FOTOS             BLOB,                                                                     --CONJUTO DE FOTOS 
    CA_INCLUYE           CLOB,
    PR_ID                NUMBER(7),
    MA_ID                NUMBER(7),
@@ -287,7 +287,7 @@ create table MATERIA_PRIMA
 (
    MP_ID                NUMBER(7)               not null,
    MP_NOMBRE            VARCHAR2(30)            not null,
-   MP_DESCRIPCION       CLOB                 not null,
+   MP_DESCRIPCION       VARCHAR2(50)                not null,                                                    --POR QUE CLOB?
    MP_FORMASDISLUPULO   VARCHAR2(30),
    constraint PK_MATERIA_PRIMA primary key (MP_ID)
 );
@@ -306,10 +306,10 @@ create table VARIEDAD
    VAR_ID               NUMBER(7)               not null,
    MP_ID                NUMBER(7)               not null,
    VAR_TIPO             VARCHAR2(30)            not null
-      constraint CKC_VAR_TIPO_VARIEDAD check (VAR_TIPO in ('base','coloreada')),
+      constraint CHC_VAR_TIPO_VARIEDAD check (VAR_TIPO in ('base','coloreada')),
    VAR_NOMBRE           VARCHAR2(30)            not null,
    VAR_MAX_USO          NUMBER(7)               default 0 not null
-      constraint CKC_VAR_MAX_USO_VARIEDAD check (VAR_MAX_USO between 1 and 100),
+      constraint CHC_VAR_MAX_USO_VARIEDAD check (VAR_MAX_USO between 1 and 100),
    VAR_COLOREBCRANGOI         NUMBER(7)               not null,
    VAR_COLOREBCRANGOF         NUMBER(7)               not null,
    constraint PK_VARIEDAD primary key (VAR_ID)
@@ -356,7 +356,7 @@ create table CATALOGO_PROVEEDOR_MP
    VAR_ID               NUMBER(7)             ,
    CP_NOMBRE            VARCHAR2(30)            not null,
    CP_DESCRIPCION       VARCHAR2(30)            not null,
-   CP_FOTOS             CHAR(10),
+   CP_FOTOS             BLOB,                                                                              --CONJUTO DE FOTOS
    constraint PK_CATALOGO_PROVEEDOR_MP primary key (CP_ID)
 );
 
@@ -462,7 +462,7 @@ create table ESTILO
    ES_NOMBRE            VARCHAR2(30)            not null,
    ES_DESCRIPCION       VARCHAR2(30)            not null,
    ES_COMIDA            COMIDA_NT,
-   ES_IBU               CHAR(10)             not null,
+   ES_IBU               VARCHAR2(10)             not null,
    ES_NOMBRETEMPORADA   VARCHAR2(30),
    ES_TEMPERATURA       MEDIDA
    constraint PK_ESTILO primary key (ES_ID)
@@ -495,14 +495,14 @@ create table CERVEZA
    CE_PATROCINIO        PATROCINIO_NT,
    CE_MARCA             VARCHAR2(30)            not null,
    CE_NOMBREINGLES      VARCHAR2(30)            not null,
-   CE_IBU               CHAR(10)             not null,
-   CE_ABU               CHAR(10)             not null,
+   CE_IBU               VARCHAR2(10)             not null,
+   CE_ABU               VARCHAR2(10)             not null,
    CE_TEMPORADA         VARCHAR2(30)            not null
       constraint CKC_CE_TEMPORADA_CERVEZA check (CE_TEMPORADA in ('clasica','temporada')),
-   CE_FOTOS             CHAR(10),
-   CE_DESCRIPCION       CLOB,
+   CE_FOTOS             BLOB,                                                                         -- CONJUNTO DE FOTOS
+   CE_DESCRIPCION       CLOB,                                                                          --POR QUE CLOB??
    CE_PAGINAWEB         VARCHAR2(30),
-   CE_SABOR             CHAR(10),
+   CE_SABOR             VARCHAR2(10),
    constraint PK_CERVEZA primary key (CE_ID)
 )nested table CE_PATROCINIO store as patrocinios;
 
@@ -526,7 +526,7 @@ create table PRESENTACION_CERVEZA
    PC_ID                NUMBER(7)               not null,
    CE_ID                NUMBER(7)               not null,
    PC_TIPO              VARCHAR2(30)            not null
-      constraint CKC_PC_TIPO_PRESENTA check (PC_TIPO in ('botella','botella retornable','lata','sifon')),
+      constraint CHC_PC_TIPO_PRESENTA check (PC_TIPO in ('botella','botella retornable','lata','sifon')),
    PC_CANTIDAD          NUMBER(7)               not null,
    constraint PK_PRESENTACION_CERVEZA primary key (PC_ID, CE_ID)
 );
