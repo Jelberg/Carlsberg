@@ -5,12 +5,17 @@ alter table CIUDAD
    add constraint FK_PAIS foreign key (PA_ID)
      references PAIS (PA_ID);
 	 
-alter table DISTRIBUCION
+alter table DISTRIBUCION_CERVEZA
    add constraint FK_PAIS foreign key (PA_ID)
       references PAIS(PA_ID);
 
-alter table DISTRIBUCION
-   add constraint CHK_PRESENTACION check (DIS_PRESENTACION in ('botella','botella retornable','lata','sifon'));
+alter table DISTRIBUCION_CERVEZA
+   add constraint FK_PRESENTACION_CERVEZA foreign key (PC_ID)
+      references PRESENTACION_CERVEZA(PC_ID);
+
+alter table DISTRIBUCION_CERVEZA
+   add constraint FK_CERVEZA foreign key (CE_ID)
+      references PRESENTACION_CERVEZA(CE_ID);
 
    alter table PROVEEDORES
    add constraint FK_PAIS foreign key (PA_ID)

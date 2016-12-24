@@ -14,17 +14,80 @@ create table CIUDAD
    constraint PK_CIUDAD primary key (CI_ID)
 );
 
-
-create table DISTRIBUCION 
-(
-   DIS_ID               NUMBER(7)               not null,
-   PA_ID                NUMBER(7)               not null,
-   DIS_PRESENTACION     VARCHAR2(30)            not null,                                   
-   DIS_CANTIDADENELECTROLITOS NUMBER(7)     default 0          not null,
-   DIS_FECHAINICION     DATE                 not null,
-   DIS_FECHAFIN         DATE,
-   constraint PK_DISTRIBUCION primary key (DIS_ID)
+CREATE OR REPLACE TYPE COMIDA AS OBJECT (
+    CON_NOMBRE         VARCHAR2(30)            ,
+    CON_DESCRIPCION    VARCHAR2(30)             
 );
+
+CREATE OR REPLACE TYPE COMIDA_NT AS TABLE OF COMIDA;
+
+CREATE OR REPLACE TYPE MEDIDA (
+    ME_CANTIDAD        VARCHAR2(30)     ,
+    ME_TIPOMEDIDA      VARCHAR2(30)         
+);
+
+create table ESTILO 
+(
+   ES_ID                NUMBER(7)               not null,
+   ES_NOMBRE            VARCHAR2(30)            not null,
+   ES_DESCRIPCION       VARCHAR2(30)            not null,
+   ES_COMIDA            COMIDA_NT,
+   ES_IBU               VARCHAR2(10)             not null,
+   ES_NOMBRETEMPORADA   VARCHAR2(30),
+   ES_TEMPERATURA       MEDIDA
+   constraint PK_ESTILO primary key (ES_ID)
+)nested table ES_COMIDA store as comidas;
+
+--- que es abu? ABV 
+create table CERVEZA 
+(
+   CE_ID                NUMBER(7)               not null,
+   ES_ID                NUMBER(7)               not null,
+   CE_FECHACREACION     DATE                 not null,
+   CE_PORCETAJEALC      NUMBER(7)               not null,
+   CE_CALORIAS          NUMBER(7)   default 0   not null,
+   CE_PATROCINIO        PATROCINIO_NT,
+   CE_MARCA             VARCHAR2(30)            not null,
+   CE_NOMBREINGLES      VARCHAR2(30)            not null,
+   CE_IBU               VARCHAR2(10)             not null,
+   CE_ABV               VARCHAR2(10)             not null,
+   CE_TEMPORADA         VARCHAR2(30)            not null
+      constraint CHC_CE_TEMPORADA_CERVEZA check (CE_TEMPORADA in ('clasica','temporada')),
+   CE_FOTOS             BLOB,                                                                         -- CONJUNTO DE FOTOS
+   CE_DESCRIPCION       CLOB,                                                                          --POR QUE CLOB??
+   CE_PAGINAWEB         VARCHAR2(30),
+   CE_SABOR             VARCHAR2(10),
+   constraint PK_CERVEZA primary key (CE_ID)
+)nested table CE_PATROCINIO store as patrocinios;
+
+
+create table PRESENTACION_CERVEZA 
+(
+   PC_ID                NUMBER(7)               not null,
+   CE_ID                NUMBER(7)               not null,
+   PC_TIPO              VARCHAR2(30)            not null
+      constraint CHC_PC_TIPO_PRESENTA check (PC_TIPO in ('botella','botella retornable','lata','sifon')),
+   PC_CANTIDAD          NUMBER(7)               not null,
+   constraint PK_PRESENTACION_CERVEZA primary key (PC_ID, CE_ID)
+);
+
+CREATE OR REPLACE TYPE DISTRIBUCION AS OBJECT (
+DIS_MES                DATE,
+DIS_AÑO                DATE,
+DIS_CANTHECTOLITROS    NUMBER(7)
+);
+
+CREATE OR REPLACE TYPE DISTRIBUCION_NT AS TABLE OF DISTRIBUCION;
+
+create table DISTRIBUCION_CERVEZA
+(
+   PA_ID                NUMBER(7)               not null,
+   PC_ID                NUMBER(7)               not null,
+   CE_ID                NUMBER(7)               not null,
+   DIS_CER_DISTRIBUCION DISTRIBUCION_NT
+   constraint PK_DISTRIBUCION primary key (PA_ID,PC_ID,CE_ID)
+)
+NESTED TABLE DIS_CER_DISTRIUCION STORE AS DISTRIBUCION;
 
 
 CREATE OR REPLACE TYPE FORMAPAGO AS OBJECT (
@@ -251,30 +314,6 @@ create table PAGO
 );
 
 
-CREATE OR REPLACE TYPE COMIDA AS OBJECT (
-    CON_NOMBRE         VARCHAR2(30)            ,
-    CON_DESCRIPCION    VARCHAR2(30)             
-);
-
-CREATE OR REPLACE TYPE COMIDA_NT AS TABLE OF COMIDA;
-
-CREATE OR REPLACE TYPE MEDIDA (
-    ME_CANTIDAD        VARCHAR2(30)     ,
-    ME_TIPOMEDIDA      VARCHAR2(30)         
-);
-
-
-create table ESTILO 
-(
-   ES_ID                NUMBER(7)               not null,
-   ES_NOMBRE            VARCHAR2(30)            not null,
-   ES_DESCRIPCION       VARCHAR2(30)            not null,
-   ES_COMIDA            COMIDA_NT,
-   ES_IBU               VARCHAR2(10)             not null,
-   ES_NOMBRETEMPORADA   VARCHAR2(30),
-   ES_TEMPERATURA       MEDIDA
-   constraint PK_ESTILO primary key (ES_ID)
-)nested table ES_COMIDA store as comidas;
 
 
 CREATE OR REPLACE TYPE PATROCINIO AS OBJECT (
@@ -284,40 +323,11 @@ CREATE OR REPLACE TYPE PATROCINIO AS OBJECT (
 );
 
 CREATE OR REPLACE TYPE PATROCINIO_NT AS TABLE OF PATROCINIO;
---- que es abu? ABV 
-create table CERVEZA 
-(
-   CE_ID                NUMBER(7)               not null,
-   ES_ID                NUMBER(7)               not null,
-   CE_FECHACREACION     DATE                 not null,
-   CE_PORCETAJEALC      NUMBER(7)               not null,
-   CE_CALORIAS          NUMBER(7)   default 0   not null,
-   CE_PATROCINIO        PATROCINIO_NT,
-   CE_MARCA             VARCHAR2(30)            not null,
-   CE_NOMBREINGLES      VARCHAR2(30)            not null,
-   CE_IBU               VARCHAR2(10)             not null,
-   CE_ABV               VARCHAR2(10)             not null,
-   CE_TEMPORADA         VARCHAR2(30)            not null
-      constraint CHC_CE_TEMPORADA_CERVEZA check (CE_TEMPORADA in ('clasica','temporada')),
-   CE_FOTOS             BLOB,                                                                         -- CONJUNTO DE FOTOS
-   CE_DESCRIPCION       CLOB,                                                                          --POR QUE CLOB??
-   CE_PAGINAWEB         VARCHAR2(30),
-   CE_SABOR             VARCHAR2(10),
-   constraint PK_CERVEZA primary key (CE_ID)
-)nested table CE_PATROCINIO store as patrocinios;
 
 
 ---- El TDA muestra hay que eliminarlo
 
-create table PRESENTACION_CERVEZA 
-(
-   PC_ID                NUMBER(7)               not null,
-   CE_ID                NUMBER(7)               not null,
-   PC_TIPO              VARCHAR2(30)            not null
-      constraint CHC_PC_TIPO_PRESENTA check (PC_TIPO in ('botella','botella retornable','lata','sifon')),
-   PC_CANTIDAD          NUMBER(7)               not null,
-   constraint PK_PRESENTACION_CERVEZA primary key (PC_ID, CE_ID)
-);
+
 
 create table COMPOSICION 
 (
