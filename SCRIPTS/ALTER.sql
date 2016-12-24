@@ -74,6 +74,8 @@ alter table V_C
 alter table V_C
    add constraint FK_PAIS foreign key (PA_ID)
    references  PAIS(PA_ID);
+   
+   
 alter table CATALOGO_PROVEEDOR_MP
    add constraint FK_MATERIAPRIMA foreign key (MP_ID)
    references MATERIA_PRIMA(MP_ID);
@@ -95,6 +97,7 @@ alter table PEDIDO
 alter table PEDIDO
    add constraint FK_CONTRATO foreign key (CON_NUMERO)
    references CONTRATO(CON_NUMERO);
+   
 alter table PAGO
    add constraint FK_PEDIDO foreign key (PE_ID)
    references PEDIDO(PE_ID);
@@ -128,8 +131,9 @@ alter table COMPOSICION
    references VARIEDAD(VAR_ID);
 
 alter table MATERIA_PRIMA
-   add constraint FK_MATERIAPRIMA foreign key (MP_ID)
+   add constraint FK_MATERIAPRIMA foreign key (MP_ID)     -- PORQUE??
    references MATERIA_PRIMA(MA_ID);
+   
 alter table PRODUCCIONMENSUAL
    add constraint FK_FABRICA foreign key (FA_ID)
    references FABRICA(FA_ID);
@@ -151,7 +155,7 @@ alter table PRESENTACION
    references CATALOGO_PROVEEDOR_MP(CP_ID);
    
 alter table DETALLE_PEDIDO
-   add constraint FK_CATALOGO_PROVEEDOR_EQ foreign key (CA_CODIGO)
+   add constraint FK_CATALOGO_PROVEEDOR_EQ foreign key (CA_CODIGO)  -- EQUIPO
    references CATALOGO_PROVEEDOR_EQ(CA_CODIGO);
 
 alter table DETALLE_PEDIDO
@@ -159,7 +163,7 @@ alter table DETALLE_PEDIDO
    references PEDIDO(PE_ID);
 
 alter table DETALLE_PEDIDO
-   add constraint FK_PRESENTACION foreign key (PRE_ID)
+   add constraint FK_PRESENTACION foreign key (PRE_ID)    -- MATERI PRIMA
    references PRESENTACION(PRE_ID);
    
 alter table VALORACION_PEDIDO
@@ -169,6 +173,7 @@ alter table VALORACION_PEDIDO
 alter table VALORACION_PEDIDO
    add constraint FK_DETALLE_PEDIDO2 foreign key (PE_ID)
    references DETALLE_PEDIDO(PE_ID);
+   
 alter table DESCUENTOPEDIDIOPARAPRODUCCION
    add constraint FK_PRODUCCION_MENSUAL foreign key (PRO_FECHA)
    references PRODUCCIONMENSUAL(PRO_FECHA);

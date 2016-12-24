@@ -6,15 +6,6 @@
    constraint PK_PAIS primary key (PA_ID)
 );
 
-alter table PAIS
-   add constraint CHK_CONTINENTE check (PA_CONTINENTE in ('Africa','Asia','Antartida','Europa','Norteamerica','Oceania','Sudamerica'));
-
-create sequence seq_pa_id
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
-
 create table CIUDAD 
 (
    CI_ID                NUMBER(7)               not null,
@@ -23,15 +14,6 @@ create table CIUDAD
    constraint PK_CIUDAD primary key (CI_ID)
 );
 
-alter table CIUDAD
-   add constraint FK_PAIS foreign key (PA_ID)
-      references PAIS (PA_ID);
-
-create sequence seq_ci_id
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
 
 create table DISTRIBUCION 
 (
@@ -44,18 +26,6 @@ create table DISTRIBUCION
    constraint PK_DISTRIBUCION primary key (DIS_ID, PA_ID)
 );
 
-alter table DISTRIBUCION
-   add constraint FK_PAIS foreign key (PA_ID)
-      references PAIS(PA_ID);
-
-alter table DISTRIBUCION
-   add constraint CHK_PRESENTACION check (DIS_PRESENTACION in ('botella','botella retornable','lata','sifon'));
-
-create sequence seq_dis_id
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
 
 CREATE OR REPLACE TYPE FORMAPAGO AS OBJECT (
     FPAGO_TIPO         VARCHAR2(30),
@@ -100,16 +70,6 @@ create table PROVEEDORES
 )nedted table PR_FORMASPAGO store as formasDePago,
  nested table PR_RESULTADOEVALUACION store as resultadosEvaluaciones;
 
-alter table PROVEEDORES
-   add constraint FK_PAIS foreign key (PA_ID)
-   references PAIS(PA_ID);
-
-create sequence seq_pr_id
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
-
 create table ENVIOS 
 (
    EN_ID                NUMBER(7)               not null,
@@ -119,20 +79,6 @@ create table ENVIOS
    EN_TIEMPO_HORAS      NUMBER(7)                  not null,                                   ----Este tiempo cual es?
    constraint PK_ENVIOS primary key (EN_ID,CI_ID, PR_ID)
 );
-
-alter table ENVIOS
-   add constraint FK_PROVEEDOR foreign key (PR_ID)
-   references PROVEEDORES(PR_ID);
-
-alter table ENVIOS
-   add constraint FK_CIUDAD foreign key (CI_ID)
-   references CIUDAD(CI_ID);
-
-create sequence seq_en_id
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
 
 CREATE OR REPLACE TYPE PATROCINIO AS OBJECT (
     PATROCINIO_NOMBRE  VARCHAR2(30)             ,
@@ -173,23 +119,6 @@ create table EMPRESA
  nested table EM_RESUMENH store as resumeneshistoricos,
  nested table EM_RECETAPROCESOBASICO store as recetasprocesosbasicos;
 
-alter table EMPRESA
-   add constraint FK_CIUDAD_UBICACION foreign key (CI_ID)
-   references CIUDAD(CI_ID);
-
-alter table EMPRESA
-   add constraint FK_CIUDAD_PRINCIPAL foreign key (CIU_CI_ID)
-   references CIUDAD(CI_ID);
-
-alter table EMPRESA
-   add constraint FK_DUEÑO foreign key (EMP_EM_ID)
-   references EMPRESA(EMP_EM_ID);
-
-   create sequence seq_em_id
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
 
 create table FABRICA 
 (
@@ -201,19 +130,6 @@ create table FABRICA
    constraint PK_FABRICA primary key (FA_ID, EM_ID)
 );
 
-alter table FABRICA
-   add constraint FK_EMPRESA foreign key (EM_ID)
-   references EMPRESA(EM_ID);
-
-alter table FABRICA
-   add constraint FK_CIUDAD foreign key (CI_ID)
-   references CIUDAD(CI_ID);
-
-create sequence seq_fa_id
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
 
 create table CONTRATO 
 (
@@ -225,19 +141,6 @@ create table CONTRATO
    constraint PK_CONTRATO primary key (CON_NUMERO)
 );
 
-alter table CONTRATO
-   add constraint FK_EMPRESA foreign key (EM_ID)
-   references EMPRESA(EM_ID);
-
-alter table CONTRATO
-   add constraint FK_PROVEEDOR foreign key (PR_ID)
-   references PROVEEDORES(PR_ID);
-
-create sequence seq_con_numero
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
 
 create table MAQUINARIA 
 (
@@ -249,11 +152,6 @@ create table MAQUINARIA
    constraint PK_MAQUINARIA primary key (MA_ID)
 );  
 
-create sequence seq_ma_id
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
 
 create table CATALOGO_PROVEEDOR_EQ 
 (
@@ -269,20 +167,6 @@ create table CATALOGO_PROVEEDOR_EQ
    constraint PK_CATALOGO_PROVEEDOR_EQ primary key (CA_CODIGO)
 );
 
-alter table CATALOGO_PROVEEDOR_EQ
-   add constraint FK_PROVEEDOR foreign key (PR_ID)
-   references PROVEEDORES(PR_ID);
-
-alter table CATALOGO_PROVEEDOR_EQ
-   add constraint FK_MAQUINARIA foreign key (MA_ID)
-   references MAQUINARIA(MA_ID);
-
-create sequence seq_ca_codigo
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
-
 create table MATERIA_PRIMA 
 (
    MP_ID                NUMBER(7)               not null,
@@ -292,14 +176,6 @@ create table MATERIA_PRIMA
    constraint PK_MATERIA_PRIMA primary key (MP_ID)
 );
 
-alter table MATERIA_PRIMA
-   add constraint CHK_FORMASDISLUPULO check (MP_FORMASDISLUPULO in ('seco','plug','rehidratado'));
-
-create sequence seq_mp_id
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
 
 create table VARIEDAD 
 (
@@ -315,16 +191,6 @@ create table VARIEDAD
    constraint PK_VARIEDAD primary key (VAR_ID)
 );
 
-alter table VARIEDAD
-   add constraint FK_MATERIAPRIMA foreign key (MP_ID)
-   references MATERIA_PRIMA(MP_ID);
-
-create sequence seq_var_id
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
-
 
 create table V_C 
 (
@@ -334,19 +200,6 @@ create table V_C
    constraint PK_V_C primary key (VC_ID,VAR_ID, PA_ID)
 );
 
-alter table V_C
-   add constraint FK_VARIEDAD foreign key (VAR_ID)
-   references VARIEDAD(VAR_ID);
-
-alter table V_C
-   add constraint FK_PAIS foreign key (PA_ID)
-   references  PAIS(PA_ID);
-
-create sequence seq_vc_id
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
 
 create table CATALOGO_PROVEEDOR_MP 
 (
@@ -360,23 +213,6 @@ create table CATALOGO_PROVEEDOR_MP
    constraint PK_CATALOGO_PROVEEDOR_MP primary key (CP_ID)
 );
 
-alter table CATALOGO_PROVEEDOR_MP
-   add constraint FK_MATERIAPRIMA foreign key (MP_ID)
-   references MATERIA_PRIMA(MP_ID);
-
-alter table CATALOGO_PROVEEDOR_MP
-   add constraint FK_PROVEEDOR foreign key (PR_ID)
-   references PROVEEDORES(PR_ID);
-
-alter table CATALOGO_PROVEEDOR_MP
-   add constraint FK_VARIEDAD foreign key (VAR_ID)
-   references VARIEDAD(VAR_ID);
-
-create sequence seq_cp_id
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
 
 create table PEDIDO 
 (
@@ -391,22 +227,6 @@ create table PEDIDO
    PE_FECHASOLICITADA   DATE,
    constraint PK_PEDIDO primary key (PE_ID)
 );
-
-alter table PEDIDO
-   add constraint CHK_STATUS check (PE_STATUS in ('en proceso','cancelada','rechazada por proveedor','finalizada'));
-
-alter table PEDIDO
-   add constraint CHK_TIPO check (PE_TIPO IN ('materia prima','equipo'));
-
-alter table PEDIDO
-   add constraint FK_CONTRATO foreign key (CON_NUMERO)
-   references CONTRATO(CON_NUMERO);
-
-create sequence seq_pe_id
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
 
 --No estoy muy seguro de pago y cuentas
 
@@ -430,18 +250,6 @@ create table PAGO
    constraint PK_PAGO primary key (PA_ID)
 );
 
-alter table PAGO
-   add constraint FK_PEDIDO foreign key (PE_ID)
-   references PEDIDO(PE_ID);
-
-alter table PAGO
-   add constraint CHK_TIPOPAGO check (PA_TIPOPAGO in ('efectivo','transferencia','deposito','cheque'));
-
-create sequence seq_pa_id
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
 
 CREATE OR REPLACE TYPE COMIDA AS OBJECT (
     CON_NOMBRE         VARCHAR2(30)            ,
@@ -468,14 +276,6 @@ create table ESTILO
    constraint PK_ESTILO primary key (ES_ID)
 )nested table ES_COMIDA store as comidas;
 
-alter table ESTILO
-   add constraint CHK_TEMPORADA check (ES_NOMBRETEMPORADA in ('navidad','pascua','halloween','otra'))
-
-create sequence seq_es_id
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
 
 CREATE OR REPLACE TYPE PATROCINIO AS OBJECT (
     PATROCINIO_NOMBRE  VARCHAR2(30)             ,
@@ -484,7 +284,7 @@ CREATE OR REPLACE TYPE PATROCINIO AS OBJECT (
 );
 
 CREATE OR REPLACE TYPE PATROCINIO_NT AS TABLE OF PATROCINIO;
---- que es abu?
+--- que es abu? ABV 
 create table CERVEZA 
 (
    CE_ID                NUMBER(7)               not null,
@@ -496,9 +296,9 @@ create table CERVEZA
    CE_MARCA             VARCHAR2(30)            not null,
    CE_NOMBREINGLES      VARCHAR2(30)            not null,
    CE_IBU               VARCHAR2(10)             not null,
-   CE_ABU               VARCHAR2(10)             not null,
+   CE_ABV               VARCHAR2(10)             not null,
    CE_TEMPORADA         VARCHAR2(30)            not null
-      constraint CKC_CE_TEMPORADA_CERVEZA check (CE_TEMPORADA in ('clasica','temporada')),
+      constraint CHC_CE_TEMPORADA_CERVEZA check (CE_TEMPORADA in ('clasica','temporada')),
    CE_FOTOS             BLOB,                                                                         -- CONJUNTO DE FOTOS
    CE_DESCRIPCION       CLOB,                                                                          --POR QUE CLOB??
    CE_PAGINAWEB         VARCHAR2(30),
@@ -506,18 +306,6 @@ create table CERVEZA
    constraint PK_CERVEZA primary key (CE_ID)
 )nested table CE_PATROCINIO store as patrocinios;
 
-alter table CERVEZA
-   add constraint FK_ESTILO foreign key (ES_ID)
-   references ESTILO(ES_ID);
-
-alter table CERVEZA
-   add constraint CHK_PORCENTAJEALC check (CE_PORCETAJEALC between 0 and 100);
-
-create sequence seq_ce_id
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
 
 ---- El TDA muestra hay que eliminarlo
 
@@ -531,16 +319,6 @@ create table PRESENTACION_CERVEZA
    constraint PK_PRESENTACION_CERVEZA primary key (PC_ID, CE_ID)
 );
 
-alter table PRESENTACION_CERVEZA
-   add constraint FK_CERVEZA foreign key (CE_ID)
-   references CERVEZA(CE_ID);
-
-create sequence seq_pc_id
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
-
 create table COMPOSICION 
 (
    CE_ID                NUMBER(7)               not null,
@@ -552,26 +330,7 @@ create table COMPOSICION
    constraint PK_COMPOSICION primary key (C_ID, CE_ID)
 );
 
-alter table COMPOSICION
-   add constraint FK_CERVEZA foreign key (CE_ID)
-   references CERVEZA(CE_ID);
 
-alter table COMPOSICION
-   add constraint CHK_PROPORCION check (C_PROPORCION between 1 and 100);
-
-alter table COMPOSICION
-   add constraint FK_VARIABLE foreign key (VAR_ID)
-   references VARIEDAD(VAR_ID);
-
-alter table MATERIA_PRIMA
-   add constraint FK_MATERIAPRIMA foreign key (MP_ID)
-   references MATERIA_PRIMA(MA_ID);
-
-create sequence seq_c_id
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
 
 create table PRODUCCIONMENSUAL 
 (
@@ -584,21 +343,6 @@ create table PRODUCCIONMENSUAL
    constraint PK_PRODUCCIONMENSUAL primary key (PRO_FECHA,FA_ID,EM_ID,PC_ID,CE_ID)
 );
 
-alter table PRODUCCIONMENSUAL
-   add constraint FK_FABRICA foreign key (FA_ID)
-   references FABRICA(FA_ID);
-
-alter table PRODUCCIONMENSUAL
-   add constraint FK_FABRICA2 foreign key (EM_ID)
-   references FABRICA(EM_ID);
-
-alter table PRODUCCIONMENSUAL
-   add constraint FK_PRESENTACION_CERNEZA foreign key (PC_ID)
-   references PRESENTACION_CERVEZA(PC_ID);
-
-alter table PRODUCCIONMENSUAL
-   add constraint FK_PRESENTACION_CERNEZA2 foreign key (CE_ID)
-   references PRESENTACION_CERVEZA(CE_ID);
 
 create table PRESENTACION 
 (
@@ -612,16 +356,6 @@ create table PRESENTACION
    constraint PK_PRESENTACION primary key (PRE_ID)
 );
 
-alter table PRESENTACION
-   add constraint FK_CATALOGO_PROVEEDOR_MP foreign key (CP_ID)
-   references CATALOGO_PROVEEDOR_MP(CP_ID);
-
-create sequence seq_pre_id
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
-   
 create table DETALLE_PEDIDO 
 (
    DET_ID               NUMBER(7)               not null,
@@ -632,23 +366,6 @@ create table DETALLE_PEDIDO
    constraint PK_DETALLE_PEDIDO primary key (DET_ID, PE_ID)
 );
 
-alter table DETALLE_PEDIDO
-   add constraint FK_CATALOGO_PROVEEDOR_EQ foreign key (CA_CODIGO)
-   references CATALOGO_PROVEEDOR_EQ(CA_CODIGO);
-
-alter table DETALLE_PEDIDO
-   add constraint FK_PEDIDO foreign key (PE_ID)
-   references PEDIDO(PE_ID);
-
-alter table DETALLE_PEDIDO
-   add constraint FK_PRESENTACION foreign key (PRE_ID)
-   references PRESENTACION(PRE_ID);
-
-create sequence seq_det_id
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
 
 create table VALORACION_PEDIDO 
 (
@@ -661,19 +378,6 @@ create table VALORACION_PEDIDO
    constraint PK_VALORACION_PEDIDO primary key (VA_ID)
 );
 
-alter table VALORACION_PEDIDO
-   add constraint FK_DETALLE_PEDIDO foreign key (DET_ID)
-   refernces DETALLE_PEDIDO(DET_ID);
-
-alter table VALORACION_PEDIDO
-   add constraint FK_DETALLE_PEDIDO2 foreign key (PE_ID)
-   references DETALLE_PEDIDO(PE_ID);
-
-create sequence seq_va_id
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
 
 create table DESCUENTOPEDIDIOPARAPRODUCCION 
 (
@@ -686,42 +390,8 @@ create table DESCUENTOPEDIDIOPARAPRODUCCION
    DET_ID               NUMBER(7)               not null,
    PE_ID                NUMBER(7)               not null,
    DES_CANTIDAD         NUMBER(7)               not null,
-   constraint PK_DESCUENTOPRODUCCIONPRODUCCION primary key (DES_ID)
+   constraint PK_DESCUENTOPRODUCCIONPRODUCCION primary key (DES_ID)     -- PORQUE TIENE ID PROPIA??
 );
-
-alter table DESCUENTOPEDIDIOPARAPRODUCCION
-   add constraint FK_PRODUCCION_MENSUAL foreign key (PRO_FECHA)
-   references PRODUCCIONMENSUAL(PRO_FECHA);
-
-alter table DESCUENTOPEDIDIOPARAPRODUCCION
-   add constraint FK_FABRICA foreign key (FA_ID)
-   references PRODUCCIONMENSUAL(FA_ID);
-
-alter table DESCUENTOPEDIDIOPARAPRODUCCION
-   add constraint FK_EMPRESA foreign key (EMP_ID)
-   references PRODUCCIONMENSUAL(EM_ID);
-
-alter table DESCUENTOPEDIDIOPARAPRODUCCION
-   add constraint FK_PRESENTACION_CERVEZA foreign key (PC_ID)
-   references PRODUCCIONMENSUAL(PC_ID);
-
-alter table DESCUENTOPEDIDIOPARAPRODUCCION
-   add constraint FK_CERVEZA foreign key (CE_ID)
-   references PRODUCCIONMENSUAL(CE_ID);
-
-alter table DESCUENTOPEDIDIOPARAPRODUCCION
-   add constraint FK_DETALLE_PEDIDO foreign key (DET_ID)
-   references DETALLE_PEDIDO(DET_ID);
-
-alter table DESCUENTOPEDIDIOPARAPRODUCCION
-   add constraint FK_PEDIDO foreign key (PE_ID)
-   references DETALLE_PEDIDO(PE_ID);
-
-create sequence seq_des_id
-   start with 1
-   increment by 1
-   maxvalue 1
-   minvalue 1;
 
 
 
