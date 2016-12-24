@@ -23,7 +23,7 @@ create table DISTRIBUCION
    DIS_CANTIDADENELECTROLITOS NUMBER(7)     default 0          not null,
    DIS_FECHAINICION     DATE                 not null,
    DIS_FECHAFIN         DATE,
-   constraint PK_DISTRIBUCION primary key (DIS_ID, PA_ID)
+   constraint PK_DISTRIBUCION primary key (DIS_ID)
 );
 
 
