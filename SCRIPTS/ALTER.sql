@@ -33,9 +33,9 @@ alter table EMPRESA
    add constraint FK_CIUDAD_UBICACION foreign key (CI_ID)
    references CIUDAD(CI_ID);
 
-alter table EMPRESA
-   add constraint FK_CIUDAD_PRINCIPAL foreign key (CIU_CI_ID)
-   references CIUDAD(CI_ID);
+--alter table EMPRESA                                                 -- SOLO INTERESA LA PRINCIPAL 
+  -- add constraint FK_CIUDAD_PRINCIPAL foreign key (CIU_CI_ID)
+   --references CIUDAD(CI_ID);
 
 alter table EMPRESA
    add constraint FK_DUEÑO foreign key (EMP_EM_ID)
@@ -135,8 +135,8 @@ alter table COMPOSICION
    add constraint FK_VARIABLE foreign key (VAR_ID)
    references VARIEDAD(VAR_ID);
 
-alter table MATERIA_PRIMA
-   add constraint FK_MATERIAPRIMA foreign key (MP_ID)     -- PORQUE??
+alter table COMPOSICION
+   add constraint FK_MATERIAPRIMA foreign key (MP_ID)     
    references MATERIA_PRIMA(MA_ID);
    
 alter table PRODUCCIONMENSUAL

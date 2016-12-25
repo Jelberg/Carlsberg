@@ -1,4 +1,5 @@
-﻿create table PAIS 
+﻿
+create table PAIS 
 (
    PA_ID                NUMBER(7)               not null,
    PA_NOMBRE            VARCHAR2(30)   unique   not null,
@@ -14,17 +15,6 @@ create table CIUDAD
    constraint PK_CIUDAD primary key (CI_ID)
 );
 
-CREATE OR REPLACE TYPE COMIDA AS OBJECT (
-    CON_NOMBRE         VARCHAR2(30)            ,
-    CON_DESCRIPCION    VARCHAR2(30)             
-);
-
-CREATE OR REPLACE TYPE COMIDA_NT AS TABLE OF COMIDA;
-
-CREATE OR REPLACE TYPE MEDIDA (
-    ME_CANTIDAD        VARCHAR2(30)     ,
-    ME_TIPOMEDIDA      VARCHAR2(30)         
-);
 
 create table ESTILO 
 (
@@ -37,6 +27,7 @@ create table ESTILO
    ES_TEMPERATURA       MEDIDA
    constraint PK_ESTILO primary key (ES_ID)
 )nested table ES_COMIDA store as comidas;
+
 
 --- que es abu? ABV 
 create table CERVEZA 
@@ -54,7 +45,7 @@ create table CERVEZA
    CE_TEMPORADA         VARCHAR2(30)            not null
       constraint CHC_CE_TEMPORADA_CERVEZA check (CE_TEMPORADA in ('clasica','temporada')),
    CE_FOTOS             BLOB,                                                                         -- CONJUNTO DE FOTOS
-   CE_DESCRIPCION       CLOB,                                                                          --POR QUE CLOB??
+   CE_DESCRIPCION       VARCHAR2(100),                                                                          --POR QUE CLOB??
    CE_PAGINAWEB         VARCHAR2(30),
    CE_SABOR             VARCHAR2(10),
    constraint PK_CERVEZA primary key (CE_ID)
@@ -71,13 +62,6 @@ create table PRESENTACION_CERVEZA
    constraint PK_PRESENTACION_CERVEZA primary key (PC_ID, CE_ID)
 );
 
-CREATE OR REPLACE TYPE DISTRIBUCION AS OBJECT (
-DIS_MES                DATE,
-DIS_AÑO                DATE,
-DIS_CANTHECTOLITROS    NUMBER(7)
-);
-
-CREATE OR REPLACE TYPE DISTRIBUCION_NT AS TABLE OF DISTRIBUCION;
 
 create table DISTRIBUCION_CERVEZA
 (
@@ -90,32 +74,8 @@ create table DISTRIBUCION_CERVEZA
 NESTED TABLE DIS_CER_DISTRIUCION STORE AS DISTRIBUCION;
 
 
-CREATE OR REPLACE TYPE FORMAPAGO AS OBJECT (
-    FPAGO_TIPO         VARCHAR2(30),
-    FPAGO_DESCRIPCION  VARCHAR2(30) ,
-    FPAGO_TIEMPOCUOTAS VARCHAR2(30),
-    FPAGO_CANTCUOTAS   NUMBER(7),
-    FPAGO_DATOSCUENTAS VARCHAR2(30)
-);
+--CREATE OR REPLACE TYPE TELEFONO_VA AS VARRAY(5) OF VARCHAR2(15);
 
-CREATE OR REPLACE TYPE FORMAPAGO_NT AS TABLE OF FOMA_PAGO;
-
-CREATE OR REPLACE TYPE CONTACTO AS OBJECT (
-    CON_NOMBRE         VARCHAR2(30)  ,
-    CON_APELLIDO       VARCHAR2(30)   ,
-    CON_CARGO          VARCHAR2(30)   ,
-    CON_TELEFONO       VARCHAR2(30)    
-);
-
-CREATE OR REPLACE TYPE RESULTADOEVALUACION AS OBJECT (
-    RES_AÑO            DATE                 ,
-    RES_RESULTADO      NUMBER(7)               ,
-    RES_POSICION       NUMBER(7)               ,
-    RES_IDPRODUCTOR    NUMBER(7)              ,
-    RED_RUBRO          VARCHAR2(30)           
-);
-
-CREATE OR REPLACE TYPE RESULTADOEVALUACION_NT AS TABLE OF RESULTADOEVALUACION;
 
 create table PROVEEDORES 
 (
@@ -123,10 +83,10 @@ create table PROVEEDORES
    PA_ID                NUMBER(7)               not null,
    PR_NOMBRE            VARCHAR2(30)  unique    not null,
    PR_CORREO            VARCHAR2(30)  unique    not null,
-   PR_TELEFONO          NUMBER(7)               not null,
-   PR_FORMASENVIO       VARCHAR2(10)            not null,                       ------Esto no se sacaba con la entidad envios?O es un check de envios?
-   PR_FORMASPAGO        FORMAPAGO_NT,
-   PR_CONTACTOS         CONTACTO,
+  -- PR_TELEFONO          TELEFONO_VA                     ,  -- >>>NO VA POR, QUE YA ESTA EN CONTACTO
+   PR_FORMASENVIO       FORMAS_ENVIO_VA            not null,                       ------Esto no se sacaba con la entidad envios?O es un check de envios?
+   PR_FORMASPAGO        FORMAPAGO_NT,                                                                 -----YO CREO QUE FORMAS DE ENVIO ES UN VARRAY ---LO QUE NO SE ES DONDE SE VE ESO EN EL CONTRATO
+   PR_CONTACTOS         CONTACTO,                                                                     ----- AUNQUE AUN ASI NO LE VEO LA UTILIDAD PORQUE TAMBIEN SE PUEDE USAR LA ENTIDAD ENVIOS AGREGANDO ATRIBUTO TIPOO_ENVIO
    PR_RESULTADOEVALUACION RESULTADOEVALUACION_NT,
    PR_WEB               VARCHAR2(30),
    constraint PK_PROVEEDORES primary key (PR_ID)
@@ -143,40 +103,17 @@ create table ENVIOS
    constraint PK_ENVIOS primary key (EN_ID,CI_ID, PR_ID)
 );
 
-CREATE OR REPLACE TYPE PATROCINIO AS OBJECT (
-    PATROCINIO_NOMBRE  VARCHAR2(30)             ,
-    PATROCINIO_DESCRIPCION VARCHAR2(30)        ,
-    PATROCINIO_AÑOS    VARCHAR2(30)             
-);
-
-CREATE OR REPLACE TYPE PATROCINIO_NT AS TABLE OF PATROCINIO;
-
-CREATE OR REPLACE TYPE RECETAPROCESOBASICO AS OBJECT (
-    RPB_ETAPA          VARCHAR2(30) ,
-    RPB_ACTIVIDAD      VARCHAR2(30) 
-);
-
-CREATE OR REPLACE TYPE RECETAPROCESOBASICO_NT AS TABLE OF RECETAPROCESOBASICO;
-
-CREATE OR REPLACE TYPE RESUMENHISTORICO AS OBJECT (
-    RE_FECHA           DATE                 ,
-    RE_HECHO           VARCHAR2(30)                  
-);
-
-CREATE OR REPLACE TYPE RESUMENHISTORICO_NT AS TABLE OF RESUMENHISTORICO;​
-
 create table EMPRESA 
 (
    EM_ID                NUMBER(7)               not null,
    CI_ID                NUMBER(7)               not null,
    EM_NOMBRE            VARCHAR2(30)  unique    not null,
    EM_FECHAAPERTURA     DATE                 not null,
-   EM_RESUMENH          RESUMENHISTORICO_NT,                                     ------Esto no deberia de ser un LOB, CLOO o algo asi?
-   EM_LOGO              BLOB             not null,                                    ------Esto no deberia de ser un LOB, CLOO o algo asi?
+   EM_RESUMENH          RESUMENHISTORICO_NT,                                    
+   EM_LOGO              BLOB             not null,                                    
    EM_PATROCINIO        PATROCINIO_NT,
    EM_RECETAPROCESOBASICO RECETAPROCESOBASICO_NT,
    EMP_EM_ID            NUMBER(7),
-   CIU_CI_ID            NUMBER(7),
    constraint PK_EMPRESA primary key (EM_ID)
 )nested table EM_PATROCINIO store as patrocinios,
  nested table EM_RESUMENH store as resumeneshistoricos,
@@ -209,11 +146,10 @@ create table MAQUINARIA
 (
    MA_ID                NUMBER(7)               not null,
    MA_NOMBRE            VARCHAR2(30)            not null,
-   MA_PALABRACLV        VARCHAR2(10)             not null,                                           ---- Esto deberia de seer un check -- CONJUNTO DE VARCHAR2
-   MA_DESCRIPCION_      CLOB                 not null,
-   --MA_TIPO              VARCHAR2(30)            not null,                                           ---- Que es tipo?
+   MA_PALABRACLV        RECETAPROCESOBASICO_NT            ,           ---- Esto deberia de seer un check -- RECETAPROCESOBASICO_NT
+   MA_DESCRIPCION_      VARCHAR2(100)                  not null,
    constraint PK_MAQUINARIA primary key (MA_ID)
-);  
+)NESTED TABLE MA_PALABRACLV STORE AS ACTIVIDAD_PROCESO;  
 
 
 create table CATALOGO_PROVEEDOR_EQ 
@@ -223,12 +159,12 @@ create table CATALOGO_PROVEEDOR_EQ
    CA_DESCRIPCION       VARCHAR2(50)                 not null,                                           -- PORQUE CLOB?
    CA_PRECIOUNITARIO    NUMBER(7)               not null,
    CA_ESPECIFICAIONESTECNICAS CLOB                 not null,
-   CA_FOTOS             BLOB,                                                                     --CONJUTO DE FOTOS 
+   CA_FOTOS             FOTOS_NT ,                                                                     
    CA_INCLUYE           CLOB,
    PR_ID                NUMBER(7),
    MA_ID                NUMBER(7),
    constraint PK_CATALOGO_PROVEEDOR_EQ primary key (CA_CODIGO)
-);
+)NESTED TABLE CA_FOTOS STORE AS FOTOS_MAQUINARIA;
 
 create table MATERIA_PRIMA 
 (
@@ -257,10 +193,10 @@ create table VARIEDAD
 
 create table V_C 
 (
-   VC_ID                NUMBER(7)               not null,
+   --VC_ID                NUMBER(7)               not null,  -- NO TIENE ID PROPIA 
    VAR_ID               NUMBER(7)               not null,
    PA_ID                NUMBER(7)               not null,
-   constraint PK_V_C primary key (VC_ID,VAR_ID, PA_ID)
+   constraint PK_V_C primary key (VAR_ID, PA_ID)
 );
 
 
@@ -272,9 +208,9 @@ create table CATALOGO_PROVEEDOR_MP
    VAR_ID               NUMBER(7)             ,
    CP_NOMBRE            VARCHAR2(30)            not null,
    CP_DESCRIPCION       VARCHAR2(30)            not null,
-   CP_FOTOS             BLOB,                                                                              --CONJUTO DE FOTOS
+   CP_FOTOS             FOTOS_NT,                                                                              --CONJUTO DE FOTOS
    constraint PK_CATALOGO_PROVEEDOR_MP primary key (CP_ID)
-);
+) NESTED TABLE CP_FOTOS STORE AS FOTOS_MATERIA_P;
 
 
 create table PEDIDO 
@@ -292,40 +228,20 @@ create table PEDIDO
 );
 
 --No estoy muy seguro de pago y cuentas
+--LO QUE CREO ES QUE TIPOPAGO ES TABLA ANIDADA, ORQUE SI NO,NO LE VEO EL USO 
 
-CREATE OR REPLACE TYPE DATOSCUENTA AS OBJECT (
-    DAC_BANCO          VARCHAR2(30) ,
-    DAC_NUMCUENTA      NUMBER(7)   ,
-    DAC_NOMBRE         VARCHAR2(30) ,
-    DAC_TIPOCUENTA     VARCHAR2(30),
-    DAC_EMAIL          VARCHAR2(30)   
-);
 
 create table PAGO 
 (
    PA_ID                NUMBER(7)               not null,
    PE_ID                NUMBER(7)               not null,
-   PA_TIPOPAGO          VARCHAR2(30)            not null,
+   PA_TIPOPAGO          FORMAPAGO_NT,
    PA_MONTO             NUMBER(7)               not null,
    PA_FECHA             DATE                 not null,
-   PA_CUENTA            DATOSCUENTA,
+  -- PA_CUENTA            DATOSCUENTA,
    PA_CUOTA             NUMBER(7),
    constraint PK_PAGO primary key (PA_ID)
 );
-
-
-
-
-CREATE OR REPLACE TYPE PATROCINIO AS OBJECT (
-    PATROCINIO_NOMBRE  VARCHAR2(30)             ,
-    PATROCINIO_DESCRIPCION VARCHAR2(30)        ,
-    PATROCINIO_AÑOS    VARCHAR2(30)             
-);
-
-CREATE OR REPLACE TYPE PATROCINIO_NT AS TABLE OF PATROCINIO;
-
-
----- El TDA muestra hay que eliminarlo
 
 
 
@@ -358,11 +274,11 @@ create table PRESENTACION
 (
    PRE_ID               NUMBER(7)               not null,
    CP_ID                NUMBER(7)               not null,
-   PRE_MEDIDA           CHAR(10)             not null,
+   PRE_MEDIDA           MEDIDA             not null,
    PRE_TIPO             VARCHAR2(30)            not null
       constraint CKC_PRE_TIPO_PRESENTA check (PRE_TIPO in ('bolsa','saco','caja','sachet','otros')),
    PRE_PRECIOU          NUMBER(7)               not null,
-   PRE_DESCRIPCION      CLOB,
+   PRE_DESCRIPCION      VARCHAR2(40),                                                               -- PORQUE CLOB?
    constraint PK_PRESENTACION primary key (PRE_ID)
 );
 
