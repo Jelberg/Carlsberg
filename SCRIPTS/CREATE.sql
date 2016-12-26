@@ -24,7 +24,7 @@ create table ESTILO
    ES_COMIDA            COMIDA_NT,
    ES_IBU               VARCHAR2(10)             not null,
    ES_NOMBRETEMPORADA   VARCHAR2(30),
-   ES_TEMPERATURA       MEDIDA
+   ES_TEMPERATURA       MEDIDA,
    constraint PK_ESTILO primary key (ES_ID)
 )nested table ES_COMIDA store as comidas;
 
@@ -68,7 +68,7 @@ create table DISTRIBUCION_CERVEZA
    PA_ID                NUMBER(7)               not null,
    PC_ID                NUMBER(7)               not null,
    CE_ID                NUMBER(7)               not null,
-   DIS_CER_DISTRIBUCION DISTRIBUCION_NT
+   DIS_CER_DISTRIBUCION DISTRIBUCION_NT,
    constraint PK_DISTRIBUCION primary key (PA_ID,PC_ID,CE_ID)
 )
 NESTED TABLE DIS_CER_DISTRIUCION STORE AS DISTRIBUCION;
@@ -84,13 +84,13 @@ create table PROVEEDORES
    PR_NOMBRE            VARCHAR2(30)  unique    not null,
    PR_CORREO            VARCHAR2(30)  unique    not null,
   -- PR_TELEFONO          TELEFONO_VA                     ,  -- >>>NO VA POR, QUE YA ESTA EN CONTACTO
-   PR_FORMASENVIO       FORMAS_ENVIO_VA            not null,                       ------Esto no se sacaba con la entidad envios?O es un check de envios?
+   PR_FORMASENVIO       FORMAS_ENVIO_VA           ,                       ------Esto no se sacaba con la entidad envios?O es un check de envios?
    PR_FORMASPAGO        FORMAPAGO_NT,                                                                 -----YO CREO QUE FORMAS DE ENVIO ES UN VARRAY ---LO QUE NO SE ES DONDE SE VE ESO EN EL CONTRATO
    PR_CONTACTOS         CONTACTO,                                                                     ----- AUNQUE AUN ASI NO LE VEO LA UTILIDAD PORQUE TAMBIEN SE PUEDE USAR LA ENTIDAD ENVIOS AGREGANDO ATRIBUTO TIPOO_ENVIO
    PR_RESULTADOEVALUACION RESULTADOEVALUACION_NT,
    PR_WEB               VARCHAR2(30),
    constraint PK_PROVEEDORES primary key (PR_ID)
-)nedted table PR_FORMASPAGO store as formasDePago,
+)nested table PR_FORMASPAGO store as formasDePago
  nested table PR_RESULTADOEVALUACION store as resultadosEvaluaciones;
 
 create table ENVIOS 
@@ -115,8 +115,8 @@ create table EMPRESA
    EM_RECETAPROCESOBASICO RECETAPROCESOBASICO_NT,
    EMP_EM_ID            NUMBER(7),
    constraint PK_EMPRESA primary key (EM_ID)
-)nested table EM_PATROCINIO store as patrocinios,
- nested table EM_RESUMENH store as resumeneshistoricos,
+)nested table EM_PATROCINIO store as patrocinios
+ nested table EM_RESUMENH store as resumeneshistoricos
  nested table EM_RECETAPROCESOBASICO store as recetasprocesosbasicos;
 
 
