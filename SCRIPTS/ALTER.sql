@@ -135,7 +135,7 @@ alter table CATALOGO_PROVEEDOR_MP
    references MATERIA_PRIMA(MP_ID);
 
 alter table CATALOGO_PROVEEDOR_MP
-   add constraint FK_CP_PROVEEDOR foreign key (PR_ID)
+   add constraint FK_CPMP_PROVEEDOR foreign key (PR_ID)
    references PROVEEDORES(PR_ID);
 
 alter table CATALOGO_PROVEEDOR_MP
