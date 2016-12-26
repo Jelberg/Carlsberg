@@ -86,11 +86,6 @@ create sequence seq_en_id
    
    ;
    
-   create sequence seq_pa_id
-   start with 1
-   increment by 1
-   
-   ;
    
    create sequence seq_es_id
    start with 1

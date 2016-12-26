@@ -1,4 +1,4 @@
--- Creen sus propias direcciones 
+-- Creen sus propias direcciones // OJO PARA CREAR EL DIRECTORIO TIENEN QUE ENTRAR COMO USUARIO SYSTEM
 
 CREATE DIRECTORY DIR_ARCHIVOS as 'C:\Users\elber\OneDrive\Documentos\GitHub\Carlsberg\Fotos';
 

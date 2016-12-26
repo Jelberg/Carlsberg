@@ -26,7 +26,7 @@ create table ESTILO
    ES_NOMBRETEMPORADA   VARCHAR2(30),
    ES_TEMPERATURA       MEDIDA,
    constraint PK_ESTILO primary key (ES_ID)
-)nested table ES_COMIDA store as comidas;
+)nested table ES_COMIDA store as comidas;                         --los nombres no pueden ser iguales, genera error
 
 
 --- que es abu? ABV 
@@ -71,7 +71,7 @@ create table DISTRIBUCION_CERVEZA
    DIS_CER_DISTRIBUCION DISTRIBUCION_NT,
    constraint PK_DISTRIBUCION primary key (PA_ID,PC_ID,CE_ID)
 )
-NESTED TABLE DIS_CER_DISTRIUCION STORE AS DISTRIBUCION;
+NESTED TABLE DIS_CER_DISTRIBUCION STORE AS DISTRI;
 
 
 --CREATE OR REPLACE TYPE TELEFONO_VA AS VARRAY(5) OF VARCHAR2(15);
@@ -241,7 +241,7 @@ create table PAGO
   -- PA_CUENTA            DATOSCUENTA,
    PA_CUOTA             NUMBER(7),
    constraint PK_PAGO primary key (PA_ID)
-);
+)nested table PA_TIPOPAGO STORE AS TIPOS_DE_PAGO;
 
 
 
@@ -307,7 +307,7 @@ create table VALORACION_PEDIDO
 
 create table DESCUENTOPEDIDIOPARAPRODUCCION 
 (
-   DES_ID               NUMBER(7)               not null,
+   --DES_ID               NUMBER(7)               not null,
    PRO_FECHA            DATE                 not null,
    FA_ID                NUMBER(7)               not null,
    EM_ID                NUMBER(7)               not null,
@@ -316,7 +316,7 @@ create table DESCUENTOPEDIDIOPARAPRODUCCION
    DET_ID               NUMBER(7)               not null,
    PE_ID                NUMBER(7)               not null,
    DES_CANTIDAD         NUMBER(7)               not null,
-   constraint PK_DESCUENTOPRODUCCIONPRODUCCION primary key (DES_ID)     -- PORQUE TIENE ID PROPIA??
+   constraint PK_DESCUENTO primary key (PRO_FECHA,FA_ID,EM_ID,PC_ID,CE_ID,DET_ID,PE_ID)     -- PORQUE TIENE ID PROPIA??
 );
 
 
