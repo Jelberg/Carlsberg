@@ -108,16 +108,16 @@ create table EMPRESA
    EM_ID                NUMBER(7)               not null,
    CI_ID                NUMBER(7)               not null,
    EM_NOMBRE            VARCHAR2(30)  unique    not null,
-   EM_FECHAAPERTURA     DATE                 not null,
-   EM_RESUMENH          RESUMENHISTORICO_NT,                                    
-   EM_LOGO              BLOB             not null,                                    
-   EM_PATROCINIO        PATROCINIO_NT,
-   EM_RECETAPROCESOBASICO RECETAPROCESOBASICO_NT,
-   EMP_EM_ID            NUMBER(7),
+   EM_FECHAAPERTURA     DATE                    not null,
+   EM_RESUMENH          RESUMENHISTORICO_NT             ,                                    
+   EM_LOGO              BLOB                    not null,                                    
+   EM_PATROCINIO        PATROCINIO_NT                   ,
+   EM_RECETAPROCESOBASICO RECETAPROCESOBASICO_NT        ,
+   EMP_EM_ID            NUMBER(7)                       ,
    constraint PK_EMPRESA primary key (EM_ID)
-)nested table EM_PATROCINIO store as patrocinios
- nested table EM_RESUMENH store as resumeneshistoricos
- nested table EM_RECETAPROCESOBASICO store as recetasprocesosbasicos;
+)nested table EM_PATROCINIO store as PATROCINADORES
+ nested table EM_RESUMENH store as RESUMENES
+ nested table EM_RECETAPROCESOBASICO store as RECETAS_DE_PROCESOS;
 
 
 create table FABRICA 
