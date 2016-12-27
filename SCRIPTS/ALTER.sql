@@ -11,8 +11,6 @@ alter table CIUDAD
 	 
 ------------ESTILO	 
 
-alter table ESTILO
-   add constraint CHK_TEMPORADA check (ES_NOMBRETEMPORADA in ('si','no'));
 
 -------------CERVEZA
    
