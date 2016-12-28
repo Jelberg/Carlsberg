@@ -4,3 +4,7 @@ INSERT INTO ciudad (ci_id,ci_nombre,pa_id) VALUES (seq_ci_id.NEXTVAL,'Leeds',
 (Select pa_id from pais where pa_nombre = 'Inglaterra'));
 INSERT INTO ciudad (ci_id,ci_nombre,pa_id) VALUES (seq_ci_id.NEXTVAL,'Hamburgo',
 (Select pa_id from pais where pa_nombre = 'Alemania'));
+INSERT INTO ciudad (ci_id,ci_nombre,pa_id) VALUES (seq_ci_id.NEXTVAL,'West Yorkshire',
+(Select pa_id from pais where pa_nombre = 'Inglaterra'));
+
+
