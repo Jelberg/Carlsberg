@@ -1,0 +1,12 @@
+INSERT INTO fabrica (fa_id,em_id,ci_id,fa_nombre,fa_fechaapertura) VALUES (seq_fa_id.NEXTVAL,
+(Select em_id from empresa where em_nombre ='Holsten-Brauerei AG'),
+(Select ci_id from ciudad where ci_nombre = 'Hamburgo'),'Holsten-Brauerei','24-05-1879');
+
+
+INSERT INTO fabrica (fa_id,em_id,ci_id,fa_nombre,fa_fechaapertura) VALUES (seq_fa_id.NEXTVAL,
+(Select em_id from empresa where em_nombre ='Carlsberg group'),
+(Select ci_id from ciudad where ci_nombre = 'Copenhague'),'Tuborg','01-01-1875');
+
+INSERT INTO fabrica (fa_id,em_id,ci_id,fa_nombre,fa_fechaapertura) VALUES (seq_fa_id.NEXTVAL,
+(Select em_id from empresa where em_nombre ='Carlsberg group'),
+(Select ci_id from ciudad where ci_nombre = 'West Yorkshire'),'Leeds Tetley Brewery','01-01-1822');
