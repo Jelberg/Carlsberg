@@ -35,7 +35,7 @@ ALTER TABLE DISTRIBUCION_CERVEZA DROP PRIMARY KEY;
  
 alter table DISTRIBUCION_CERVEZA
    add constraint FK_DC_PRESENTACION_CERVEZA foreign key (PC_ID, CE_ID)
-      references PRESENTACION_CERVEZA(PC_ID);	 
+      references PRESENTACION_CERVEZA(PC_ID, CE_ID);	 
 	 
 alter table DISTRIBUCION_CERVEZA
    add constraint FK_DC_PAIS foreign key (PA_ID)
