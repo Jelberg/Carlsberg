@@ -76,6 +76,9 @@ alter table EMPRESA
    add constraint FK_DUEÑO foreign key (EMP_EM_ID)
    references EMPRESA(EM_ID);
 
+alter table empresa 
+modify EM_FECHAAPERTURA  number(4) ;
+  
 --------------FABRICA 
 
 alter table FABRICA

@@ -1,0 +1,9 @@
+INSERT INTO empresa (em_id,ci_id,em_nombre,em_fechaapertura,em_resumenh,em_logo,em_patrocinio,em_recetaprocesobasico,emp_em_id) VALUES (seq_em_id.NEXTVAL,
+(Select ci_id from ciudad where ci_nombre ='Copenhague'),'Carlsberg group',1847,
+RESUMENHISTORICO_NT(RESUMENHISTORICO('10-11-1847','Se elaboró la primera cerveza'),
+RESUMENHISTORICO('10-11-1966', 'Rlz. cerveza fuera del pais')),
+IMPORTAR_BINARIO('logocarlsberg.png'),
+PATROCINIO_NT(PATROCINIO('Liverpool FC','6,5 millones de pintas','56 años')),
+RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO('Procesado','Obtencion del mosto',
+'En la olla de crudos se vierte la totalidad de los grits, mas de 15% de malta en relacion a ellos',
+'50°','55°')),null);
