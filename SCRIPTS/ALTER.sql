@@ -11,6 +11,7 @@ alter table CIUDAD
 	 
 ------------ESTILO	 
 
+alter table estilo drop column es_nombretemporada;
 
 -------------CERVEZA
    
