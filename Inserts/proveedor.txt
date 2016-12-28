@@ -1,0 +1,47 @@
+INSERT INTO proveedores (pr_id,PA_ID,pr_nombre,pr_correo,pr_formasenvio,pr_formaspago,pr_contactos,pr_resultadoevaluacion,PR_WEB) 
+VALUES (seq_pr_id.NEXTVAL,(Select pa_id from pais where pa_nombre ='Dinamarca'),'Silva','Kylie@et.us',
+FORMAS_ENVIO_VA('Dropshipping','Envío desde almacén','Barco'),
+FORMAPAGO_NT(FORMAPAGO('DEBITO',NULL,NULL,NULL,NULL),FORMAPAGO('CREDITO',NULL,'5',NULL,NULL)),CONTACTO('Maria','Suarez','gerente','+98-7893726'),NULL,'www.jumanji.com');
+
+INSERT INTO proveedores (pr_id,PA_ID,pr_nombre,pr_correo,pr_formasenvio,pr_formaspago,pr_contactos,pr_resultadoevaluacion,PR_WEB) 
+VALUES (seq_pr_id.NEXTVAL,(Select pa_id from pais where pa_nombre ='UNITED STATES'),'Roach','Orlando@consequat.com',
+FORMAS_ENVIO_VA('Dropshipping','Envío desde almacén','Barco'),FORMAPAGO_NT(FORMAPAGO('DEBITO',NULL,NULL,NULL,NULL),
+FORMAPAGO('CREDITO',NULL,'8',NULL,NULL)),CONTACTO('Antonio','Monpart','gerente','+56-738739'),NULL,'www.kasawa.com');
+
+INSERT INTO proveedores (pr_id,PA_ID,pr_nombre,pr_correo,pr_formasenvio,pr_formaspago,pr_contactos,pr_resultadoevaluacion,PR_WEB) 
+VALUES (seq_pr_id.NEXTVAL,(Select pa_id from pais where pa_nombre ='CANADA'),'Mcmillan','Silas@nisl.com',
+FORMAS_ENVIO_VA('Dropshipping','Envío desde almacén','Barco'),FORMAPAGO_NT(FORMAPAGO('DEBITO',NULL,NULL,NULL,NULL),
+FORMAPAGO('CREDITO',NULL,'2',NULL,NULL)),CONTACTO('Alejandro','Fernandez','gerente','+75-787384'),NULL,'www.tumercancia.com');
+
+INSERT INTO proveedores (pr_id,PA_ID,pr_nombre,pr_correo,pr_formasenvio,pr_formaspago,pr_contactos,pr_resultadoevaluacion,PR_WEB) 
+VALUES (seq_pr_id.NEXTVAl,(Select pa_id from pais where pa_nombre ='Alemania'),'Fields','Lewis@consectetuer.org',
+FORMAS_ENVIO_VA('Dropshipping','Envío desde almacén','Barco'),
+FORMAPAGO_NT(FORMAPAGO('CREDITO',NULL,'3',NULL,NULL)),CONTACTO('Haruki','Kimonura','gerente','+91-7839226'),NULL,'www.masterking.com');
+
+INSERT INTO proveedores (pr_id,PA_ID,pr_nombre,pr_correo,pr_formasenvio,pr_formaspago,pr_contactos,pr_resultadoevaluacion,PR_WEB) 
+VALUES (seq_pr_id.NEXTVAL,(Select pa_id from pais where pa_nombre ='Alemania'),'Patterson','Lewis@leo.net',
+FORMAS_ENVIO_VA('Dropshipping','Envío desde almacén','Barco'),
+FORMAPAGO_NT(FORMAPAGO('CREDITO',NULL,'5',NULL,NULL)),CONTACTO('Michelle','Graceling','gerente','+43-12326'),NULL,'www.walkingdead.com');
+
+INSERT INTO proveedores (pr_id,PA_ID,pr_nombre,pr_correo,pr_formasenvio,pr_formaspago,pr_contactos,pr_resultadoevaluacion,PR_WEB) 
+VALUES (seq_pr_id.NEXTVAL,(Select pa_id from pais where pa_nombre ='FRANCE'),'Ellis','Fuller@ultricies.edu'
+,FORMAS_ENVIO_VA('Dropshipping','Envío desde almacén','Barco'),
+FORMAPAGO_NT(FORMAPAGO('DEBITO',NULL,NULL,NULL,NULL),FORMAPAGO('CREDITO',NULL,'2',NULL,NULL)),CONTACTO('Hazzel','Grace','gerente','+15-12343'),NULL,'www.prodiproduce.com');
+
+INSERT INTO proveedores (pr_id,PA_ID,pr_nombre,pr_correo,pr_formasenvio,pr_formaspago,pr_contactos,pr_resultadoevaluacion,PR_WEB) 
+VALUES (seq_pr_id.NEXTVAL,(Select pa_id from pais where pa_nombre ='UNITED STATES'),'House','Christopher@pharetra.gov',
+FORMAS_ENVIO_VA('Dropshipping','Envío desde almacén','Barco'),FORMAPAGO_NT(FORMAPAGO('DEBITO',NULL,NULL,NULL,NULL)),CONTACTO('Robin','Cook','gerente','+123-0987653'),NULL,'www.fevercop.com');
+
+INSERT INTO proveedores (pr_id,PA_ID,pr_nombre,pr_correo,pr_formasenvio,pr_formaspago,pr_contactos,pr_resultadoevaluacion,PR_WEB) 
+VALUES (seq_pr_id.NEXTVAL,(Select pa_id from pais where pa_nombre ='Dinamarca'),'Kirby','Neve@Phasellus.com',
+FORMAS_ENVIO_VA('Dropshipping','Envío desde almacén','Barco'),FORMAPAGO_NT(FORMAPAGO('CREDITO',NULL,'4',NULL,NULL)),CONTACTO('Petter','Harris','gerente','+32-123455'),NULL,'www.bastoresuelto.com');
+
+INSERT INTO proveedores (pr_id,PA_ID,pr_nombre,pr_correo,pr_formasenvio,pr_formaspago,pr_contactos,pr_resultadoevaluacion,PR_WEB) 
+VALUES (seq_pr_id.NEXTVAL,(Select pa_id from pais where pa_nombre ='Inglaterra'),'Hayden','Todd@feugiat.us',
+FORMAS_ENVIO_VA('Dropshipping','Envío desde almacén','Barco'),FORMAPAGO_NT(FORMAPAGO('DEBITO',NULL,NULL,NULL,NULL),
+FORMAPAGO('CREDITO',NULL,'5',NULL,NULL)),CONTACTO('Anne','Rice','gerente','+98-7893726'),NULL,'www.bearsimp.com');
+
+INSERT INTO proveedores (pr_id,PA_ID,pr_nombre,pr_correo,pr_formasenvio,pr_formaspago,pr_contactos,pr_resultadoevaluacion,PR_WEB) 
+VALUES (seq_pr_id.NEXTVAL,(Select pa_id from pais where pa_nombre ='Dinamarca'),'Roy','Eric@venenatis.com',
+FORMAS_ENVIO_VA('Dropshipping','Envío desde almacén','Barco'),FORMAPAGO_NT(FORMAPAGO('DEBITO',NULL,NULL,NULL,NULL)),
+CONTACTO('Joseff','Conrad','gerente','+98-7893726'),NULL,'www.nextu.com');
