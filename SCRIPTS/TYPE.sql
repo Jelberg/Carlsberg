@@ -59,12 +59,12 @@ CREATE OR REPLACE TYPE CONTACTO AS OBJECT (
     CON_TELEFONO       VARCHAR2(30)    
 );
 /
-
-CREATE OR REPLACE TYPE RECETAPROCESOBASICO AS OBJECT (
+-- PARA la palabra clave si es etapa, el atributo etapa estara lleno y actividad que al fin de cuentas en el mismo proeso estara vacio, y si es proceso es lo contrario de lo anterior. Y la palabra clave como tal es es atributo rpb_descripcion
+CREATE OR REPLACE TYPE RECETAPROCESOBASICO AS OBJECT (            
     RPB_ETAPA          VARCHAR2(30) ,
     RPB_ACTIVIDAD      VARCHAR2(30) , --- MISMO PROCESO
 	RPB_DESCRIPCION    VARCHAR2(100),
-	RPB_TEMI           VARCHAR2(30),                                 --- NO SE LO QUE ES TEMI Y TEMF
+	RPB_TEMI           VARCHAR2(30),                                 
 	RPB_TEMF           VARCHAR2(30)
 );
 /

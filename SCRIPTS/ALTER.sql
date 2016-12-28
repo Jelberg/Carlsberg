@@ -231,5 +231,21 @@ alter table DESCUENTOPEDIDIOPARAPRODUCCION
    references DETALLE_PEDIDO(DET_ID,PE_ID);
 
 
-	  
-	  
+---- Estos alter son por que falto poner clave compuesta en catalogo_proveedor_EQ
+
+alter table Detalle_pedido drop column ca_codigo;
+
+alter table catalogo_proveedor_EQ drop primary key;
+
+alter table catalogo_proveedor_EQ
+add constraint PK_CatalogoEQ primary key (ca_codigo,pr_id);
+
+alter table Detalle_pedido
+add ca_codigo number(7);
+
+alter table Detalle_pedido
+add pr_id number(7);
+
+alter table detalle_pedido
+add constraint fk_dp_catalogoEQ foreign key (ca_codigo,pr_id)
+references catalogo_proveedor_EQ (ca_codigo,pr_id);
