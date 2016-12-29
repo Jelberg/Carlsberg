@@ -249,3 +249,14 @@ add pr_id number(7);
 alter table detalle_pedido
 add constraint fk_dp_catalogoEQ foreign key (ca_codigo,pr_id)
 references catalogo_proveedor_EQ (ca_codigo,pr_id);
+
+---------------Este alter es por el not null que esta mal colocado en pedido
+
+alter table pedido modify pe_fechasolicitada date not null ;
+
+alter table pedido drop column pe_fechaentrega;
+
+alter table pedido
+add pe_fechaentrega date;
+
+
