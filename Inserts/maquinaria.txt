@@ -1,8 +1,4 @@
 
-
------FAlTA AGREGAR LA PALABRA CLAVE POR LO QUE NO VA A CORRER TODAVIA 
-
-
 INSERT INTO maquinaria (ma_id,ma_nombre,ma_palabraclv,ma_descripcion_) VALUES (seq_ma_id.NEXTVAL,'Calderos',
 RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO('etapa',null,'caldero',null,null),RECETAPROCESOBASICO(null,'proceso','generador de vapor',null,null)),
 'constan de sopladores yquemadores para combustibles líquidos');
