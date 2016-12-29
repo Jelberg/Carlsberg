@@ -1,0 +1,30 @@
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) 
+VALUES (seq_pe_id.NEXTVAL,(SELECT con_numero FROM(SELECT con_numero FROM contrato ORDER BY dbms_random.value )WHERE rownum = 1),
+(Select con_fechaemision from (SELECT con_fechaemision FROM contrato ORDER BY dbms_random.value )WHERE to_char(con_fechaemision,'YYYY')= '2016' and rownum = 1 )
+,'en proceso',null,'materia prima',NULL,NULL,'12-12-2016');
+
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) 
+VALUES (seq_pe_id.NEXTVAL,(SELECT con_numero FROM(SELECT con_numero FROM contrato ORDER BY dbms_random.value )WHERE rownum = 1),
+(Select con_fechaemision from (SELECT con_fechaemision FROM contrato ORDER BY dbms_random.value )WHERE to_char(con_fechaemision,'YYYY')= '2016' and rownum = 1 ),
+'en proceso',null,'equipo',NULL,NULL,'22-06-2016');
+
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) 
+VALUES (seq_pe_id.NEXTVAL,(SELECT con_numero FROM(SELECT con_numero FROM contrato ORDER BY dbms_random.value )WHERE rownum = 1),
+(Select con_fechaemision from (SELECT con_fechaemision FROM contrato ORDER BY dbms_random.value )WHERE to_char(con_fechaemision,'YYYY')= '2016' and rownum = 1 )
+,'cancelada',null,'materia prima',NULL,NULL,'05-05-2016');
+
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) 
+VALUES (seq_pe_id.NEXTVAL,(SELECT con_numero FROM(SELECT con_numero FROM contrato ORDER BY dbms_random.value )WHERE rownum = 1),
+(Select con_fechaemision from (SELECT con_fechaemision FROM contrato ORDER BY dbms_random.value )WHERE to_char(con_fechaemision,'YYYY')= '2015' and rownum = 1 ),
+'finalizada','22-09-2015','materia prima',123,23423,'22-09-2015');
+
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) 
+VALUES (seq_pe_id.NEXTVAL,(SELECT con_numero FROM(SELECT con_numero FROM contrato ORDER BY dbms_random.value )WHERE rownum = 1),
+(Select con_fechaemision from (SELECT con_fechaemision FROM contrato ORDER BY dbms_random.value )WHERE to_char(con_fechaemision,'YYYY')= '2015' and rownum = 1 ),
+'finalizada','22-03-2015','materia prima',234,23421,'11-03-2015');
+
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) 
+VALUES (seq_pe_id.NEXTVAL,(SELECT con_numero FROM(SELECT con_numero FROM contrato ORDER BY dbms_random.value )WHERE rownum = 1),
+(Select con_fechaemision from (SELECT con_fechaemision FROM contrato ORDER BY dbms_random.value )WHERE to_char(con_fechaemision,'YYYY')= '2016' and rownum = 1 ),
+'finalizada','02-03-2016','materia prima',543,12211,'02-02-2016');
+
