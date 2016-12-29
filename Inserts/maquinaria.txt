@@ -1,59 +1,60 @@
 
+
 -----FAlTA AGREGAR LA PALABRA CLAVE POR LO QUE NO VA A CORRER TODAVIA 
 
 
 INSERT INTO maquinaria (ma_id,ma_nombre,ma_palabraclv,ma_descripcion_) VALUES (seq_ma_id.NEXTVAL,'Calderos',
-RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO()),
+RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO('etapa',null,'caldero',null,null),RECETAPROCESOBASICO(null,'proceso','generador de vapor',null,null)),
 'constan de sopladores yquemadores para combustibles líquidos');
 
 INSERT INTO maquinaria (ma_id,ma_nombre,ma_palabraclv,ma_descripcion_) VALUES (seq_ma_id.NEXTVAL,'Motores',
-RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO()),
+RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO('etapa',null,'motor',null,null),RECETAPROCESOBASICO(null,'proceso','accionar bandas transportadoras',null,null)),
 'accionamiento de las bandas transportadoras');
 
 INSERT INTO maquinaria (ma_id,ma_nombre,ma_palabraclv,ma_descripcion_) VALUES (seq_ma_id.NEXTVAL,'Motores Diesel',
-RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO()),
-'empleados en la generación de energía eléctrica ');
+RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO('etapa',null,'m diesel',null,null),RECETAPROCESOBASICO(null,'proceso','energia electrica',null,null)),
+'empleados para la generación de energía eléctrica ');
 
 INSERT INTO maquinaria (ma_id,ma_nombre,ma_palabraclv,ma_descripcion_) VALUES (seq_ma_id.NEXTVAL,'Bombas',
-RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO()),
+RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO('etapa',null,'bombas',null,null),RECETAPROCESOBASICO(null,'proceso','fluidos',null,null)),
 'transportan los diferentes fluidos');
 
 INSERT INTO maquinaria (ma_id,ma_nombre,ma_palabraclv,ma_descripcion_) VALUES (seq_ma_id.NEXTVAL,'Compresores',
-RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO()),
+RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO('etapa',null,'piston',null,null),RECETAPROCESOBASICO(null,'proceso','sistema de enfriamiento',null,null)),
 'para la inyección del aire en la fermentación y en la maduración');
 
 INSERT INTO maquinaria (ma_id,ma_nombre,ma_palabraclv,ma_descripcion_) VALUES (seq_ma_id.NEXTVAL,'Ventiladores',
-RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO()),
+RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO('etapa',null,'ventilador',null,null),RECETAPROCESOBASICO(null,'proceso','receptor de malta',null,null)),
 'Se utilizan en las instalaciones de recepción de malta');
 
 INSERT INTO maquinaria (ma_id,ma_nombre,ma_palabraclv,ma_descripcion_) VALUES (seq_ma_id.NEXTVAL,'Bandas Transportadoras'
-,RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO()),
+,RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO('etapa',null,'bandas',null,null),RECETAPROCESOBASICO(null,'proceso','transportar',null,null)),
 'Usadas para el transporte de la malta y adjunto');
 
 INSERT INTO maquinaria (ma_id,ma_nombre,ma_palabraclv,ma_descripcion_) VALUES (seq_ma_id.NEXTVAL,'Transportadores',
-RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO()),
+RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO('etapa',null,'transportador',null,null),RECETAPROCESOBASICO(null,'proceso','elevador',null,null)),
 'Para mover la malta y los adjuntos en forma vertical');
 
 INSERT INTO maquinaria (ma_id,ma_nombre,ma_palabraclv,ma_descripcion_) VALUES (seq_ma_id.NEXTVAL,'Montacargas',
-RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO()),
+RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO('etapa',null,'burro',null,null),RECETAPROCESOBASICO(null,'proceso','montagargas',null,null)),
 'Utilizados como máquinas para manejo de materiales mas comunes');
 
 INSERT INTO maquinaria (ma_id,ma_nombre,ma_palabraclv,ma_descripcion_) VALUES (seq_ma_id.NEXTVAL,'Molinos',
-RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO()),
+RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO('etapa',null,'molino',null,null),RECETAPROCESOBASICO(null,'proceso','moler',null,null)),
 'Empleados para el desprendimiento de la película del grano de malta');
 
 INSERT INTO maquinaria (ma_id,ma_nombre,ma_palabraclv,ma_descripcion_) VALUES (seq_ma_id.NEXTVAL,'Intercambiadors de calor',
-RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO()),
+RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO('etapa',null,'refigerante',null,null),RECETAPROCESOBASICO(null,'proceso','enfriamiento',null,null)),
 'para enfriar el mosto en su recorrido hacia los tanques de fermentación');
 
 INSERT INTO maquinaria (ma_id,ma_nombre,ma_palabraclv,ma_descripcion_) VALUES (seq_ma_id.NEXTVAL,'Horno de tunel',
-RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO()),
+RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO('etapa',null,'pasteurizador',null,null),RECETAPROCESOBASICO(null,'proceso','pasteurizante',null,null)),
 'Pasteurizador');
 
 INSERT INTO maquinaria (ma_id,ma_nombre,ma_palabraclv,ma_descripcion_) VALUES (seq_ma_id.NEXTVAL,'Llenadoras',
-RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO()),
+RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO('etapa',null,'llenador',null,null),RECETAPROCESOBASICO(null,'proceso','Envasar',null,null)),
 'Envasadora');
 
 INSERT INTO maquinaria (ma_id,ma_nombre,ma_palabraclv,ma_descripcion_) VALUES (seq_ma_id.NEXTVAL,'Tanques de Contrapresion',
-RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO()),
+RECETAPROCESOBASICO_NT(RECETAPROCESOBASICO('etapa',null,'tanques',null,null),RECETAPROCESOBASICO(null,'proceso','presiones de tanque',null,null)),
 'Para almacenarla cerveza y asi evitar que exista desprendimiento de gas');
