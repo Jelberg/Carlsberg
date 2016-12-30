@@ -134,3 +134,9 @@ create sequence seq_en_id
    increment by 1
    
    ;
+   
+   create sequence seq_pag_id
+   start with 1
+   increment by 1
+   
+   ;
