@@ -11,3 +11,7 @@ insert into pais (pa_id,pa_nombre,pa_continente) VALUES (seq_pa_id.NEXTVAL,'BELG
 
 insert into pais (pa_id,pa_nombre,pa_continente) VALUES (seq_pa_id.NEXTVAL,'FRANCE','Europa');
 insert into pais (pa_id,pa_nombre,pa_continente) VALUES (seq_pa_id.NEXTVAL,'SWEDEN','Europa');
+
+insert into pais (pa_id,pa_nombre,pa_continente) VALUES (seq_pa_id.NEXTVAL,'Republica Checa','Europa');
+insert into pais (pa_id,pa_nombre,pa_continente) VALUES (seq_pa_id.NEXTVAL,'Belgica','Europa');
+insert into pais (pa_id,pa_nombre,pa_continente) VALUES (seq_pa_id.NEXTVAL,'Reino Unido','Europa');
