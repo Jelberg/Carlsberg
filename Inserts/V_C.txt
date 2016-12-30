@@ -1,0 +1,10 @@
+insert into v_c (var_id,pa_id) values ((select var_id from variedad where var_nombre='Malta Pilsner'),(select pa_id from pais where pa_nombre='Alemania'));
+insert into v_c (var_id,pa_id) values ((select var_id from variedad where var_nombre='Malta Pilsner'),(select pa_id from pais where pa_nombre='Republica Checa'));
+insert into v_c (var_id,pa_id) values ((select var_id from variedad where var_nombre='Malta Pilsner'),(select pa_id from pais where pa_nombre='Belgica'));
+insert into v_c (var_id,pa_id) values ((select var_id from variedad where var_nombre='Malta Lager'),(select pa_id from pais where pa_nombre='Republica Checa'));
+insert into v_c (var_id,pa_id) values ((select var_id from variedad where var_nombre='Malta Pale'),(select pa_id from pais where pa_nombre='Reino Unido'));
+insert into v_c (var_id,pa_id) values ((select var_id from variedad where var_nombre='Malta Pale'),(select pa_id from pais where pa_nombre='Belgica'));
+insert into v_c (var_id,pa_id) values ((select var_id from variedad where var_nombre='Malta Amber'),(select pa_id from pais where pa_nombre='Reino Unido'));
+insert into v_c (var_id,pa_id) values ((select var_id from variedad where var_nombre='Malta Chocolate'),(select pa_id from pais where pa_nombre='Reino Unido'));
+insert into v_c (var_id,pa_id) values ((select var_id from variedad where var_nombre='Malta Negra'),(select pa_id from pais where pa_nombre='Reino Unido'));
+insert into v_c (var_id,pa_id) values ((select var_id from variedad where var_nombre='Cebada Tostada'),(select pa_id from pais where pa_nombre='Reino Unido'));
