@@ -1,0 +1,26 @@
+INSERT INTO pago (pa_id,pe_id,pa_tipopago,pa_monto,pa_fecha,pa_cuota) VALUES (seq_pa_id.NEXTVAL,
+(Select pe_id from (SELECT pe_id FROM pedido where pe_status='cancelada' or pe_status='finalizada' and to_char(pe_fechapedido,'YYYY')= '2016' and pe_tipo ='materia prima'  ORDER BY dbms_random.value )WHERE rownum = 1) ,
+FORMAPAGO_NT(FORMAPAGO('DEBITO','pago de materia prima',null,'3',DATOSCUENTA('HSBC Holdings',234454,'Jose Luis Garcia','ahorro','tender@treth.com'))),
+183,'12-12-16',1);
+
+INSERT INTO pago (pa_id,pe_id,pa_tipopago,pa_monto,pa_fecha,pa_cuota) VALUES (seq_pa_id.NEXTVAL,
+(Select pe_id from (SELECT pe_id FROM pedido where pe_status='cancelada' or pe_status='finalizada' and to_char(pe_fechapedido,'YYYY')= '2015' and pe_tipo ='materia prima'  ORDER BY dbms_random.value )WHERE rownum = 1) ,
+FORMAPAGO_NT(FORMAPAGO('DEBITO','pago de materia prima',null,'3',DATOSCUENTA('JP Morgan Chase y Co',234454,'Suzanne Collings','ahorro','tender@treth.com'))),
+278,'12-12-15',2);
+
+
+INSERT INTO pago (pa_id,pe_id,pa_tipopago,pa_monto,pa_fecha,pa_cuota) VALUES (seq_pa_id.NEXTVAL,
+(Select pe_id from (SELECT pe_id FROM pedido where pe_status='cancelada' or pe_status='finalizada' and to_char(pe_fechapedido,'YYYY')= '2015' and pe_tipo ='materia prima'  ORDER BY dbms_random.value )WHERE rownum = 1) ,
+FORMAPAGO_NT(FORMAPAGO('DEBITO','pago de materia prima',null,'3',DATOSCUENTA('Agricultural Bank of China',234454,'Scott Westerfeld','ahorro','tender@treth.com'))),
+289,'12-06-15',3);
+
+INSERT INTO pago (pa_id,pe_id,pa_tipopago,pa_monto,pa_fecha,pa_cuota) VALUES (seq_pa_id.NEXTVAL,
+(Select pe_id from (SELECT pe_id FROM pedido where pe_status='cancelada' or pe_status='finalizada' and to_char(pe_fechapedido,'YYYY')= '2016' and pe_tipo ='materia prima'  ORDER BY dbms_random.value )WHERE rownum = 1) ,
+FORMAPAGO_NT(FORMAPAGO('DEBITO','pago de materia prima',null,'3',DATOSCUENTA('Bank of America',234454,'Anne Rice','ahorro','tender@treth.com'))),
+178,'12-08-16',1);
+
+INSERT INTO pago (pa_id,pe_id,pa_tipopago,pa_monto,pa_fecha,pa_cuota) VALUES (seq_pa_id.NEXTVAL,
+(Select pe_id from (SELECT pe_id FROM pedido where pe_status='cancelada' or pe_status='finalizada' and to_char(pe_fechapedido,'YYYY')= '2016' and pe_tipo ='materia prima'  ORDER BY dbms_random.value )WHERE rownum = 1) ,
+FORMAPAGO_NT(FORMAPAGO('DEBITO','pago de materia prima',null,'3',DATOSCUENTA('Bank of America',234454,'Giorgio Faletti','ahorro','tender@treth.com'))),
+3232,'12-09-16',2);
+
