@@ -4,3 +4,5 @@ insert into materia_prima (mp_id,mp_nombre,mp_descripcion,mp_formasdislupulo) va
 insert into materia_prima (mp_id,mp_nombre,mp_descripcion,mp_formasdislupulo) values(seq_mp_id.NEXTVAL,'Adjuntos (Grits)','Debido a la alta fuerza diastastica (fermento) de la malta es necesario agregar cereales no malteadas a la cerveza para que su estabilidad sea buena. Su uso hace que el color sea mas claro con un sabor mas agradable con mayor luminosidad','');
 insert into materia_prima (mp_id,mp_nombre,mp_descripcion,mp_formasdislupulo) values(seq_mp_id.NEXTVAL,'Agua','Se utiliza gua potable y sus caracteristicas organolepticas deben ser completamente normales','');
 insert into materia_prima (mp_id,mp_nombre,mp_descripcion,mp_formasdislupulo) values(seq_mp_id.NEXTVAL,'Levadura','Son hongos microscopicos unicelulares que transforman los glucidos y los aminoacidos en alcohol y CO2','');
+insert into materia_prima (mp_id,mp_nombre,mp_descripcion,mp_formasdislupulo) values(seq_mp_id.NEXTVAL,'Malta','Constituida por granos de cebada germinados durante un periodo limitado de tiempo','');
+
