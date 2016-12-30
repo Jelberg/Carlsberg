@@ -1,0 +1,49 @@
+INSERT INTO envios (ci_id,pr_id,en_costo,en_tiempo_horas) 
+VALUES ((Select ci_id from ciudad where ci_nombre = 'Copenhague' and rownum = 1),
+(Select pr_id from (SELECT p.pr_id FROM proveedores p ORDER BY dbms_random.value )WHERE rownum = 1),
+234,72);
+
+INSERT INTO envios (ci_id,pr_id,en_costo,en_tiempo_horas) 
+VALUES ((Select ci_id from ciudad where ci_nombre = 'Leeds' and rownum = 1),
+(Select pr_id from (SELECT p.pr_id FROM proveedores p, envios e, ciudad c where e.pr_id <> p.pr_id and c.ci_id <> e.ci_id ORDER BY dbms_random.value )WHERE rownum = 1),
+453,72);
+
+INSERT INTO envios (ci_id,pr_id,en_costo,en_tiempo_horas) 
+VALUES ((Select ci_id from ciudad where ci_nombre = 'Hamburgo' and rownum = 1),
+(Select pr_id from (SELECT p.pr_id FROM proveedores p, envios e, ciudad c where e.pr_id <> p.pr_id and c.ci_id <> e.ci_id ORDER BY dbms_random.value )WHERE rownum = 1),
+345,24);
+
+INSERT INTO envios (ci_id,pr_id,en_costo,en_tiempo_horas) 
+VALUES ((Select ci_id from ciudad where ci_nombre = 'West Yorkshire' and rownum = 1),
+(Select pr_id from (SELECT p.pr_id FROM proveedores p, envios e, ciudad c where e.pr_id <> p.pr_id and c.ci_id <> e.ci_id ORDER BY dbms_random.value )WHERE rownum = 1),
+29,31);
+
+INSERT INTO envios (ci_id,pr_id,en_costo,en_tiempo_horas) 
+VALUES ((Select ci_id from ciudad where ci_nombre = 'Copenhague' and rownum = 1),
+(Select pr_id from (SELECT p.pr_id FROM proveedores p, envios e, ciudad c where e.pr_id <> p.pr_id and c.ci_id <> e.ci_id ORDER BY dbms_random.value )WHERE rownum = 1)
+,321,49);
+
+INSERT INTO envios (ci_id,pr_id,en_costo,en_tiempo_horas) 
+VALUES ((Select ci_id from ciudad where ci_nombre = 'Leeds' and rownum = 1),
+(Select pr_id from (SELECT p.pr_id FROM proveedores p, envios e, ciudad c where e.pr_id <> p.pr_id and c.ci_id <> e.ci_id ORDER BY dbms_random.value )WHERE rownum = 1)
+,215,35);
+
+INSERT INTO envios (ci_id,pr_id,en_costo,en_tiempo_horas) 
+VALUES ((Select ci_id from ciudad where ci_nombre = 'Hamburgo' and rownum = 1),
+(Select pr_id from (SELECT p.pr_id FROM proveedores p, envios e, ciudad c where e.pr_id <> p.pr_id and c.ci_id <> e.ci_id ORDER BY dbms_random.value )WHERE rownum = 1),
+102,53);
+
+INSERT INTO envios (ci_id,pr_id,en_costo,en_tiempo_horas) 
+VALUES ((Select ci_id from ciudad where ci_nombre = 'West Yorkshire' and rownum = 1),
+(Select pr_id from (SELECT p.pr_id FROM proveedores p, envios e, ciudad c where e.pr_id <> p.pr_id and c.ci_id <> e.ci_id ORDER BY dbms_random.value )WHERE rownum = 1)
+,814,24);
+
+INSERT INTO envios (ci_id,pr_id,en_costo,en_tiempo_horas) 
+VALUES ((Select ci_id from ciudad where ci_nombre = 'Copenhague' and rownum = 1),
+(Select pr_id from (SELECT p.pr_id FROM proveedores p, envios e, ciudad c where e.pr_id <> p.pr_id and c.ci_id <> e.ci_id ORDER BY dbms_random.value )WHERE rownum = 1),
+680,72);
+
+INSERT INTO envios (ci_id,pr_id,en_costo,en_tiempo_horas) 
+VALUES ((Select ci_id from ciudad where ci_nombre = 'Leeds' and rownum = 1),
+(Select pr_id from (SELECT p.pr_id FROM proveedores p, envios e, ciudad c where e.pr_id <> p.pr_id and c.ci_id <> e.ci_id ORDER BY dbms_random.value )WHERE rownum = 1),
+208,71);
