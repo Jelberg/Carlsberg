@@ -1,0 +1,62 @@
+INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,
+(SELECT pe_id FROM(SELECT pe_id FROM pedido where pe_tipo='materia prima' ORDER BY dbms_random.value )WHERE rownum = 1),
+(SELECT pre_id FROM(SELECT pre_id FROM presentacion ORDER BY dbms_random.value )WHERE rownum = 1),20,null,null);
+
+INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,
+(SELECT pe_id FROM(SELECT pe_id FROM pedido where pe_tipo='materia prima' ORDER BY dbms_random.value )WHERE rownum = 1),
+(SELECT pre_id FROM(SELECT pre_id FROM presentacion ORDER BY dbms_random.value )WHERE rownum = 1),10,null,null);
+
+INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,
+(SELECT pe_id FROM(SELECT pe_id FROM pedido where pe_tipo='materia prima' ORDER BY dbms_random.value )WHERE rownum = 1),
+(SELECT pre_id FROM(SELECT pre_id FROM presentacion ORDER BY dbms_random.value )WHERE rownum = 1),60,null,null);
+
+INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,
+(SELECT pe_id FROM(SELECT pe_id FROM pedido where pe_tipo='materia prima' ORDER BY dbms_random.value )WHERE rownum = 1),
+(SELECT pre_id FROM(SELECT pre_id FROM presentacion ORDER BY dbms_random.value )WHERE rownum = 1),80,null,null);
+
+INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,
+(SELECT pe_id FROM(SELECT pe_id FROM pedido where pe_tipo='materia prima' ORDER BY dbms_random.value )WHERE rownum = 1),
+(SELECT pre_id FROM(SELECT pre_id FROM presentacion ORDER BY dbms_random.value )WHERE rownum = 1),60,null,null);
+
+INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,
+(SELECT pe_id FROM(SELECT pe_id FROM pedido where pe_tipo='materia prima' ORDER BY dbms_random.value )WHERE rownum = 1),
+(SELECT pre_id FROM(SELECT pre_id FROM presentacion ORDER BY dbms_random.value )WHERE rownum = 1),20,null,null);
+
+INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,
+(SELECT pe_id FROM(SELECT pe_id FROM pedido where pe_tipo='materia prima' ORDER BY dbms_random.value )WHERE rownum = 1),
+(SELECT pre_id FROM(SELECT pre_id FROM presentacion ORDER BY dbms_random.value )WHERE rownum = 1),10,null,null);
+
+INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,
+(SELECT pe_id FROM(SELECT pe_id FROM pedido where pe_tipo='materia prima' ORDER BY dbms_random.value )WHERE rownum = 1),
+(SELECT pre_id FROM(SELECT pre_id FROM presentacion ORDER BY dbms_random.value )WHERE rownum = 1),60,null,null);
+
+INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,
+(SELECT pe_id FROM(SELECT pe_id FROM pedido where pe_tipo='materia prima' ORDER BY dbms_random.value )WHERE rownum = 1),
+(SELECT pre_id FROM(SELECT pre_id FROM presentacion ORDER BY dbms_random.value )WHERE rownum = 1),80,null,null);
+
+INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,
+(SELECT pe_id FROM(SELECT pe_id FROM pedido where pe_tipo='materia prima' ORDER BY dbms_random.value )WHERE rownum = 1),
+(SELECT pre_id FROM(SELECT pre_id FROM presentacion ORDER BY dbms_random.value )WHERE rownum = 1),60,null,null);
+
+
+INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,
+(SELECT pe_id FROM(SELECT pe_id FROM pedido where pe_tipo='materia prima' ORDER BY dbms_random.value )WHERE rownum = 1),
+(SELECT pre_id FROM(SELECT pre_id FROM presentacion ORDER BY dbms_random.value )WHERE rownum = 1),20,null,null);
+
+INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,
+(SELECT pe_id FROM(SELECT pe_id FROM pedido where pe_tipo='materia prima' ORDER BY dbms_random.value )WHERE rownum = 1),
+(SELECT pre_id FROM(SELECT pre_id FROM presentacion ORDER BY dbms_random.value )WHERE rownum = 1),10,null,null);
+
+INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,
+(SELECT pe_id FROM(SELECT pe_id FROM pedido where pe_tipo='materia prima' ORDER BY dbms_random.value )WHERE rownum = 1),
+(SELECT pre_id FROM(SELECT pre_id FROM presentacion ORDER BY dbms_random.value )WHERE rownum = 1),60,null,null);
+
+INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,
+(SELECT pe_id FROM(SELECT pe_id FROM pedido where pe_tipo='materia prima' ORDER BY dbms_random.value )WHERE rownum = 1),
+(SELECT pre_id FROM(SELECT pre_id FROM presentacion ORDER BY dbms_random.value )WHERE rownum = 1),80,null,null);
+
+INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,
+(SELECT pe_id FROM(SELECT pe_id FROM pedido where pe_tipo='materia prima' ORDER BY dbms_random.value )WHERE rownum = 1),
+(SELECT pre_id FROM(SELECT pre_id FROM presentacion ORDER BY dbms_random.value )WHERE rownum = 1),60,null,null);
+
+

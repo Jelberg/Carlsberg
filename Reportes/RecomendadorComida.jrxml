@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RecomendadorComida" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e9f55d8a-3bc9-497c-8fcf-5f86934089da">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Nombre de comida" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[Select e.es_nombre, n.con_nombre, c.ce_NOMBREINGLES
+from ESTILO e, table(e.es_comida )n ,cerveza c
+where c.es_id = e.es_id and UPPER(n.con_nombre) like UPPER('%'||$P{Nombre de comida}) or
+UPPER(n.con_nombre) like UPPER($P{Nombre de comida}||'%')]]>
+	</queryString>
+	<field name="ES_NOMBRE" class="java.lang.String"/>
+	<field name="CON_NOMBRE" class="java.lang.String"/>
+	<field name="CE_NOMBREINGLES" class="java.lang.String"/>
+	<variable name="PR_NOMBRE_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="130" y="21" width="292" height="34" uuid="711a91a0-419f-4886-b658-966cbac8b91a"/>
+				<textElement>
+					<font fontName="Arial" size="24"/>
+				</textElement>
+				<text><![CDATA[Recomendacion de comida ]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="19" y="55" width="511" height="5" forecolor="#33CC00" backcolor="#33CC00" uuid="08bb4aba-7a98-44ad-b167-e7b0db59c9d9"/>
+			</rectangle>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="30" y="15" width="150" height="20" uuid="2fddacaf-5071-4912-bc94-45b1f6134bc2"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Parametro de busqueda:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="254" y="15" width="218" height="20" uuid="6ea3b5c7-153e-4679-8c4b-0e5257d3acbb"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Nombre de comida}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement x="254" y="19" width="78" height="20" uuid="d2f26e81-84f2-4566-9ba3-470817eb7577"/>
+				<textElement>
+					<font size="14" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Estilos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="62" y="19" width="100" height="20" uuid="6b1485e7-fa90-42d7-9dd9-b1dcab55af80"/>
+				<textElement>
+					<font size="14" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Cervezas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="397" y="19" width="60" height="20" uuid="084e8e82-61ea-418f-a59e-6a82d9f025d5"/>
+				<textElement>
+					<font size="14" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Comida]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="72" splitType="Stretch">
+			<rectangle>
+				<reportElement x="14" y="15" width="5" height="31" forecolor="#33CC00" backcolor="#33CC00" uuid="8c6321d5-5399-402c-8baa-f1047cd07979"/>
+			</rectangle>
+			<line>
+				<reportElement x="30" y="10" width="500" height="1" forecolor="#CCCCCC" uuid="c4bf739f-a7de-4a7c-95e2-8e1ca895cc7a"/>
+			</line>
+			<textField>
+				<reportElement x="254" y="15" width="100" height="27" uuid="a7162cd1-9c23-4171-8ed1-e2a714e74a22"/>
+				<textFieldExpression><![CDATA[$F{ES_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="397" y="15" width="120" height="27" uuid="73704b17-9092-4b44-8b11-fe4115a63124"/>
+				<textFieldExpression><![CDATA[$F{CON_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="62" y="15" width="130" height="27" uuid="58278b93-4e0c-4e02-a025-447388923d85"/>
+				<textFieldExpression><![CDATA[$F{CE_NOMBREINGLES}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="212" y="24" width="80" height="20" uuid="a8ab13bf-0908-424d-9bba-806820ce2a16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="292" y="24" width="40" height="20" uuid="5120e507-f6fc-47b1-9196-d54dcf1fca78"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
