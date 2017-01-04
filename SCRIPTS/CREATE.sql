@@ -293,17 +293,6 @@ create table DETALLE_PEDIDO
 );
 
 
-create table VALORACION_PEDIDO 
-(
-   VA_ID                NUMBER(7)               not null,
-   DET_ID               NUMBER(7)               not null,
-   PE_ID                NUMBER(7)               not null,
-   VA_FECHA             DATE                 not null,
-   VA_CALIDAD           VARCHAR2(300)            not null,
-   VA_COSTO             NUMBER(7)               not null,
-   constraint PK_VALORACION_PEDIDO primary key (VA_ID)
-);
-
 
 create table DESCUENTOPEDIDIOPARAPRODUCCION 
 (
