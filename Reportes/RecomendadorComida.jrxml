@@ -31,7 +31,7 @@ UPPER(n.con_nombre) like UPPER($P{Nombre de comida}||'%')]]>
 				<text><![CDATA[Recomendacion de comida ]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="19" y="55" width="511" height="5" forecolor="#33CC00" backcolor="#33CC00" uuid="08bb4aba-7a98-44ad-b167-e7b0db59c9d9"/>
+				<reportElement x="19" y="55" width="511" height="5" forecolor="#00CC33" backcolor="#00CC33" uuid="08bb4aba-7a98-44ad-b167-e7b0db59c9d9"/>
 			</rectangle>
 		</band>
 	</title>
@@ -81,7 +81,7 @@ UPPER(n.con_nombre) like UPPER($P{Nombre de comida}||'%')]]>
 	<detail>
 		<band height="72" splitType="Stretch">
 			<rectangle>
-				<reportElement x="14" y="15" width="5" height="31" forecolor="#33CC00" backcolor="#33CC00" uuid="8c6321d5-5399-402c-8baa-f1047cd07979"/>
+				<reportElement x="14" y="15" width="5" height="31" forecolor="#00CC33" backcolor="#00CC33" uuid="8c6321d5-5399-402c-8baa-f1047cd07979"/>
 			</rectangle>
 			<line>
 				<reportElement x="30" y="10" width="500" height="1" forecolor="#CCCCCC" uuid="c4bf739f-a7de-4a7c-95e2-8e1ca895cc7a"/>
