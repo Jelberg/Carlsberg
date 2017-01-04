@@ -117,5 +117,9 @@ CREATE OR REPLACE TYPE CONTACTOS_NT AS TABLE OF CONTACTO;
 
 -----VARRAY
 
+
 CREATE OR REPLACE TYPE FORMAS_ENVIO_VA AS VARRAY(6) OF VARCHAR2(300);
+
+create or replace type ce_ibu_va as Varray(2) of varchar2(7);
+
 /

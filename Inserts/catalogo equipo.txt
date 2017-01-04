@@ -1,4 +1,4 @@
-INSERT INTO catalogo_proveedor_EQ (ca_codigo,ca_nombre,ca_descripcion,ca_preciounitario,ca_especificaionestecnias,ca_fotos,ca_incluye,pr_id,ma_id) VALUES
+INSERT INTO catalogo_proveedor_EQ (ca_codigo,ca_nombre,ca_descripcion,ca_preciounitario,ca_especificaionestecnicas,ca_fotos,ca_incluye,pr_id,ma_id) VALUES
  (seq_ca_codigo.NEXTVAL,'Caldera de vapor','Univeral U-HD',192389,FN_IMPORTAR_BINARIO_CLOB('caldero1.pdf'),FOTOS_NT(FOTOS(IMPORTAR_BINARIO('caldero1.png'))),null,
  (SELECT pr_id FROM(SELECT pr_id FROM proveedores ORDER BY dbms_random.value )WHERE rownum = 1),(Select ma_id from maquinaria where ma_nombre = 'Calderos' and rownum = 1));
 

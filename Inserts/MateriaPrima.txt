@@ -1,8 +1,8 @@
-insert into materia_prima (mp_id,mp_nombre,mp_descripcion,mp_formasdislupulo) values(seq_mp_id.NEXTVAL,'Lupulo','Ingrediente seco e insustituible en la elaboracion de la cerveza y no tiene ningun sucedaneo, su sabor amargo agradable y su aroma suave caracteristico','seco');
-insert into materia_prima (mp_id,mp_nombre,mp_descripcion,mp_formasdislupulo) values(seq_mp_id.NEXTVAL,'Lupulo Plug','Ingrediente seco, comprimido en tabletas e insustituible en la elaboracion de la cerveza y no tiene ningun sucedaneo, su sabor amargo agradable y su aroma suave caracteristico','plug');
-insert into materia_prima (mp_id,mp_nombre,mp_descripcion,mp_formasdislupulo) values(seq_mp_id.NEXTVAL,'Lupulo Rehidratado','Ingrediente rehidratado e insustituible en la elaboracion de la cerveza y no tiene ningun sucedaneo, su sabor amargo agradable y su aroma suave caracteristico','rehidratado');
-insert into materia_prima (mp_id,mp_nombre,mp_descripcion,mp_formasdislupulo) values(seq_mp_id.NEXTVAL,'Adjuntos (Grits)','Debido a la alta fuerza diastastica (fermento) de la malta es necesario agregar cereales no malteadas a la cerveza para que su estabilidad sea buena. Su uso hace que el color sea mas claro con un sabor mas agradable con mayor luminosidad','');
-insert into materia_prima (mp_id,mp_nombre,mp_descripcion,mp_formasdislupulo) values(seq_mp_id.NEXTVAL,'Agua','Se utiliza gua potable y sus caracteristicas organolepticas deben ser completamente normales','');
-insert into materia_prima (mp_id,mp_nombre,mp_descripcion,mp_formasdislupulo) values(seq_mp_id.NEXTVAL,'Levadura','Son hongos microscopicos unicelulares que transforman los glucidos y los aminoacidos en alcohol y CO2','');
-insert into materia_prima (mp_id,mp_nombre,mp_descripcion,mp_formasdislupulo) values(seq_mp_id.NEXTVAL,'Malta','Constituida por granos de cebada germinados durante un periodo limitado de tiempo','');
+insert into materia_prima (mp_id,mp_nombre,mp_descripcion,mp_formasdislupulo) values(seq_mp_id.NEXTVAL,'Lupulo','Ingrediente seco e insustituible en la elaboracion','seco');
+insert into materia_prima (mp_id,mp_nombre,mp_descripcion,mp_formasdislupulo) values(seq_mp_id.NEXTVAL,'Lupulo Plug','Ingrediente seco, comprimido en tabletas','plug');
+insert into materia_prima (mp_id,mp_nombre,mp_descripcion,mp_formasdislupulo) values(seq_mp_id.NEXTVAL,'Lupulo Rehidratado','Ingrediente rehidratado','rehidratado');
+insert into materia_prima (mp_id,mp_nombre,mp_descripcion,mp_formasdislupulo) values(seq_mp_id.NEXTVAL,'Adjuntos (Grits)','Debido a la alta fuerza diastastica (fermento)','');
+insert into materia_prima (mp_id,mp_nombre,mp_descripcion,mp_formasdislupulo) values(seq_mp_id.NEXTVAL,'Agua','Se usa agua potablepor sus caracteristicas...','');
+insert into materia_prima (mp_id,mp_nombre,mp_descripcion,mp_formasdislupulo) values(seq_mp_id.NEXTVAL,'Levadura','Son hongos microscopicos unicelulares','');
+insert into materia_prima (mp_id,mp_nombre,mp_descripcion,mp_formasdislupulo) values(seq_mp_id.NEXTVAL,'Malta','Constituida por granos de cebada germinados','');
 
