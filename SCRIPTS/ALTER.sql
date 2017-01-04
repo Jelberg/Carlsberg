@@ -22,6 +22,10 @@ alter table CERVEZA
 alter table CERVEZA
    add constraint CHK_PORCENTAJEALC check (CE_PORCETAJEALC between 0 and 100);
    
+ALTER TABLE cerveza DROP COLUMN ce_ibu;
+
+alter table cerveza add ce_ibu ce_ibu_va not null;
+
 -------------PRESENTACION DE CERVEZA
    
 alter table PRESENTACION_CERVEZA
