@@ -4,7 +4,7 @@ INSERT INTO pais (pa_id,pa_nombre,pa_continente) VALUES (seq_pa_id.NEXTVAL,'Alem
 
 insert into pais (pa_id,pa_nombre,pa_continente) VALUES (seq_pa_id.NEXTVAL,'UNITED STATES','Norteamerica');
 
-insert into pais (pa_id,pa_nombre,pa_continente) VALUES (seq_pa_id.NEXTVAL,'ENGLAND','Europa');
+
 insert into pais (pa_id,pa_nombre,pa_continente) VALUES (seq_pa_id.NEXTVAL,'CANADA','Norteamerica');
 insert into pais (pa_id,pa_nombre,pa_continente) VALUES (seq_pa_id.NEXTVAL,'AUSTRIA','Oceania');
 insert into pais (pa_id,pa_nombre,pa_continente) VALUES (seq_pa_id.NEXTVAL,'BELGIUM','Europa');
