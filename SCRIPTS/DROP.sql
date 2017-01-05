@@ -90,3 +90,30 @@ drop type FOTOS_NT force;
 
 DROP TYPE FORMAS_ENVIO_VA;
 DROP TYPE ce_ibu_va;
+
+---- SEQUENCE
+
+DROP SEQUENCE seq_ci_id;
+DROP SEQUENCE seq_pr_id;
+DROP SEQUENCE seq_pa_id;
+DROP SEQUENCE seq_dis_id;
+DROP SEQUENCE seq_en_id;
+DROP SEQUENCE seq_em_id;
+DROP SEQUENCE seq_fa_id;
+DROP SEQUENCE seq_con_numero;
+DROP SEQUENCE seq_ma_id;
+DROP SEQUENCE seq_ca_codigo;
+DROP SEQUENCE seq_mp_id;
+DROP SEQUENCE seq_var_id;
+DROP SEQUENCE seq_vc_id;
+DROP SEQUENCE seq_cp_id;
+DROP SEQUENCE seq_pe_id;
+DROP SEQUENCE seq_es_id;
+DROP SEQUENCE seq_ce_id;
+DROP SEQUENCE seq_pc_id;
+DROP SEQUENCE seq_c_id;
+DROP SEQUENCE seq_pre_id;
+DROP SEQUENCE seq_det_id;
+DROP SEQUENCE seq_va_id;
+DROP SEQUENCE seq_des_id;
+DROP SEQUENCE seq_pag_id;
