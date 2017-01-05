@@ -55,15 +55,38 @@ drop table VARIEDAD cascade constraints;
 drop table V_C cascade constraints;
 
 --TDA
-/*
-drop table COMIDA cascade constraints;
-drop table CONTACTO cascade constraints;
-drop table DATOSCUENTA cascade constraints;
-drop table DISTRIBUCION cascade constraints;
-drop table FOMA_PAGO cascade constraints;
-drop table MEDIDA cascade constraints;
-drop table PATROCINIO cascade constraints;
-drop table RECETAPROCESOBASICO cascade constraints;
-drop table RESULTADOEVALUACION cascade constraints;
-drop table RESUMENHISTORICO cascade constraints;
-*/
+
+drop type COMIDA force;
+drop type COMIDA_NT force;
+
+drop type CONTACTO force;
+drop type CONTACTOS_NT force;
+
+drop type DATOSCUENTA force;
+drop type DATOS_CUENTA_NT force;
+
+drop type DISTRIBUCION force;
+drop type DISTRIBUCION_NT force;
+
+drop type FORMAPAGO force;
+drop type FORMAPAGO_NT force;
+
+drop type MEDIDA force;
+
+drop type PATROCINIO force;
+drop type PATROCINIO_NT force;
+
+drop type RECETAPROCESOBASICO force;
+drop type RECETAPROCESOBASICO_NT force;
+
+drop type RESULTADOEVALUACION force;
+drop type RESULTADOEVALUACION_NT force;
+
+drop type RESUMENHISTORICO force;
+drop type RESUMENHISTORICO_NT force;
+
+drop type FOTOS force;
+drop type FOTOS_NT force;
+
+DROP TYPE FORMAS_ENVIO_VA;
+DROP TYPE ce_ibu_va;
