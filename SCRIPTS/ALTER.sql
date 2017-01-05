@@ -217,11 +217,6 @@ alter table DETALLE_PEDIDO
    add constraint FK_DP_PRESENTACION foreign key (PRE_ID)    -- MATERI PRIMA
    references PRESENTACION(PRE_ID);
    
----------------VALORACION DEL PEDIDO
-   
-alter table VALORACION_PEDIDO
-   add constraint FK_VP_DETALLE_PEDIDO foreign key (DET_ID,PE_ID)
-   referEnces DETALLE_PEDIDO(DET_ID,PE_ID);
 
 -----------------DESCUENTO DEL PEDIDO PARA PRODUCCION 
    

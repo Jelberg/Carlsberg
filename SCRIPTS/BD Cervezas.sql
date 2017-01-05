@@ -1,3 +1,9 @@
+/*
+//=============================================//
+//                                             //
+//                    TYPE                     //
+//=============================================//
+*/
 
 CREATE OR REPLACE TYPE FOTOS AS OBJECT (
 FOTOS       BLOB 
@@ -107,7 +113,7 @@ CREATE OR REPLACE TYPE RESULTADOEVALUACION_NT AS TABLE OF RESULTADOEVALUACION;
 CREATE OR REPLACE TYPE RECETAPROCESOBASICO_NT AS TABLE OF RECETAPROCESOBASICO;
 /
 
-CREATE OR REPLACE TYPE RESUMENHISTORICO_NT AS TABLE OF RESUMENHISTORICO;​
+CREATE OR REPLACE TYPE RESUMENHISTORICO_NT AS TABLE OF RESUMENHISTORICO
 /
 
 CREATE OR REPLACE TYPE CONTACTOS_NT AS TABLE OF CONTACTO;
@@ -117,10 +123,16 @@ CREATE OR REPLACE TYPE CONTACTOS_NT AS TABLE OF CONTACTO;
 
 
 CREATE OR REPLACE TYPE FORMAS_ENVIO_VA AS VARRAY(6) OF VARCHAR2(300);
-
-create or replace type ce_ibu_va as Varray(2) of varchar2(7);
-
 /
+create or replace type ce_ibu_va as Varray(2) of varchar2(7);
+/
+
+/*
+//=============================================//
+//                                             //
+//                    CREATE                   //
+//=============================================//
+*/
 
 create table PAIS 
 (
@@ -253,7 +265,6 @@ create table FABRICA
    constraint PK_FABRICA primary key (FA_ID, EM_ID)
 );
 
-
 create table CONTRATO 
 (
    CON_NUMERO           NUMBER(7)               not null,
@@ -312,7 +323,6 @@ create table VARIEDAD
    VAR_COLOREBCRANGOF         NUMBER(7)               not null,
    constraint PK_VARIEDAD primary key (VAR_ID)
 );
-
 
 create table V_C 
 (
@@ -415,8 +425,6 @@ create table DETALLE_PEDIDO
    constraint PK_DETALLE_PEDIDO primary key (DET_ID, PE_ID)
 );
 
-
-
 create table DESCUENTOPEDIDIOPARAPRODUCCION 
 (
    --DES_ID               NUMBER(7)               not null,
@@ -430,6 +438,13 @@ create table DESCUENTOPEDIDIOPARAPRODUCCION
    DES_CANTIDAD         NUMBER(7)               not null,
    constraint PK_DESCUENTO primary key (PRO_FECHA,FA_ID,EM_ID,PC_ID,CE_ID,DET_ID,PE_ID)     -- PORQUE TIENE ID PROPIA??
 );
+
+/*
+//=============================================//
+//                                             //
+//                    ALTER                    //
+//=============================================//
+*/
 
 ------------PAIS
 
@@ -650,11 +665,6 @@ alter table DETALLE_PEDIDO
    add constraint FK_DP_PRESENTACION foreign key (PRE_ID)    -- MATERI PRIMA
    references PRESENTACION(PRE_ID);
    
----------------VALORACION DEL PEDIDO
-   
-alter table VALORACION_PEDIDO
-   add constraint FK_VP_DETALLE_PEDIDO foreign key (DET_ID,PE_ID)
-   referEnces DETALLE_PEDIDO(DET_ID,PE_ID);
 
 -----------------DESCUENTO DEL PEDIDO PARA PRODUCCION 
    
@@ -696,21 +706,153 @@ alter table pedido drop column pe_fechaentrega;
 alter table pedido
 add pe_fechaentrega date;
 
+/*
+//=============================================//
+//                                             //
+//                  SEQUENCE                   //
+//=============================================//
+*/
 
+create sequence seq_ci_id
+   start with 1
+   increment by 1
+  ;
+  
+create sequence seq_pr_id
+   start with 1
+   increment by 1
+ ;
 
+create sequence seq_pa_id
+   start with 1
+   increment by 1
+   
+   ;
+   
+create sequence seq_dis_id
+   start with 1
+   increment by 1
+   
+   ;
+   
+create sequence seq_en_id
+   start with 1
+   increment by 1
+   
+   ;
+   
+  create sequence seq_em_id
+   start with 1
+   increment by 1
+   
+   ;
+   
+   create sequence seq_fa_id
+   start with 1
+   increment by 1
+   
+   ;
+   
+   create sequence seq_con_numero
+   start with 1
+   increment by 1
+   
+   ;
+   
+   create sequence seq_ma_id
+   start with 1
+   increment by 1
+   
+   ;
+   
+   create sequence seq_ca_codigo
+   start with 1
+   increment by 1
+   
+   ;
+   
+   create sequence seq_mp_id
+   start with 1
+   increment by 1
+   
+   ;
+   
+   create sequence seq_var_id
+   start with 1
+   increment by 1
+   
+   ;
+   
+   create sequence seq_vc_id
+   start with 1
+   increment by 1
+   
+   ;
+   
+   create sequence seq_cp_id
+   start with 1
+   increment by 1
+   
+   ;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   create sequence seq_pe_id
+   start with 1
+   increment by 1
+   
+   ;
+   
+   
+   create sequence seq_es_id
+   start with 1
+   increment by 1
+   
+   ;
+   
+   create sequence seq_ce_id
+   start with 1
+   increment by 1
+   
+   ;
+   
+   create sequence seq_pc_id
+   start with 1
+   increment by 1
+   
+   ;
+   
+   create sequence seq_c_id
+   start with 1
+   increment by 1
+   
+   ;
+   
+   create sequence seq_pre_id
+   start with 1
+   increment by 1
+   
+   ;
+   
+   create sequence seq_det_id
+   start with 1
+   increment by 1
+   
+   ;
+   
+   create sequence seq_va_id
+   start with 1
+   increment by 1
+   
+   ;
+   
+   create sequence seq_des_id
+   start with 1
+   increment by 1
+   
+   ;
+   
+   create sequence seq_pag_id
+   start with 1
+   increment by 1
+   
+   ;
 
