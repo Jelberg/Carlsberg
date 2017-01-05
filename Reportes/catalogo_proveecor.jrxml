@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="catalogo_proveecor" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="80fb8a84-e4ce-4842-bd56-86c24a341c3a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\elber\\OneDrive\\Documentos\\GitHub\\Carlsberg\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select n.fotos , cp.cp_nombre, cp.cp_descripcion, cp.cp_id
+from CATALOGO_PROVEEDOR_MP cp, proveedores p, table(cp.cp_fotos) n
+where cp.pr_id = p.pr_id
+]]>
+	</queryString>
+	<field name="FOTOS" class="oracle.jdbc.OracleBlob"/>
+	<field name="CP_NOMBRE" class="java.lang.String"/>
+	<field name="CP_DESCRIPCION" class="java.lang.String"/>
+	<field name="CP_ID" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="33" y="66" width="511" height="5" forecolor="#00CC33" backcolor="#00CC33" uuid="896c7e64-7516-42a9-8ad4-45f48d84924c"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="160" y="30" width="250" height="36" uuid="b47c779d-b532-460d-abf2-f90d52f7d15a"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Catalogo de proveedor ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="56" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="15" width="100" height="20" uuid="ee2c5c78-baae-43c8-af40-c2dbb362fa6f"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Proveedor:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="35" width="100" height="20" uuid="3dd5d0bc-4053-4a0a-918f-943df2f76d16"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="19" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="172" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="-10" width="555" height="1" forecolor="#666666" uuid="8c7eb148-5b34-4e03-bdb4-c2b505256a2e"/>
+			</line>
+			<staticText>
+				<reportElement x="12" y="11" width="100" height="20" uuid="25dd7a15-52d9-4bb7-9f39-ff5ae823d8c3"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Materia Prima:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="36" width="100" height="20" uuid="3f8268ef-0f87-43b5-88f1-f379e8d06b90"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Descripcion:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="110" y="36" width="189" height="20" uuid="d1f3ff3b-c02a-460b-badb-5977950cd9a6"/>
+				<textFieldExpression><![CDATA[$F{CP_DESCRIPCION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="11" width="189" height="20" uuid="849b05b8-15e7-4bc7-84e5-8863a0e3e36c"/>
+				<textFieldExpression><![CDATA[$F{CP_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="299" y="0" width="245" height="153" uuid="091f4619-f772-479c-9431-921427f75ed3"/>
+				<subreportParameter name="id">
+					<subreportParameterExpression><![CDATA[$F{CP_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subconsulta_cp_fotos.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="209" y="0" width="80" height="20" uuid="1e11ab2d-2282-4cca-837e-3b752eb9bb8e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="289" y="0" width="40" height="20" uuid="ae47f00a-096f-470f-8fc5-14337f4404d3"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

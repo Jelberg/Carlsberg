@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pedidosproveedores" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a44bada0-75e0-44b7-9c1d-7f7becc98951">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select pe.pe_status,p.pr_nombre,pe.pe_tipo, count(pre.pre_preciou)
+from pedido pe, contrato co, proveedores p, detalle_pedido dp, presentacion pre
+where co.con_numero = pe.con_numero and p.pr_id=co.pr_id and dp.pe_id=pe.pe_id and pre.pre_id = dp.pre_id
+group by pe.pe_status,p.pr_nombre,pe.pe_tipo
+union
+select pe.pe_status,p.pr_nombre,pe.pe_tipo, count(cat.ca_preciounitario)
+from pedido pe, contrato co, proveedores p, detalle_pedido dp, catalogo_proveedor_eq cat
+where co.con_numero = pe.con_numero and p.pr_id=co.pr_id and dp.pe_id=pe.pe_id and cat.ca_codigo = dp.ca_codigo
+group by pe.pe_status,p.pr_nombre,pe.pe_tipo]]>
+	</queryString>
+	<field name="PE_STATUS" class="java.lang.String"/>
+	<field name="PR_NOMBRE" class="java.lang.String"/>
+	<field name="PE_TIPO" class="java.lang.String"/>
+	<field name="COUNT(PRE.PRE_PRECIOU)" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="23" y="62" width="511" height="5" forecolor="#00CC33" backcolor="#00CC33" uuid="5cf1b73c-3255-44ab-b7a5-ec50486eac22"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="158" y="28" width="252" height="34" uuid="2de042a2-925b-41a3-addd-cbea08baa5d1"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Pedidos a proveedores]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="27" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="7" width="400" height="20" forecolor="#666666" uuid="b8e0feb3-a520-4fa1-8743-fe1036b52a9b"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="226" y="7" width="94" height="20" uuid="c0e07a3c-f396-4a5c-bea9-3f599a917ea8"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="318" y="7" width="100" height="20" uuid="134e0b1f-4bc0-493c-adae-e5962049e9be"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Costo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="7" width="100" height="20" uuid="48048a24-8d91-4b62-9cbf-0a824c05dd83"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Proveedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="7" width="100" height="20" uuid="a4037376-9d48-4604-9b99-366107242e0c"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de pedido]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="18" y="0" width="100" height="20" uuid="dced4df8-f0d7-4036-b66c-2bc2ffea1b5b"/>
+				<textFieldExpression><![CDATA[$F{PR_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="109" y="0" width="100" height="20" uuid="cdfafec6-e5d3-4530-abf7-03da83cbb3db"/>
+				<textFieldExpression><![CDATA[$F{PE_TIPO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="227" y="0" width="100" height="20" uuid="dfaf8e2a-9cf8-4501-a0f2-27973a673954"/>
+				<textFieldExpression><![CDATA[$F{PE_STATUS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="319" y="0" width="100" height="20" uuid="dbe8931b-de0c-4627-9fc3-d91aee1f7b42"/>
+				<textFieldExpression><![CDATA[$F{COUNT(PRE.PRE_PRECIOU)}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="200" y="0" width="80" height="20" uuid="28042153-6e18-4c22-b825-f45716c79690"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="280" y="0" width="40" height="20" uuid="fc74552b-1b46-45e8-9a3d-530b5ee4aaae"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
