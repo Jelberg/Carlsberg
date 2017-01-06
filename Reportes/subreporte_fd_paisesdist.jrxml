@@ -9,7 +9,7 @@
 	<queryString>
 		<![CDATA[select distinct p.pa_nombre
 from pais p, DISTRIBUCION_CERVEZA dc, PRESENTACION_CERVEZA pc, cerveza c
-where c.ce_id=pc.ce_id and pc.ce_id =dc.ce_id and p.pa_id=dc.pa_id and c.ce_id=$P{name}]]>
+where c.ce_id=pc.ce_id and pc.ce_id =dc.ce_id and p.pa_id=dc.pa_id and pc.ce_id=dc.ce_id and c.ce_id=$P{name}]]>
 	</queryString>
 	<field name="PA_NOMBRE" class="java.lang.String"/>
 	<background>

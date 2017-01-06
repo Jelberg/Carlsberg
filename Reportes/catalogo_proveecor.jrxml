@@ -6,15 +6,20 @@
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\Users\\elber\\OneDrive\\Documentos\\GitHub\\Carlsberg\\Reportes\\"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="nombre_proveedor" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
-		<![CDATA[select n.fotos , cp.cp_nombre, cp.cp_descripcion, cp.cp_id
+		<![CDATA[select n.fotos , cp.cp_nombre, cp.cp_descripcion, cp.cp_id, p.pr_nombre, p.pr_id
 from CATALOGO_PROVEEDOR_MP cp, proveedores p, table(cp.cp_fotos) n
-where cp.pr_id = p.pr_id]]>
+where cp.pr_id = p.pr_id and upper(p.pr_nombre)=upper($P{nombre_proveedor})]]>
 	</queryString>
 	<field name="FOTOS" class="oracle.jdbc.OracleBlob"/>
 	<field name="CP_NOMBRE" class="java.lang.String"/>
 	<field name="CP_DESCRIPCION" class="java.lang.String"/>
 	<field name="CP_ID" class="java.math.BigDecimal"/>
+	<field name="PR_NOMBRE" class="java.lang.String"/>
+	<field name="PR_ID" class="java.math.BigDecimal"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -34,20 +39,31 @@ where cp.pr_id = p.pr_id]]>
 	</title>
 	<pageHeader>
 		<band height="56" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="55" forecolor="#FFFFFF" backcolor="#99FF99" uuid="0f89f94b-2ebd-4aaa-b874-f6469ca9dc0b"/>
+			</rectangle>
 			<staticText>
-				<reportElement x="0" y="15" width="100" height="20" uuid="ee2c5c78-baae-43c8-af40-c2dbb362fa6f"/>
+				<reportElement x="24" y="9" width="100" height="20" uuid="ee2c5c78-baae-43c8-af40-c2dbb362fa6f"/>
 				<textElement>
 					<font size="12" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Proveedor:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="35" width="100" height="20" uuid="3dd5d0bc-4053-4a0a-918f-943df2f76d16"/>
+				<reportElement x="24" y="35" width="100" height="20" uuid="3dd5d0bc-4053-4a0a-918f-943df2f76d16"/>
 				<textElement>
 					<font size="12" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[Fecha:]]></text>
+				<text><![CDATA[Fecha cosulta:]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="119" y="8" width="100" height="20" uuid="07b5c8d0-a1d7-4fb3-9c16-07b3a9505ba8"/>
+				<textFieldExpression><![CDATA[$F{PR_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="122" y="35" width="100" height="20" uuid="51ec7afe-2fff-46d4-9585-a1e5fe391512"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>

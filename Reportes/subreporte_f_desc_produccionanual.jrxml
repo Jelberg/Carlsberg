@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subreporte_f_desc_produccionanual" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="a297b485-6586-4bf0-b247-780b857482d5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_cerveza" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select pc_tipo, pc_cantidad, sum(pm.PRO_CANTIDADENML)
+from presentacion_cerveza pc, produccionmensual pm
+where pc.ce_id=$P{id_cerveza} and pc.pc_id = pm.pc_id and pc.ce_id=pm.ce_id
+group by pc_tipo, pc_cantidad]]>
+	</queryString>
+	<field name="PC_TIPO" class="java.lang.String"/>
+	<field name="PC_CANTIDAD" class="java.math.BigDecimal"/>
+	<field name="SUM(PM.PRO_CANTIDADENML)" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="515" height="20" forecolor="#FFFFFF" backcolor="#CCFFCC" uuid="617a95e5-7738-4759-b1a3-68d761528d4f"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="21" y="2" width="100" height="20" uuid="f2426f1b-90b5-4886-be63-03449891a542"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="125" y="2" width="100" height="20" uuid="6655970e-3d5b-4e4b-bff9-17315a73fdc4"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="237" y="2" width="100" height="20" uuid="7312db25-f17e-4448-a494-071a7f5eaa54"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Produccion Anual]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="21" y="0" width="100" height="20" uuid="8fc3a83a-c068-4890-a9ac-70ca5e2ce3ce"/>
+				<textFieldExpression><![CDATA[$F{PC_TIPO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="0" width="51" height="20" uuid="69fa2bd2-634f-4820-94d3-6f656294e855"/>
+				<textFieldExpression><![CDATA[$F{PC_CANTIDAD}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="176" y="-2" width="49" height="20" uuid="d5384d5e-3360-4219-ab30-d390f64abbac"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ml]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="237" y="1" width="100" height="20" uuid="934896aa-8a2e-4c99-a0e3-4800fc3d4fa7"/>
+				<textFieldExpression><![CDATA[$F{SUM(PM.PRO_CANTIDADENML)}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

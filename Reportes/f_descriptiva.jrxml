@@ -47,7 +47,7 @@ UPPER(c.ce_nombreingles) like UPPER($P{Nombre cerveza}||'%')]]>
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="312" splitType="Stretch">
+		<band height="413" splitType="Stretch">
 			<staticText>
 				<reportElement x="28" y="160" width="110" height="20" uuid="9e88d4ce-c89c-4c2e-a89a-e6d9e46d3b70"/>
 				<textElement>
@@ -136,7 +136,7 @@ UPPER(c.ce_nombreingles) like UPPER($P{Nombre cerveza}||'%')]]>
 				<textFieldExpression><![CDATA[$F{CE_NOMBREINGLES}]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="0" y="200" width="172" height="100" uuid="fb9a3ff0-52ba-40d0-8864-159b5aa75876"/>
+				<reportElement x="28" y="193" width="222" height="100" uuid="fb9a3ff0-52ba-40d0-8864-159b5aa75876"/>
 				<subreportParameter name="id_cer"/>
 				<subreportParameter name="id">
 					<subreportParameterExpression><![CDATA[$F{CE_ID}]]></subreportParameterExpression>
@@ -145,20 +145,28 @@ UPPER(c.ce_nombreingles) like UPPER($P{Nombre cerveza}||'%')]]>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subreportes_fd_patrocinio.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="177" y="200" width="174" height="100" uuid="3ab2bb73-338a-4e24-85dd-9d31726545eb"/>
+				<reportElement x="314" y="194" width="215" height="100" uuid="3ab2bb73-338a-4e24-85dd-9d31726545eb"/>
 				<subreportParameter name="name">
 					<subreportParameterExpression><![CDATA[$F{CE_ID}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subreporte_fd_paisesdist.jasper"]]></subreportExpression>
 			</subreport>
+			<subreport>
+				<reportElement x="28" y="300" width="502" height="100" uuid="2d8c39af-331c-4ca7-8ea5-24e618ec85a3"/>
+				<subreportParameter name="id_cerveza">
+					<subreportParameterExpression><![CDATA[$F{CE_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subreporte_f_desc_produccionanual.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="35" splitType="Stretch"/>
+		<band height="23" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="21" splitType="Stretch">
+		<band height="34" splitType="Stretch">
 			<textField>
 				<reportElement x="201" y="0" width="80" height="20" uuid="b0296bdd-5a97-48d0-993b-2b91dccfe236"/>
 				<textElement textAlignment="Right"/>
@@ -171,6 +179,6 @@ UPPER(c.ce_nombreingles) like UPPER($P{Nombre cerveza}||'%')]]>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="25" splitType="Stretch"/>
 	</summary>
 </jasperReport>
