@@ -9,8 +9,7 @@
 	<queryString>
 		<![CDATA[select n.fotos , cp.cp_nombre, cp.cp_descripcion, cp.cp_id
 from CATALOGO_PROVEEDOR_MP cp, proveedores p, table(cp.cp_fotos) n
-where cp.pr_id = p.pr_id
-]]>
+where cp.pr_id = p.pr_id]]>
 	</queryString>
 	<field name="FOTOS" class="oracle.jdbc.OracleBlob"/>
 	<field name="CP_NOMBRE" class="java.lang.String"/>
@@ -82,12 +81,20 @@ where cp.pr_id = p.pr_id
 				<textFieldExpression><![CDATA[$F{CP_NOMBRE}]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="299" y="0" width="245" height="153" uuid="091f4619-f772-479c-9431-921427f75ed3"/>
+				<reportElement x="350" y="0" width="194" height="153" uuid="091f4619-f772-479c-9431-921427f75ed3"/>
 				<subreportParameter name="id">
 					<subreportParameterExpression><![CDATA[$F{CP_ID}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subconsulta_cp_fotos.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="12" y="68" width="266" height="85" uuid="b7b8c5c1-1712-46b9-8f38-fe5c3163e8f9"/>
+				<subreportParameter name="id">
+					<subreportParameterExpression><![CDATA[$F{CP_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subreporte_cp_detallespresentacion.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>
