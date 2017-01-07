@@ -71,7 +71,7 @@ CREATE OR REPLACE TYPE RECETAPROCESOBASICO AS OBJECT (
 
 CREATE OR REPLACE TYPE RESUMENHISTORICO AS OBJECT (
     RE_FECHA           DATE                 ,
-    RE_HECHO           VARCHAR2(100)                  
+    RE_HECHO           VARCHAR2(300)                  
 );
 /
 

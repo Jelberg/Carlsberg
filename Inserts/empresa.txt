@@ -1,3 +1,5 @@
+--ARREGLAR EL RESUMEN HISTORICO
+
 INSERT INTO empresa (em_id,ci_id,em_nombre,em_fechaapertura,em_resumenh,em_logo,em_patrocinio,em_recetaprocesobasico,emp_em_id) VALUES (seq_em_id.NEXTVAL,
 (Select ci_id from ciudad where ci_nombre ='Copenhague'),'Carlsberg group',1847,
 RESUMENHISTORICO_NT(RESUMENHISTORICO('10-11-1847','Se elaboró la primera cerveza'),

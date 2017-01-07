@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ficha_empresas_productoras" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="803f5403-bdc4-4e41-9197-342db9e39261">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\elber\\OneDrive\\Documentos\\GitHub\\Carlsberg\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select em_nombre,em_fechaapertura, em_logo, em_id, p.pa_nombre, c.ci_nombre
+from empresa e, pais p, ciudad c
+where e.ci_id = c.ci_id and c.pa_id=p.pa_id]]>
+	</queryString>
+	<field name="EM_NOMBRE" class="java.lang.String"/>
+	<field name="EM_FECHAAPERTURA" class="java.math.BigDecimal"/>
+	<field name="EM_LOGO" class="oracle.jdbc.OracleBlob"/>
+	<field name="EM_ID" class="java.math.BigDecimal"/>
+	<field name="PA_NOMBRE" class="java.lang.String"/>
+	<field name="CI_NOMBRE" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="4" y="67" width="551" height="4" forecolor="#00CC33" backcolor="#00CC33" uuid="c7b3948a-4b60-48b9-b348-0519e91a38bf"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="159" y="28" width="245" height="34" uuid="889bafe2-2903-4b9e-bb34-55a3ffbd7db9"/>
+				<textElement>
+					<font size="24" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Empresas productoras]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="13" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="260" splitType="Stretch">
+			<image>
+				<reportElement x="320" y="28" width="203" height="96" uuid="66512e9c-f7dc-4f86-b191-d5685c63ed40"/>
+				<imageExpression><![CDATA[$F{EM_LOGO}.getBinaryStream()]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="140" y="45" width="159" height="20" uuid="9662833e-f16d-4716-812a-f2777895d91c"/>
+				<textFieldExpression><![CDATA[$F{EM_FECHAAPERTURA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="19" y="43" width="121" height="20" uuid="890755eb-42ba-4794-8ca2-39bc1f7f3ef4"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de fundacion:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="21" width="555" height="1" forecolor="#999999" uuid="872df84c-42e1-4376-831d-44880c37b989"/>
+			</line>
+			<textField>
+				<reportElement x="155" y="2" width="333" height="20" uuid="cdab0ec3-ce9b-4fa5-955e-1e02f9b76405"/>
+				<textElement>
+					<font size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EM_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="19" y="2" width="121" height="20" uuid="f45bb4c2-6675-4389-b0aa-131d8f22d37c"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Empresa:]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="4" y="142" width="551" height="100" uuid="34951a2c-bc3c-4fca-8166-9d2416104ec1"/>
+				<subreportParameter name="id_empresa">
+					<subreportParameterExpression><![CDATA[$F{EM_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subreporte_f_emp_resumenH.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="19" y="72" width="100" height="20" uuid="e7e2365e-6c45-471e-8926-cdaa768f929b"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Pais:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="73" width="100" height="20" uuid="cad83355-4a08-45e2-a610-257c3c08ef2b"/>
+				<textFieldExpression><![CDATA[$F{PA_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="19" y="104" width="100" height="20" uuid="fbe66dc6-107a-4c7e-8ae7-20d147adfa76"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Ciudad:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="105" width="100" height="20" uuid="910b41aa-9a37-4adf-8c5a-90578eb3d758"/>
+				<textFieldExpression><![CDATA[$F{CI_NOMBRE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="219" y="30" width="80" height="20" uuid="70e1e702-66fb-40c1-b687-0548716cdb83"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="299" y="30" width="40" height="20" uuid="f82a1896-ac24-48ac-b15c-b23fdd9a34ce"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
