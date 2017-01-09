@@ -1,4 +1,4 @@
-create or replace function fn_resultado_rubro_4(id_proveedor proveedores.pr_id%type, id_empresa empresa.em_id%type) return number is
+create or replace function fn_resultado_rubro_4(id_proveedor proveedores.pr_id%type) return number is
 id_contrato number(7);
 fecha_emision date;
 fecha_tres_y date;

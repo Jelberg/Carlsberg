@@ -1,6 +1,6 @@
-create or replace function fn_resultado_rubro_1(id_proveedor proveedores.pr_id%type, id_empresa empresa.em_id%type) return number is
+create or replace function fn_resultado_rubro_1(id_proveedor proveedores.pr_id%type, id_empresa empresa.em_id%type) return number is -- pais del proveedor que realiza la evaluacion
 pais_empresa varchar2(30);
-pais_proveedor varchar2(30);
+pais_proveedor varchar2(30);                                           
 resultado number (7);
 begin 
 select p.pa_nombre into pais_empresa
