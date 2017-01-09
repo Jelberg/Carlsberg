@@ -28,3 +28,10 @@ VALUES (seq_pe_id.NEXTVAL,(SELECT con_numero FROM(SELECT con_numero FROM contrat
 (Select con_fechaemision from (SELECT con_fechaemision FROM contrato ORDER BY dbms_random.value )WHERE to_char(con_fechaemision,'YYYY')= '2016' and rownum = 1 ),
 'finalizada','02-03-2016','materia prima',543,12211,'02-02-2016');
 
+-------------------------------
+
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) 
+VALUES (seq_pe_id.NEXTVAL,5,
+'14-03-2013',
+'finalizada','28-03-2013','materia prima',54443,12211,'20-03-2013');
+

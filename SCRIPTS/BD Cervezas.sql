@@ -352,11 +352,11 @@ create table PEDIDO
    CON_NUMERO           NUMBER(7)               not null,
    PE_FECHAPEDIDO       DATE                 not null,
    PE_STATUS            VARCHAR2(300)            not null,
-   PE_FECHAENTREGA      DATE                 not null,
+   PE_FECHAENTREGA      DATE                 ,
    PE_TIPO              VARCHAR2(300)            not null,
    PE_NUMFACTURA        NUMBER(7),
    PE_TOTAL             NUMBER(7),
-   PE_FECHASOLICITADA   DATE,
+   PE_FECHASOLICITADA   DATE                   not null,
    constraint PK_PEDIDO primary key (PE_ID)
 );
 
