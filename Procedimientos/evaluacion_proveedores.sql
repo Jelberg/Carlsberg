@@ -13,19 +13,23 @@ Select p.pr_id from proveedores p, contrato c where c.pr_id=p.pr_id;
 REGISTRO number;
 begin
 
-OPEN proveedores_conocidos;
+	OPEN proveedores_conocidos;
 
-LOOP
-FETCH proveedores_conocidos into REGISTRO;
+	LOOP
+		FETCH proveedores_conocidos into REGISTRO;
 
-resultado_1 := fn_resultado_rubro_1(REGISTRO,id_empresa);
+		resultado_1 := fn_resultado_rubro_1(REGISTRO,id_empresa);
 
-insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_1,null,id_empresa,'1');
+		if fn_nested_vacio(REGISTRO) = 0 THEN 
+			insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_1,null,id_empresa,'1');
+		ELSE
+			UPDATE PROVEEDORES SET PR_RESULTADOEVALUACION = RESULTADOEVALUACION_NT(RESULTADOEVALUACION(SYSDATE,resultado_1,NULL,id_empresa,'1')) WHERE PR_ID = REGISTRO; 
+		END IF;
 
-EXIT WHEN proveedores_conocidos%NOTFOUND ;
+		EXIT WHEN proveedores_conocidos%NOTFOUND ;
 
-END LOOP;
+	END LOOP;
 
-close proveedores_conocidos;
+	close proveedores_conocidos;
 
 end;
