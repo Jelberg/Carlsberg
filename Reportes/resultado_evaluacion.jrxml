@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="resultado_evaluacion" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3bbc6d15-aa3f-4962-bfdf-b128d858dd6a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="año_evaluacion" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select distinct p.pr_id,n.RES_RESULTADO,p.pr_nombre, to_char(n.res_año,'dd-mm-yyyy'), e.em_nombre
+from proveedores p, table(p.pr_resultadoevaluacion) n, empresa e
+where n.res_rubro = upper('total') and e.em_id = n.res_IDPRODUCTOR
+and to_char(n.res_año,'yyyy')=$P{año_evaluacion}
+order by n.res_resultado desc ]]>
+	</queryString>
+	<field name="PR_ID" class="java.math.BigDecimal"/>
+	<field name="RES_RESULTADO" class="java.math.BigDecimal"/>
+	<field name="PR_NOMBRE" class="java.lang.String"/>
+	<field name="TO_CHAR(N.RES_AÑO,&apos;DD-MM-YYYY&apos;)" class="java.lang.String"/>
+	<field name="EM_NOMBRE" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="22" y="60" width="511" height="5" forecolor="#00CC33" backcolor="#00CC33" uuid="c4612d78-8c12-4618-8c49-bff27d2eff5f"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="31" y="24" width="400" height="35" uuid="fe52070d-85ee-4ce7-9ed7-56e671a0b6f6"/>
+				<textElement>
+					<font size="24" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Resultado evauacion a proveedores:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="431" y="24" width="100" height="35" uuid="3d975c22-4bdc-4815-82e7-bc50332ed95e"/>
+				<textElement>
+					<font size="24" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{año_evaluacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="66" splitType="Stretch">
+			<staticText>
+				<reportElement x="31" y="19" width="220" height="20" uuid="4195229f-74d9-470a-a94e-4695577b6131"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Empresa que realizo la evaluacion:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="40" width="219" height="20" uuid="92c54bd1-89f2-47a6-a8b8-27eb47641d6b"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de la evaluacion:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="251" y="40" width="100" height="20" uuid="f866375a-4c7c-4c6d-9d02-376d6e6ac720"/>
+				<textFieldExpression><![CDATA[$F{TO_CHAR(N.RES_AÑO,'DD-MM-YYYY')}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="251" y="19" width="100" height="20" uuid="3ce3c5ee-f004-4a88-ba5b-9d05d7816c2f"/>
+				<textFieldExpression><![CDATA[$F{EM_NOMBRE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="47" splitType="Stretch">
+			<staticText>
+				<reportElement x="218" y="19" width="100" height="20" uuid="0b222eb2-9489-4206-9574-464683d07230"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Proveedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="386" y="18" width="112" height="20" uuid="a915e20e-eb8a-4bf9-b00d-64fb619f6ca0"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Resultado]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="40" width="555" height="1" forecolor="#666666" uuid="526f3cdf-953b-4972-962f-c854d89bb9e5"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="218" y="6" width="100" height="20" uuid="ef5ab431-87d7-4f97-8576-51614db5a19c"/>
+				<textFieldExpression><![CDATA[$F{PR_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="386" y="6" width="112" height="20" uuid="f5a095ad-ac43-40cd-b5b0-ad5abc741e20"/>
+				<textFieldExpression><![CDATA[$F{RES_RESULTADO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="162" y="6" width="56" height="20" uuid="11d3c53a-0512-4e00-924a-5a1f2e51930a"/>
+				<textFieldExpression><![CDATA[$F{PR_ID}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="208" y="28" width="80" height="20" uuid="cdd23d63-c235-47e3-9e55-346991abe2a7"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="288" y="28" width="40" height="20" uuid="1c004c94-c9e9-4c53-abb6-c75a194281be"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
