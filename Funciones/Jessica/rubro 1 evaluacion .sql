@@ -18,7 +18,7 @@ return resultado ;
 
 end;
 
-
+/*
 --DE ESTA MANERA SI EXISTE VALORES EN EL OBJETO
 insert into  table(PR_RESULTADOEVALUACION from proveedores where pr_id = 1) values ('12-12-12',2,2,2,'HOLA');
 
@@ -27,3 +27,4 @@ UPDATE PROVEEDORES SET PR_RESULTADOEVALUACION =
  RESULTADOEVALUACION_NT(RESULTADOEVALUACION('12-12-12',2,2,2,'HOLA'))
 WHERE id_orden = 1; 
 
+*/

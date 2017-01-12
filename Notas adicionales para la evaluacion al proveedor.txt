@@ -1,0 +1,3 @@
+-- Notas adicionales que no estan implementados:
+
+* Proveedor no debe de tener mas de 1 evaluacion por año

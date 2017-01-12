@@ -7,17 +7,18 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select distinct p.pr_id,n.RES_RESULTADO,p.pr_nombre, to_char(n.res_año,'dd-mm-yyyy'), e.em_nombre
+		<![CDATA[select distinct p.pr_id,n.RES_RESULTADO,p.pr_nombre, to_char(n.res_año,'dd-mm-yyyy'), e.em_nombre, n.res_posicion
 from proveedores p, table(p.pr_resultadoevaluacion) n, empresa e
 where n.res_rubro = upper('total') and e.em_id = n.res_IDPRODUCTOR
 and to_char(n.res_año,'yyyy')=$P{año_evaluacion}
-order by n.res_resultado desc ]]>
+order by n.res_resultado desc]]>
 	</queryString>
 	<field name="PR_ID" class="java.math.BigDecimal"/>
 	<field name="RES_RESULTADO" class="java.math.BigDecimal"/>
 	<field name="PR_NOMBRE" class="java.lang.String"/>
 	<field name="TO_CHAR(N.RES_AÑO,&apos;DD-MM-YYYY&apos;)" class="java.lang.String"/>
 	<field name="EM_NOMBRE" class="java.lang.String"/>
+	<field name="RES_POSICION" class="java.math.BigDecimal"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -87,6 +88,13 @@ order by n.res_resultado desc ]]>
 			<line>
 				<reportElement x="0" y="40" width="555" height="1" forecolor="#666666" uuid="526f3cdf-953b-4972-962f-c854d89bb9e5"/>
 			</line>
+			<staticText>
+				<reportElement x="43" y="18" width="100" height="20" uuid="54f76e9e-6621-498c-9d91-256ed93250b6"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Posicion ]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
@@ -100,8 +108,8 @@ order by n.res_resultado desc ]]>
 				<textFieldExpression><![CDATA[$F{RES_RESULTADO}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="162" y="6" width="56" height="20" uuid="11d3c53a-0512-4e00-924a-5a1f2e51930a"/>
-				<textFieldExpression><![CDATA[$F{PR_ID}]]></textFieldExpression>
+				<reportElement x="43" y="6" width="100" height="20" uuid="cc24164b-8ad5-4598-a51c-fe423c506b2d"/>
+				<textFieldExpression><![CDATA[$F{RES_POSICION}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

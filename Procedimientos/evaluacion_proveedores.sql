@@ -7,6 +7,8 @@ resultado_4 number;
 resultado_5 number;
 resultado_6 number;
 
+position number :=0;
+
 cursor proveedores_conocidos is 
 Select p.pr_id from proveedores p, contrato c where c.pr_id=p.pr_id;  
 
@@ -51,5 +53,34 @@ begin
 	END LOOP;
 
 	close proveedores_conocidos;
-
+	
+COMMIT;
 end;
+
+create or replace PROCEDURE EVALUACION IS     -- PARA PONER LA POSICION 
+
+position number :=0;
+
+cursor actualiza_posicion is 
+select p.pr_id --, n.RES_RESULTADO,p.pr_nombre , to_char(n.res_año,'dd-mm-yyyy')
+from proveedores p, table(p.pr_resultadoevaluacion) n, empresa e
+where n.res_rubro = upper('total') and e.em_id = n.res_IDPRODUCTOR
+and to_char(n.res_año,'dd-mm-yyyy')= to_char(sysdate,'dd-mm-yyyy')
+order by n.res_resultado desc;
+
+REGISTRO NUMBER;
+BEGIN
+
+--EXEC PR_resultado_evaluacion_pc(id_empresa);
+
+	OPEN actualiza_posicion;
+	LOOP
+		FETCH actualiza_posicion into REGISTRO;
+			update table (select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) n 
+			set n.RES_POSICION = position + 1;
+      position:= position +1;
+			EXIT WHEN actualiza_posicion%NOTFOUND ;
+	END LOOP;
+	CLOSE actualiza_posicion;
+COMMIT;
+END;
