@@ -1,3 +1,4 @@
 -- Notas adicionales que no estan implementados:
 
 * Proveedor no debe de tener mas de 1 evaluacion por año
+* Falta hacer evaluacion por maquinaria (Es otro proceso aparte, porque es una consulta aparte)

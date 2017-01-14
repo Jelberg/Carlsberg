@@ -1,4 +1,4 @@
-create or replace procedure compraAProveedores(nombreProveedor varchar2, nombreEmpresa varchar2
+create or replace procedure pr_compraAProveedores(nombreProveedor varchar2, nombreEmpresa varchar2
     , tipoPedido varchar2, fechaSolicitada date)
 is
 contrato number;
@@ -32,9 +32,9 @@ elsif (contrato=0) then
 
 end if;
 
-end compraAProveedores; 
-
-create or replace procedure agregarProductoAPedidoMP(materiaPrima varchar2, presentacion varchar2
+end pr_compraAProveedores; 
+/
+create or replace procedure pr_agregarProductoAPedidoMP(materiaPrima varchar2, presentacion varchar2
     ,valorMedida varchar2, medida varchar2, cantidad number)
     is
     ultimoPedido number;
@@ -69,9 +69,9 @@ create or replace procedure agregarProductoAPedidoMP(materiaPrima varchar2, pres
 
     dbms_output.put_line('El precio total de su pedido es ahora de '||total);
 
-    end agregarProductoAPedidoMP;
-
-create or replace procedure agregarProductoAPedidoE(equipo varchar2, cantidad number)
+    end pr_agregarProductoAPedidoMP;
+/
+create or replace procedure pr_agregarProductoAPedidoE(equipo varchar2, cantidad number)
     is
     ultimoPedido number;
     catalogoProveedorEquipoId number;
@@ -101,16 +101,16 @@ create or replace procedure agregarProductoAPedidoE(equipo varchar2, cantidad nu
 
     dbms_output.put_line('El precio total de su pedido es ahora de '||total);
 
-    end agregarProductoAPedidoE;
-
-create or replace procedure cancelarPedido(idPedido number)
+    end pr_agregarProductoAPedidoE;
+/
+create or replace procedure pr_cancelarPedido(idPedido number)
     is 
     begin
     update pedido set pe_status='cancelada' where pe_id=idPedido;
     dbms_output.put_line('Pedido #'||idPedido||' cancelado');
-    end cancelarPedido;
-
-create or replace procedure realizarPago(idPedido number, monto number, fecha date, nro_cuotas number)
+    end pr_cancelarPedido;
+/
+create or replace procedure pr_realizarPago(idPedido number, monto number, fecha date, nro_cuotas number)
     is
     statusPedido varchar2(30);
     numFactura number;
@@ -143,9 +143,9 @@ create or replace procedure realizarPago(idPedido number, monto number, fecha da
 
     end if;
 
-    end realizarPago;
-
-create or replace procedure confirmarLlegadaPedido (idPedido number)
+    end pr_realizarPago;
+/
+create or replace procedure pr_confirmarLlegadaPedido (idPedido number)
     is
     begin
 
@@ -153,9 +153,9 @@ create or replace procedure confirmarLlegadaPedido (idPedido number)
 
     dbms_output.put_line('El pedido #'||idPedido||' ha sido confirmado');
 
-    end confirmarLlegadaPedido ;
-
-create or replace procedure rechazadaPorProveedor(idPedido number)
+    end pr_confirmarLlegadaPedido ;
+/
+create or replace procedure pr_rechazadaPorProveedor(idPedido number)
     is 
     begin
 
@@ -163,9 +163,9 @@ create or replace procedure rechazadaPorProveedor(idPedido number)
 
     dbms_output.put_line('El pedido #'||idPedido||' fue rechazada por proveedor');
 
-    end rechazadaPorProveedor;
-
-create or replace procedure confirmarPosibleDespacho(idPedido number, numFactura number)
+    end pr_rechazadaPorProveedor;
+/
+create or replace procedure pr_confirmarPosibleDespacho(idPedido number, numFactura number)
     is
     begin
 
@@ -173,4 +173,5 @@ create or replace procedure confirmarPosibleDespacho(idPedido number, numFactura
 
     dbms_output.put_line('El pedido #'||idPedido||' ha sido confirmado para despacho');
 
-    end confirmarPosibleDespacho;
+    end pr_confirmarPosibleDespacho;
+/
