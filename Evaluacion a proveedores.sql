@@ -157,7 +157,7 @@ resultado_6 number;
 position number :=0;
 
 cursor proveedores_conocidos is 
-Select p.pr_id from proveedores p, contrato c where c.pr_id=p.pr_id;  
+Select distinct p.pr_id from proveedores p, contrato c where p.pr_id = c.pr_id; 
 
 REGISTRO number;
 begin
@@ -206,9 +206,8 @@ end;
 /
 
 
--- NO PROBADO 
 
-create or replace procedure PR_Reval_no_conocidos(id_empresa empresa.em_id%type) is --Proveedores conocidos
+create or replace procedure PR_Resultado_eval_no_conocidos(id_empresa empresa.em_id%type) is --Proveedores conocidos
 
 resultado_1 number;
 
@@ -249,11 +248,9 @@ begin
 		resultado_6:= fn_resultado_rubro_6(REGISTRO);
 		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_6,null,id_empresa,'6');
 		
-		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,(100+resultado_1
+		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,(65+resultado_1
 		+resultado_3+resultado_5+resultado_6),null,id_empresa,'TOTAL');
-		
-		-- FALTA PONER LA POSICION PERO NO SE COMO 
-		
+	
 		EXIT WHEN proveedores_no_conocidos%NOTFOUND ;
 
 	END LOOP;
@@ -264,31 +261,51 @@ COMMIT;
 end;
 /
 
-create or replace PROCEDURE pr_EVALUACION IS     -- PARA PONER LA POSICION 
+create or replace PROCEDURE pr_agrega_posicion IS     -- PARA PONER LA POSICION 
 
 position number :=0;
 
 cursor actualiza_posicion is 
-select p.pr_id --, n.RES_RESULTADO,p.pr_nombre , to_char(n.res_año,'dd-mm-yyyy')
-from proveedores p, table(p.pr_resultadoevaluacion) n, empresa e
-where n.res_rubro = upper('total') and e.em_id = n.res_IDPRODUCTOR
+select distinct p.pr_id, n.res_resultado
+from proveedores p, table(p.pr_resultadoevaluacion) n 
+where n.res_rubro = upper('total')
 and to_char(n.res_año,'dd-mm-yyyy')= to_char(sysdate,'dd-mm-yyyy')
 order by n.res_resultado desc;
 
 REGISTRO NUMBER;
+RESULTADO_EVA NUMBER;
 BEGIN
-
---EXEC PR_resultado_evaluacion_pc(id_empresa);
 
 	OPEN actualiza_posicion;
 	LOOP
-		FETCH actualiza_posicion into REGISTRO;
+		FETCH actualiza_posicion into REGISTRO, RESULTADO_EVA;
 			update table (select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) n 
 			set n.RES_POSICION = position + 1;
-      position:= position +1;
 			EXIT WHEN actualiza_posicion%NOTFOUND ;
+      position:= position +1;
 	END LOOP;
 	CLOSE actualiza_posicion;
 COMMIT;
 END;
 /
+
+CREATE OR REPLACE PROCEDURE PR_EVALUACION_A_PROVEEDORES(id_empresa empresa.em_id%type) IS
+BEGIN 
+PR_RESULTADO_EVALUACION_PC(id_empresa);
+PR_RESULTADO_EVAL_NO_CONOCIDOS(id_empresa);
+PR_AGREGA_POSICION;
+END;
+/
+
+/*   CONSULTA DEL REPORTE DE RESULTADO DE PROVEEDORES       
+
+
+select DISTINCT p.pr_id,n.RES_RESULTADO,p.pr_nombre, to_char(n.res_año,'dd-mm-yyyy'), e.em_nombre, n.res_posicion
+from proveedores p, table(p.pr_resultadoevaluacion) n, empresa e
+where n.res_rubro = upper('total') and e.em_id = n.res_IDPRODUCTOR
+and to_char(n.res_año,'yyyy')=$P{año_evaluacion}
+order by n.res_posicion 
+
+*/
+
+

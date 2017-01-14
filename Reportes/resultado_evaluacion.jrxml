@@ -7,11 +7,11 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select distinct p.pr_id,n.RES_RESULTADO,p.pr_nombre, to_char(n.res_año,'dd-mm-yyyy'), e.em_nombre, n.res_posicion
+		<![CDATA[select DISTINCT p.pr_id,n.RES_RESULTADO,p.pr_nombre, to_char(n.res_año,'dd-mm-yyyy'), e.em_nombre, n.res_posicion
 from proveedores p, table(p.pr_resultadoevaluacion) n, empresa e
 where n.res_rubro = upper('total') and e.em_id = n.res_IDPRODUCTOR
 and to_char(n.res_año,'yyyy')=$P{año_evaluacion}
-order by n.res_resultado desc]]>
+order by n.res_posicion ]]>
 	</queryString>
 	<field name="PR_ID" class="java.math.BigDecimal"/>
 	<field name="RES_RESULTADO" class="java.math.BigDecimal"/>
