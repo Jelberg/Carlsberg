@@ -35,7 +35,7 @@ end if;
 end pr_compraAProveedores; 
 /
 create or replace procedure pr_agregarProductoAPedidoMP(materiaPrima varchar2, presentacion varchar2
-    ,valorMedida varchar2, medida varchar2, cantidad number)
+    ,valorMedida varchar2, unidad varchar2, cantidad number)
     is
     ultimoPedido number;
     precioU number;
@@ -50,9 +50,14 @@ create or replace procedure pr_agregarProductoAPedidoMP(materiaPrima varchar2, p
     where con_numero=(select c.con_numero from contrato c, pedido p 
     where c.con_numero=p.con_numero and pe_id=ultimoPedido));
 
-    select pre.pre_id into presentacionId from presentacion pre, catalogo_proveedor_mp cp where 
+    select pre.pre_id into presentacionId 
+    from presentacion pre, catalogo_proveedor_mp cp
+    where                                                                         
     pre.cp_id=cp.cp_id and cp.cp_nombre=materiaPrima and pre.pre_tipo=presentacion 
-    --and pre_medida=medida(valorMedida,medida) 
+	
+     -- Si fuera un nested table abria que poner en el from  "presentacion pre, table (pre.pre_medida) " pero como en este caso en un tda sencillo solo hay que poner en la comparacion "pre.pre_medida.me_valor" que seria ALIAS.NOMBREATRIBUTOENLATABLA.NOMBREATRIBUTOENELTYPE 
+    
+	and pre.pre_medida.me_valor=valorMedida   and pre.pre_medida.me_unidad = unidad 
     and cp.pr_id=proveedorId and  rownum=1;
 
     insert into detalle_pedido (det_id, pe_id,pre_id,det_cantidad,ca_codigo,pr_id)
