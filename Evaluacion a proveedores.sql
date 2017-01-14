@@ -204,8 +204,11 @@ begin
 COMMIT;
 end;
 /
+
+
 -- NO PROBADO 
-create or replace procedure PR_resultado_evaluacion_no_conociodos(id_empresa empresa.em_id%type) is --Proveedores no conocidos
+
+create or replace procedure PR_Reval_no_conocidos(id_empresa empresa.em_id%type) is --Proveedores conocidos
 
 resultado_1 number;
 
@@ -217,7 +220,7 @@ resultado_6 number;
 position number :=0;
 
 cursor proveedores_no_conocidos is 
-Select p.pr_id from proveedores p, contrato c where c.pr_id <> p.pr_id;  
+Select distinct p.pr_id from proveedores p where  p.pr_id not in (Select c.pr_id from contrato c);  
 
 REGISTRO number;
 begin
@@ -235,16 +238,18 @@ begin
 			UPDATE PROVEEDORES SET PR_RESULTADOEVALUACION = RESULTADOEVALUACION_NT(RESULTADOEVALUACION(SYSDATE,resultado_1,NULL,id_empresa,'1')) WHERE PR_ID = REGISTRO; 
 		END IF;
 		
+		
 		resultado_3:= fn_resultado_rubro_3(REGISTRO);
 		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_3,null,id_empresa,'3');
-				
+		
+	
 		resultado_5:= fn_resultado_rubro_5(REGISTRO);
 		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_5,null,id_empresa,'5');
 		
 		resultado_6:= fn_resultado_rubro_6(REGISTRO);
 		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_6,null,id_empresa,'6');
 		
-		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,(65+resultado_1
+		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,(100+resultado_1
 		+resultado_3+resultado_5+resultado_6),null,id_empresa,'TOTAL');
 		
 		-- FALTA PONER LA POSICION PERO NO SE COMO 

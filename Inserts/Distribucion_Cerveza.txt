@@ -26,86 +26,14 @@ insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/05/2011',12000)),(select ce_id from cerveza where ce_nombreingles='Tuborg Strong' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Tuborg Strong' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Inglaterra'));
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/05/2011',12000)),(select ce_id from cerveza where ce_nombreingles='Tuborg Strong' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Tuborg Strong' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Inglaterra'));
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/12/2011',9500)),(select ce_id from cerveza where ce_nombreingles='Tuborg Strong' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Tuborg Strong' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Alemania'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/03/2010',10000)),(select ce_id from cerveza where ce_nombreingles='Tuborg Gold' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Tuborg Gold' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Dinamarca'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/05/2013',12000)),(select ce_id from cerveza where ce_nombreingles='Tuborg Gold' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Tuborg Gold' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Inglaterra'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/12/2012',9500)),(select ce_id from cerveza where ce_nombreingles='Tuborg Gold' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Tuborg Gold' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Alemania'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/01/2014',10000)),(select ce_id from cerveza where ce_nombreingles='Tuborg Julebryg' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Tuborg Julebryg' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Dinamarca'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/05/2015',12000)),(select ce_id from cerveza where ce_nombreingles='Tuborg Julebryg' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Tuborg Julebryg' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Inglaterra'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/12/2014',9500)),(select ce_id from cerveza where ce_nombreingles='Tuborg Julebryg' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Tuborg Julebryg' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Alemania'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/07/2016',10000)),(select ce_id from cerveza where ce_nombreingles='Tetleys Gold' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=330 and ce_id=(select ce_id from cerveza where ce_nombreingles='Tetleys Gold' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='UNITED STATES'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/09/2016',12000)),(select ce_id from cerveza where ce_nombreingles='Tetleys Gold' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=330 and ce_id=(select ce_id from cerveza where ce_nombreingles='Tetleys Gold' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Inglaterra'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/12/2016',9500)),(select ce_id from cerveza where ce_nombreingles='Tetleys Gold' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=330 and ce_id=(select ce_id from cerveza where ce_nombreingles='Tetleys Gold' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='CANADA'));
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/12/2016',9500)),(select ce_id from cerveza where ce_nombreingles='Tetleys Gold' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=330 and ce_id=(select ce_id from cerveza where ce_nombreingles='Tetleys Gold' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='CANADA'));
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/12/2016',9500)),(select ce_id from cerveza where ce_nombreingles='Tetleys Gold' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=330 and ce_id=(select ce_id from cerveza where ce_nombreingles='Tetleys Gold' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='CANADA'));
@@ -134,140 +62,20 @@ insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/10/2010',9500)),(select ce_id from cerveza where ce_nombreingles='Appel Somersby' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Appel Somersby' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='FRANCE'));
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/10/2010',9500)),(select ce_id from cerveza where ce_nombreingles='Appel Somersby' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Appel Somersby' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='FRANCE'));
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/10/2010',9500)),(select ce_id from cerveza where ce_nombreingles='Appel Somersby' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Appel Somersby' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='FRANCE'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/02/2011',10000)),(select ce_id from cerveza where ce_nombreingles='Kronenbourg 1664' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Kronenbourg 1664' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='SWEDEN'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/06/2011',12000)),(select ce_id from cerveza where ce_nombreingles='Kronenbourg 1664' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Kronenbourg 1664' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Dinamarca'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/11/2011',9500)),(select ce_id from cerveza where ce_nombreingles='Kronenbourg 1664' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Kronenbourg 1664' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Alemania'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/03/2011',10000)),(select ce_id from cerveza where ce_nombreingles='Blanc 1664' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Blanc 1664' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='SWEDEN'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/07/2011',12000)),(select ce_id from cerveza where ce_nombreingles='Blanc 1664' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Blanc 1664' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Dinamarca'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/12/2011',9500)),(select ce_id from cerveza where ce_nombreingles='Blanc 1664' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Blanc 1664' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Alemania'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/04/2011',10000)),(select ce_id from cerveza where ce_nombreingles='Millesime 1664' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Millesime 1664' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='SWEDEN'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/08/2011',12000)),(select ce_id from cerveza where ce_nombreingles='Millesime 1664' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Millesime 1664' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Dinamarca'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/01/2012',9500)),(select ce_id from cerveza where ce_nombreingles='Millesime 1664' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Millesime 1664' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Alemania'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/05/2012',10000)),(select ce_id from cerveza where ce_nombreingles='Rose 1664' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Rose 1664' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='SWEDEN'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/09/2012',12000)),(select ce_id from cerveza where ce_nombreingles='Rose 1664' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Rose 1664' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Dinamarca'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/02/2013',9500)),(select ce_id from cerveza where ce_nombreingles='Rose 1664' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='botella' and pc_cantidad=660 and ce_id=(select ce_id from cerveza where ce_nombreingles='Rose 1664' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Alemania'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/06/2013',10000)),(select ce_id from cerveza where ce_nombreingles='Irish Red Ale' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='lata' and pc_cantidad=355 and ce_id=(select ce_id from cerveza where ce_nombreingles='Irish Red Ale' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Inglaterra'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/10/2013',12000)),(select ce_id from cerveza where ce_nombreingles='Irish Red Ale' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='lata' and pc_cantidad=355 and ce_id=(select ce_id from cerveza where ce_nombreingles='Irish Red Ale' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='UNITED STATES'));
-
-
-
-
-
-
-
-
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/03/2014',9500)),(select ce_id from cerveza where ce_nombreingles='Irish Red Ale' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='lata' and pc_cantidad=355 and ce_id=(select ce_id from cerveza where ce_nombreingles='Irish Red Ale' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Inglaterra'));
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/03/2014',9500)),(select ce_id from cerveza where ce_nombreingles='Irish Red Ale' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='lata' and pc_cantidad=355 and ce_id=(select ce_id from cerveza where ce_nombreingles='Irish Red Ale' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Inglaterra'));
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/03/2014',9500)),(select ce_id from cerveza where ce_nombreingles='Irish Red Ale' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='lata' and pc_cantidad=355 and ce_id=(select ce_id from cerveza where ce_nombreingles='Irish Red Ale' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Inglaterra'));
@@ -324,4 +132,4 @@ insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/05/2014',9500)),(select ce_id from cerveza where ce_nombreingles='California Steam Beer' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='lata' and pc_cantidad=355 and ce_id=(select ce_id from cerveza where ce_nombreingles='California Steam Beer' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Inglaterra'));
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/05/2014',9500)),(select ce_id from cerveza where ce_nombreingles='California Steam Beer' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='lata' and pc_cantidad=355 and ce_id=(select ce_id from cerveza where ce_nombreingles='California Steam Beer' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Inglaterra'));
 insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/05/2014',9500)),(select ce_id from cerveza where ce_nombreingles='California Steam Beer' and rownum=1),(select pc_id from presentacion_cerveza where pc_tipo='lata' and pc_cantidad=355 and ce_id=(select ce_id from cerveza where ce_nombreingles='California Steam Beer' and rownum=1) and rownum=1),(select pa_id from pais where pa_nombre='Inglaterra'));
-insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/05/2014',9500)),(select ce_id from cerveza where ce_nombreingles='California Steam Beer' and rownum=1),(select ce_id from cerveza where ce_nombreingles='California Steam Beer' and rownum=1)),(select pa_id from pais where pa_nombre='Inglaterra'));​
+insert into distribucion_cerveza (dis_cer_distribucion,ce_id,pc_id,pa_id) values(distribucion_nt(distribucion('01/05/2014',9500)),(select ce_id from cerveza where ce_nombreingles='California Steam Beer' and rownum=1),(select ce_id from cerveza where ce_nombreingles='California Steam Beer' and rownum=1),(select pa_id from pais where pa_nombre='Inglaterra'));​
