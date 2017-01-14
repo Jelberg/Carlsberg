@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ficha_proveedor" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7759c6dd-9cf0-4530-b605-51cf55437ff0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="66"/>
+	<parameter name="nombre proveedor" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\elber\\OneDrive\\Documentos\\GitHub\\Carlsberg\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select pr.pr_id, pr.pr_nombre,p.pa_nombre, pr_correo, pr.PR_WEB, pr.pr_contactos.con_nombre, pr.pr_contactos.con_apellido, pr.pr_contactos.con_cargo, pr.pr_contactos.con_telefono
+from proveedores pr, pais p
+where
+p.pa_id = pr.pa_id and upper(pr.pr_nombre)= upper($P{nombre proveedor})]]>
+	</queryString>
+	<field name="PR_ID" class="java.math.BigDecimal"/>
+	<field name="PR_NOMBRE" class="java.lang.String"/>
+	<field name="PA_NOMBRE" class="java.lang.String"/>
+	<field name="PR_CORREO" class="java.lang.String"/>
+	<field name="PR_WEB" class="java.lang.String"/>
+	<field name="PR_CONTACTOS.CON_NOMBRE" class="java.lang.String"/>
+	<field name="PR_CONTACTOS.CON_APELLIDO" class="java.lang.String"/>
+	<field name="PR_CONTACTOS.CON_CARGO" class="java.lang.String"/>
+	<field name="PR_CONTACTOS.CON_TELEFONO" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="73" splitType="Stretch">
+			<rectangle>
+				<reportElement x="27" y="63" width="511" height="5" forecolor="#00CC33" backcolor="#00CC33" uuid="55404e42-290d-48df-9521-f59eb1a24e62"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="166" y="21" width="230" height="39" uuid="e6f8c764-76d2-45a6-894b-c9217e229f73"/>
+				<textElement>
+					<font size="26" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Ficha de proveedor]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="68" y="12" width="98" height="20" uuid="ff38f55a-209e-4877-8e0d-89c06fd050da"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Proveedor:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="173" y="10" width="186" height="32" uuid="e114ac6c-97bd-4d56-a1e7-196eab03683e"/>
+				<textElement>
+					<font size="16" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PR_NOMBRE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="339" splitType="Stretch">
+			<rectangle>
+				<reportElement x="17" y="8" width="368" height="165" forecolor="#999999" uuid="89b5289d-894d-4d24-91c1-b81ab9b43fc6"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="105" y="115" width="94" height="20" uuid="42124fc1-1556-41d6-a3a7-b8b11b106afd"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Correo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="105" y="135" width="94" height="20" uuid="ac9833bc-6c4a-4168-af06-870797a4ced6"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Sitio Web:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="64" y="16" width="98" height="20" uuid="f83c38f8-82d3-40b4-81bd-95b6f56bbbc8"/>
+				<textElement>
+					<font size="12" isBold="false" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Contactos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="101" y="36" width="98" height="20" uuid="b381935d-e1b2-4aaa-b5f7-9420ccd7ef72"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="101" y="56" width="98" height="20" uuid="ad4e4817-85ae-45ff-8c05-9e922d01adad"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Apellido:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="102" y="75" width="98" height="20" uuid="7c951689-59b0-4001-8d40-bc988bc85e3a"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Cargo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="102" y="95" width="98" height="20" uuid="96c63f17-f401-4c74-af58-fe60a0279864"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Telefono:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="191" y="117" width="144" height="20" uuid="4ea0a9a4-f46b-4995-9bd5-897a45a40320"/>
+				<textFieldExpression><![CDATA[$F{PR_CORREO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="191" y="137" width="144" height="20" uuid="49978540-34f0-48ea-b2f9-74fdde8334a1"/>
+				<textFieldExpression><![CDATA[$F{PR_WEB}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="188" y="39" width="147" height="20" uuid="55470a7f-6dd9-4860-9df5-d2b14251d8b7"/>
+				<textFieldExpression><![CDATA[$F{PR_CONTACTOS.CON_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="189" y="59" width="146" height="20" uuid="eed3a2a0-941c-4717-9cc8-be7163ebf189"/>
+				<textFieldExpression><![CDATA[$F{PR_CONTACTOS.CON_APELLIDO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="189" y="79" width="146" height="20" uuid="64bbf77f-3e1c-4e90-b2ef-a4ec3d96a78f"/>
+				<textFieldExpression><![CDATA[$F{PR_CONTACTOS.CON_CARGO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="189" y="99" width="146" height="20" uuid="e5ec4e6f-c092-48e9-95f2-93e230943c84"/>
+				<textFieldExpression><![CDATA[$F{PR_CONTACTOS.CON_TELEFONO}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="216" width="555" height="21" uuid="73052b08-939e-4ad2-9e83-6ab995459481"/>
+				<subreportParameter name="id proveedor">
+					<subreportParameterExpression><![CDATA[$F{PR_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subconsulta_f_prove_resultado_eval.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="17" y="196" width="213" height="20" uuid="901a0a4f-90d3-4ba7-beb7-0224ffaab87e"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Evaluaciones realizadas]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="209" y="23" width="80" height="20" uuid="328aae0e-efda-4a59-8fc6-c7e244bd3ada"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="289" y="23" width="40" height="20" uuid="e1b5253d-3bd5-46b1-8ef4-a02f7a7596c3"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
