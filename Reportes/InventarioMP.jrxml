@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InventarioMP" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="34553628-1b71-4186-ba0e-adf23063be52">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="nombre empresa" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select (sum(dp.det_cantidad)- sum(des.des_cantidad)) cantidas_inventario, mp.CP_NOMBRE
+from detalle_pedido dp, pedido p, presentacion pre, catalogo_proveedor_mp mp, DESCUENTOPEDIDIOPARAPRODUCCION des
+where p.pe_id = dp.pe_id
+and pre.pre_id = dp.pre_id and mp.cp_id =pre.cp_id and des.DET_ID=dp.DET_ID
+
+group by mp.cp_nombre]]>
+	</queryString>
+	<field name="CANTIDAS_INVENTARIO" class="java.math.BigDecimal"/>
+	<field name="CP_NOMBRE" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="19" y="58" width="511" height="5" forecolor="#00CC33" backcolor="#00CC33" uuid="8504ad25-88a6-491b-aa1b-a35119108210"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="123" y="19" width="307" height="38" uuid="25542d2f-e120-4129-b9af-bfd9498910ae"/>
+				<textElement>
+					<font size="24" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Inventario de materias prima]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement x="23" y="6" width="131" height="20" uuid="23019221-4cbd-4d6e-9d5d-a545250c8a2d"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Empresa productora:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="23" y="12" width="100" height="20" uuid="4c66abaf-c1be-4dd4-95e2-f0cbc88b79f6"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Materia Prima]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="154" y="12" width="100" height="20" uuid="b9392700-c879-45d2-9330-cd3028d826fc"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="1" width="555" height="30" forecolor="#999999" uuid="df4f08a2-a39a-486c-96b5-0690f6bd8457"/>
+			</rectangle>
+			<textField>
+				<reportElement x="23" y="5" width="100" height="20" uuid="77425838-0e62-40a0-b9af-0fddbd528685"/>
+				<textFieldExpression><![CDATA[$F{CP_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="154" y="5" width="100" height="20" uuid="5eb7197a-5049-4c4f-bad3-4adfea08d0ac"/>
+				<textFieldExpression><![CDATA[$F{CANTIDAS_INVENTARIO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
