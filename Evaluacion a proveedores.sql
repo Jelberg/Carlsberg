@@ -82,6 +82,18 @@ return contador_variedad_mp;
 
 END;
 /
+create or replace function fn_resultado_rubro_3_EQ(id_proveedor proveedores.pr_id%type) return number is
+contador_variedad_eq number;
+
+BEGIN 
+
+select count(cp.ca_id) into contador_variedad_eq
+from CATALOGO_PROVEEDOR_EQ ca, proveedores p
+where ca.pr_id = p.pr_id and p.pr_id=id_proveedor;
+
+return contador_variedad_eq;
+
+/
 create or replace function fn_resultado_rubro_4(id_proveedor proveedores.pr_id%type) return number is
 id_contrato number(7);
 fecha_emision date;
@@ -143,7 +155,7 @@ end;
 /
 
 
--------------------PROCEDURE
+-------------------PROCEDURE PARA MATERIA PRIMA
 
 create or replace procedure PR_resultado_evaluacion_pc(id_empresa empresa.em_id%type) is --Proveedores conocidos
 
@@ -170,30 +182,29 @@ begin
 		resultado_1 := fn_resultado_rubro_1(REGISTRO,id_empresa);
                               -- solo ocurre una vez este if
 		if fn_nested_evaluacion_vacio(REGISTRO) = 0 THEN 
-			insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_1,null,id_empresa,'1');
+			insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_1,null,id_empresa,'1 MATERIA PRIMA');
 		ELSE 
-			UPDATE PROVEEDORES SET PR_RESULTADOEVALUACION = RESULTADOEVALUACION_NT(RESULTADOEVALUACION(SYSDATE,resultado_1,NULL,id_empresa,'1')) WHERE PR_ID = REGISTRO; 
+			UPDATE PROVEEDORES SET PR_RESULTADOEVALUACION = RESULTADOEVALUACION_NT(RESULTADOEVALUACION(SYSDATE,resultado_1,NULL,id_empresa,'1 MATERIA PRIMA')) WHERE PR_ID = REGISTRO; 
 		END IF;
 		
 		resultado_2:= fn_resultado_rubro_2(REGISTRO);
-		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_2,null,id_empresa,'2');
+		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_2,null,id_empresa,'2 MATERIA PRIMA');
 		
 		resultado_3:= fn_resultado_rubro_3(REGISTRO);
-		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_3,null,id_empresa,'3');
+		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_3,null,id_empresa,'3 MATERIA PRIMA');
 		
 		resultado_4:= fn_resultado_rubro_4(REGISTRO);
-		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_4,null,id_empresa,'4');
+		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_4,null,id_empresa,'4 MATERIA PRIMA');
 		
 		resultado_5:= fn_resultado_rubro_5(REGISTRO);
-		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_5,null,id_empresa,'5');
+		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_5,null,id_empresa,'5 MATERIA PRIMA');
 		
 		resultado_6:= fn_resultado_rubro_6(REGISTRO);
-		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_6,null,id_empresa,'6');
+		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_6,null,id_empresa,'6 MATERIA PRIMA');
 		
 		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,(100+resultado_1+resultado_2
-		+resultado_3+resultado_4+resultado_5+resultado_6),null,id_empresa,'TOTAL');
-		
-		-- FALTA PONER LA POSICION PERO NO SE COMO 
+		+resultado_3+resultado_4+resultado_5+resultado_6),null,id_empresa,'TOTAL MATERIA PRIMA');
+		 
 		
 		EXIT WHEN proveedores_conocidos%NOTFOUND ;
 
@@ -232,24 +243,24 @@ begin
 		resultado_1 := fn_resultado_rubro_1(REGISTRO,id_empresa);
                               -- solo ocurre una vez este if
 		if fn_nested_evaluacion_vacio(REGISTRO) = 0 THEN 
-			insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_1,null,id_empresa,'1');
+			insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_1,null,id_empresa,'1 MATERIA PRIMA');
 		ELSE 
-			UPDATE PROVEEDORES SET PR_RESULTADOEVALUACION = RESULTADOEVALUACION_NT(RESULTADOEVALUACION(SYSDATE,resultado_1,NULL,id_empresa,'1')) WHERE PR_ID = REGISTRO; 
+			UPDATE PROVEEDORES SET PR_RESULTADOEVALUACION = RESULTADOEVALUACION_NT(RESULTADOEVALUACION(SYSDATE,resultado_1,NULL,id_empresa,'1 MATERIA PRIMA')) WHERE PR_ID = REGISTRO; 
 		END IF;
 		
 		
 		resultado_3:= fn_resultado_rubro_3(REGISTRO);
-		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_3,null,id_empresa,'3');
+		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_3,null,id_empresa,'3 MATERIA PRIMA');
 		
 	
 		resultado_5:= fn_resultado_rubro_5(REGISTRO);
-		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_5,null,id_empresa,'5');
+		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_5,null,id_empresa,'5 MATERIA PRIMA');
 		
 		resultado_6:= fn_resultado_rubro_6(REGISTRO);
-		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_6,null,id_empresa,'6');
+		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_6,null,id_empresa,'6 MATERIA PRIMA');
 		
 		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,(65+resultado_1
-		+resultado_3+resultado_5+resultado_6),null,id_empresa,'TOTAL');
+		+resultado_3+resultado_5+resultado_6),null,id_empresa,'TOTAL MATERIA PRIMA');
 	
 		EXIT WHEN proveedores_no_conocidos%NOTFOUND ;
 
@@ -261,14 +272,14 @@ COMMIT;
 end;
 /
 
-create or replace PROCEDURE pr_agrega_posicion IS     -- PARA PONER LA POSICION 
+create or replace PROCEDURE pr_agrega_posicion_mp IS     -- PARA PONER LA POSICION 
 
 position number :=0;
 
 cursor actualiza_posicion is 
 select distinct p.pr_id, n.res_resultado
 from proveedores p, table(p.pr_resultadoevaluacion) n 
-where n.res_rubro = upper('total')
+where n.res_rubro = upper('TOTAL MATERIA PRIMA')
 and to_char(n.res_año,'dd-mm-yyyy')= to_char(sysdate,'dd-mm-yyyy')
 order by n.res_resultado desc;
 
@@ -289,11 +300,165 @@ COMMIT;
 END;
 /
 
-CREATE OR REPLACE PROCEDURE PR_EVALUACION_A_PROVEEDORES(id_empresa empresa.em_id%type) IS
+CREATE OR REPLACE PROCEDURE PR_EVALUACION_A_PROVEEDORES_MP(id_empresa empresa.em_id%type) IS
 BEGIN 
 PR_RESULTADO_EVALUACION_PC(id_empresa);
 PR_RESULTADO_EVAL_NO_CONOCIDOS(id_empresa);
-PR_AGREGA_POSICION;
+PR_AGREGA_POSICION_mp;
+END;
+/
+
+------------- PROCEDURE PARA EQUIPOS 
+
+create or replace procedure PR_resultado_evaluacion_pc_EQ(id_empresa empresa.em_id%type) is --Proveedores conocidos
+
+resultado_1 number;
+resultado_2 number;
+resultado_3_EQ number;
+resultado_4 number;
+resultado_5 number;
+resultado_6 number;
+
+position number :=0;
+
+cursor proveedores_conocidos is 
+Select distinct p.pr_id from proveedores p, contrato c where p.pr_id = c.pr_id; 
+
+REGISTRO number;
+begin
+
+	OPEN proveedores_conocidos;
+
+	LOOP
+		FETCH proveedores_conocidos into REGISTRO;
+
+		resultado_1 := fn_resultado_rubro_1(REGISTRO,id_empresa);
+                              -- solo ocurre una vez este if
+		if fn_nested_evaluacion_vacio(REGISTRO) = 0 THEN 
+			insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_1,null,id_empresa,'1 EQUIPO');
+		ELSE 
+			UPDATE PROVEEDORES SET PR_RESULTADOEVALUACION = RESULTADOEVALUACION_NT(RESULTADOEVALUACION(SYSDATE,resultado_1,NULL,id_empresa,'1 EQUIPO')) WHERE PR_ID = REGISTRO; 
+		END IF;
+		
+		resultado_2:= fn_resultado_rubro_2(REGISTRO);
+		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_2,null,id_empresa,'2 EQUIPO');
+		
+		resultado_3_EQ:= fn_resultado_rubro_3_EQ(REGISTRO);
+		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_3,null,id_empresa,'3 EQUIPO');
+		
+		resultado_4:= fn_resultado_rubro_4(REGISTRO);
+		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_4,null,id_empresa,'4 EQUIPO');
+		
+		resultado_5:= fn_resultado_rubro_5(REGISTRO);
+		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_5,null,id_empresa,'5 EQUIPO');
+		
+		resultado_6:= fn_resultado_rubro_6(REGISTRO);
+		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_6,null,id_empresa,'6 EQUIPO');
+		
+		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,(100+resultado_1+resultado_2
+		+resultado_3+resultado_4+resultado_5+resultado_6),null,id_empresa,'TOTAL EQUIPO');
+		
+		-- FALTA PONER LA POSICION PERO NO SE COMO 
+		
+		EXIT WHEN proveedores_conocidos%NOTFOUND ;
+
+	END LOOP;
+
+	close proveedores_conocidos;
+	
+COMMIT;
+end;
+/
+
+
+
+create or replace procedure PR_Resultado_eval_no_conocidos_EQ(id_empresa empresa.em_id%type) is --Proveedores conocidos
+
+resultado_1 number;
+
+resultado_3_EQ number;
+
+resultado_5 number;
+resultado_6 number;
+
+position number :=0;
+
+cursor proveedores_no_conocidos is 
+Select distinct p.pr_id from proveedores p where  p.pr_id not in (Select c.pr_id from contrato c);  
+
+REGISTRO number;
+begin
+
+	OPEN proveedores_no_conocidos;
+
+	LOOP
+		FETCH proveedores_no_conocidos into REGISTRO;
+
+		resultado_1 := fn_resultado_rubro_1(REGISTRO,id_empresa);
+                              -- solo ocurre una vez este if
+		if fn_nested_evaluacion_vacio(REGISTRO) = 0 THEN 
+			insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_1,null,id_empresa,'1 EQUIPO');
+		ELSE 
+			UPDATE PROVEEDORES SET PR_RESULTADOEVALUACION = RESULTADOEVALUACION_NT(RESULTADOEVALUACION(SYSDATE,resultado_1,NULL,id_empresa,'1 EQUIPO')) WHERE PR_ID = REGISTRO; 
+		END IF;
+		
+		
+		resultado_3_EQ:= fn_resultado_rubro_3_EQ(REGISTRO);
+		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_3,null,id_empresa,'3 EQUIPO');
+		
+	
+		resultado_5:= fn_resultado_rubro_5(REGISTRO);
+		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_5,null,id_empresa,'5 EQUIPO');
+		
+		resultado_6:= fn_resultado_rubro_6(REGISTRO);
+		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_6,null,id_empresa,'6 EQUIPO');
+		
+		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,(65+resultado_1
+		+resultado_3+resultado_5+resultado_6),null,id_empresa,'TOTAL EQUIPO');
+	
+		EXIT WHEN proveedores_no_conocidos%NOTFOUND ;
+
+	END LOOP;
+
+	close proveedores_no_conocidos;
+	
+COMMIT;
+end;
+/
+
+create or replace PROCEDURE pr_agrega_posicion_EQ IS     -- PARA PONER LA POSICION 
+
+position number :=0;
+
+cursor actualiza_posicion is 
+select distinct p.pr_id, n.res_resultado
+from proveedores p, table(p.pr_resultadoevaluacion) n 
+where n.res_rubro = upper('TOTAL EQUIPO')
+and to_char(n.res_año,'dd-mm-yyyy')= to_char(sysdate,'dd-mm-yyyy')
+order by n.res_resultado desc;
+
+REGISTRO NUMBER;
+RESULTADO_EVA NUMBER;
+BEGIN
+
+	OPEN actualiza_posicion;
+	LOOP
+		FETCH actualiza_posicion into REGISTRO, RESULTADO_EVA;
+			update table (select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) n 
+			set n.RES_POSICION = position + 1;
+			EXIT WHEN actualiza_posicion%NOTFOUND ;
+      position:= position +1;
+	END LOOP;
+	CLOSE actualiza_posicion;
+COMMIT;
+END;
+/
+
+CREATE OR REPLACE PROCEDURE PR_EVALUACION_A_PROVEEDORES_EQ(id_empresa empresa.em_id%type) IS
+BEGIN 
+PR_RESULTADO_EVALUACION_PC_EQ(id_empresa);
+PR_RESULTADO_EVAL_NO_CONOCIDOS_EQ(id_empresa);
+PR_AGREGA_POSICION_EQ;
 END;
 /
 
