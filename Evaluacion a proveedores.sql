@@ -261,7 +261,7 @@ begin
 		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_6,null,id_empresa,'6 MATERIA PRIMA');
 		
 		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,(65+resultado_1
-		+resultado_3+resultado_5+resultado_6),null,id_empresa,'TOTAL MATERIA PRIMA');
+		+resultado_3+resultado_5+resultado_6)*1.54,null,id_empresa,'TOTAL MATERIA PRIMA');
 	
 		EXIT WHEN proveedores_no_conocidos%NOTFOUND ;
 
@@ -292,7 +292,7 @@ BEGIN
 	LOOP
 		FETCH actualiza_posicion into REGISTRO, RESULTADO_EVA;
 			update table (select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) n 
-			set n.RES_POSICION = position + 1;
+			set n.RES_POSICION = position + 1 where n.res_rubro = upper('total materia prima');
 			EXIT WHEN actualiza_posicion%NOTFOUND ;
       position:= position +1;
 	END LOOP;
@@ -413,7 +413,7 @@ begin
 		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_6,null,id_empresa,'6 EQUIPO');
 		
 		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,(65+resultado_1
-		+resultado_3+resultado_5+resultado_6),null,id_empresa,'TOTAL EQUIPO');
+		+resultado_3+resultado_5+resultado_6)*1.54,null,id_empresa,'TOTAL EQUIPO');
 	
 		EXIT WHEN proveedores_no_conocidos%NOTFOUND ;
 
@@ -446,7 +446,7 @@ BEGIN
 	LOOP
 		FETCH actualiza_posicion into REGISTRO, RESULTADO_EVA;
 			update table (select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) n 
-			set n.RES_POSICION = position + 1;
+			set n.RES_POSICION = position + 1 where n.res_rubro = upper('total equipo');
 			EXIT WHEN actualiza_posicion%NOTFOUND ;
       position:= position +1;
 	END LOOP;
