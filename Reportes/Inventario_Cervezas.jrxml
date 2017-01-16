@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Inventario_Cervezas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3f891e68-c203-4463-b047-9a23776c7f67">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Nombre empresa" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select distinct c.ce_nombreingles, round((sum(pm.pro_cantidadenml)/p.pc_cantidad),0) cantidad_producida, e.em_nombre , p.pc_tipo, p.pc_cantidad,f.fa_nombre
+
+from empresa e, produccionmensual pm, presentacion_cerveza p, cerveza c, fabrica f
+
+where c.ce_id=p.ce_id and p.ce_id = pm.ce_id and p.pc_id=pm.pc_id
+ and e.EM_ID = f.EM_ID and e.em_id=pm.em_id and upper(e.em_nombre)=upper($P{Nombre empresa})
+
+group by  e.em_nombre, c.ce_nombreingles , p.pc_tipo, p.pc_cantidad, f.fa_nombre
+
+order by c.ce_nombreingles, p.pc_cantidad]]>
+	</queryString>
+	<field name="CE_NOMBREINGLES" class="java.lang.String"/>
+	<field name="CANTIDAD_PRODUCIDA" class="java.math.BigDecimal"/>
+	<field name="EM_NOMBRE" class="java.lang.String"/>
+	<field name="PC_TIPO" class="java.lang.String"/>
+	<field name="PC_CANTIDAD" class="java.math.BigDecimal"/>
+	<field name="FA_NOMBRE" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="26" y="67" width="511" height="5" forecolor="#00CC33" backcolor="#00CC33" uuid="0aa5f230-c214-476d-abbf-3d5f42ba07c3"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="159" y="31" width="277" height="36" uuid="ebded4e9-18a6-4751-9b89-44605652c4bd"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Inventario de Cervezas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="33" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="28" forecolor="#FFFFFF" backcolor="#99FF99" uuid="823fb62d-c4f0-4a36-b19c-f86060aa1950"/>
+			</rectangle>
+			<textField>
+				<reportElement x="100" y="8" width="391" height="20" uuid="7521e061-33e1-4454-83e3-3b9d16697c1f"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EM_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="8" width="100" height="20" uuid="c2e6bc4f-2a39-4b3e-a680-f2c720c10352"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Empresa:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="50" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="9" width="100" height="20" uuid="7526d392-08a2-495a-9fd9-f854bf2907fd"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Nombre Cerveza]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="159" y="10" width="75" height="20" uuid="0ee40188-36d1-48f5-847f-7a51fa226b1a"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Envase]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="257" y="9" width="100" height="20" uuid="dcdb8c6f-80cd-44ce-b3d7-fcae972dc406"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Capacidad (ml)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="372" y="2" width="64" height="20" uuid="68bfd6c3-022e-42c3-a989-2df851f73ceb"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="43" width="555" height="1" forecolor="#666666" uuid="a6a54c66-10d5-41f9-954c-a532cbf00700"/>
+			</line>
+			<staticText>
+				<reportElement x="372" y="22" width="64" height="20" uuid="b68318c5-535e-4d24-ac6d-a36bb83539d6"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Producida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="472" y="10" width="64" height="20" uuid="94948ffc-78ea-47ea-bb6a-ecdbf3ebac43"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Fabrica]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="29" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="145" height="20" uuid="a548f764-aaa6-4681-8d90-9c0ae152f4f5"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CE_NOMBREINGLES}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="159" y="0" width="75" height="20" uuid="4a70f91e-a75e-49e3-aac4-d877e1b6f6b2"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PC_TIPO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="278" y="0" width="62" height="20" uuid="b4b09f06-1314-4459-b67b-07fe1af92f8d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PC_CANTIDAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="372" y="0" width="100" height="20" uuid="ff09cd89-0e4b-48a9-9785-9d0851e8ad94"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CANTIDAD_PRODUCIDA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" uuid="94c7491c-be84-4914-97cc-d5f457c02a64"/>
+				<textFieldExpression><![CDATA[$F{FA_NOMBRE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="198" y="25" width="80" height="20" uuid="e877e51a-24bc-41b0-9575-18b36095da96"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="278" y="25" width="40" height="20" uuid="e37d5851-a8ea-4704-87c8-9861c0142a9d"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

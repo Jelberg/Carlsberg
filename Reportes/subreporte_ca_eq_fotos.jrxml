@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subreporte_ca_eq_fotos" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="a025ea4b-368d-42f1-8fa9-26f3c6181ed3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id producto catalogo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select n.fotos
+from catalogo_proveedor_eq c, table (c.ca_fotos) n
+where c.ca_codigo = $P{id producto catalogo}]]>
+	</queryString>
+	<field name="FOTOS" class="oracle.jdbc.OracleBlob"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="154" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="299" height="154" uuid="d3c525a8-5e14-4c4b-a7d8-6ec4c61665a1"/>
+				<imageExpression><![CDATA[$F{FOTOS}.getBinaryStream()]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+</jasperReport>

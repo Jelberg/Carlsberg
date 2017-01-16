@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Contrato" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="07edefde-f29a-4ea9-8015-1da39b27455e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="numero contrato" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select c.con_numero, to_char(c.con_fechaEmision,'dd-mm-yyyy'), p.pr_nombre, e.em_nombre, to_char((c.con_fechaEmision + 365),'dd-mm-yyyy') fecha_fin, c.con_condicionesadicionales
+from contrato c, proveedores p, empresa e
+where c.pr_id=p.pr_id and c.em_id=e.em_id and c.con_numero = $P{numero contrato}]]>
+	</queryString>
+	<field name="CON_NUMERO" class="java.math.BigDecimal"/>
+	<field name="TO_CHAR(C.CON_FECHAEMISION,&apos;DD-MM-YYYY&apos;)" class="java.lang.String"/>
+	<field name="PR_NOMBRE" class="java.lang.String"/>
+	<field name="EM_NOMBRE" class="java.lang.String"/>
+	<field name="FECHA_FIN" class="java.lang.String"/>
+	<field name="CON_CONDICIONESADICIONALES" class="oracle.jdbc.OracleClob"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="71" splitType="Stretch">
+			<rectangle>
+				<reportElement x="23" y="54" width="511" height="5" forecolor="#00CC33" backcolor="#00CC33" uuid="f3e68ab7-158d-4eb8-94b3-8d9fba02ce4e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="227" y="24" width="92" height="28" uuid="f73d3f19-90ab-4ce1-bd67-7f3f94e329b8"/>
+				<textElement>
+					<font size="22" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Contrato]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="57" splitType="Stretch">
+			<staticText>
+				<reportElement x="258" y="13" width="74" height="20" uuid="d03fda1e-a4b6-47f8-b37b-b152659978d4"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Contrato:  #]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="332" y="13" width="82" height="20" uuid="ce50f403-286a-4e62-8daa-ed578e4ed178"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CON_NUMERO}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="414" y="13" width="94" height="31" uuid="d479b7c5-3ba7-439c-b064-dd18fac6d73d"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="2of7" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{CON_NUMERO}.intValue()]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="111" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="1" width="555" height="95" forecolor="#666666" uuid="86e284fc-b777-4dc3-bb7f-58392f7452da"/>
+			</rectangle>
+			<textField>
+				<reportElement x="207" y="64" width="100" height="20" uuid="c7225fb1-5a2f-4734-a304-1b44f4b455eb"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PR_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="207" y="10" width="100" height="20" uuid="10c1b76e-8fd5-4be0-9ce7-1b83a4572417"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EM_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="392" y="37" width="100" height="20" uuid="8ae95b6a-8c73-4fc1-b651-cae02b1b0c38"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FECHA_FIN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="207" y="37" width="100" height="20" uuid="f73c33b6-1d89-440c-9fcd-b63bedf2de52"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TO_CHAR(C.CON_FECHAEMISION,'DD-MM-YYYY')}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="10" width="174" height="20" uuid="1597d177-f083-4088-a6ac-ecabf4cafd2a"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Empresa que emitio el contrato: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="79" y="37" width="106" height="20" uuid="be64488f-d5c0-45d5-8fcb-62586ce78ba2"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de emision: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="123" y="64" width="62" height="20" uuid="a84110d6-a18f-4cdb-8b28-dc592144953e"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Proveedor: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="331" y="37" width="61" height="20" uuid="533e11fc-12c4-47aa-bc84-76e2c9279f85"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Fecha fin: ]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="15" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="212" y="29" width="80" height="20" uuid="4339373b-fbd0-4f48-ad2c-3d18a57757e2"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="292" y="29" width="40" height="20" uuid="0123d060-294f-421f-91a2-b49f10862b81"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="50" splitType="Stretch"/>
+	</summary>
+</jasperReport>

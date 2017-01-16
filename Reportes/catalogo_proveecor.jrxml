@@ -31,11 +31,11 @@ and mp.mp_id = cp.mp_id]]>
 				<reportElement x="33" y="66" width="511" height="5" forecolor="#00CC33" backcolor="#00CC33" uuid="896c7e64-7516-42a9-8ad4-45f48d84924c"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="160" y="30" width="250" height="36" uuid="b47c779d-b532-460d-abf2-f90d52f7d15a"/>
+				<reportElement x="75" y="30" width="415" height="36" uuid="b47c779d-b532-460d-abf2-f90d52f7d15a"/>
 				<textElement>
 					<font size="24"/>
 				</textElement>
-				<text><![CDATA[Catalogo de proveedor ]]></text>
+				<text><![CDATA[Catalogo de proveedor: Materia Prima ]]></text>
 			</staticText>
 		</band>
 	</title>

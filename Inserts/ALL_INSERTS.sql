@@ -398,6 +398,10 @@ INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadi
 (seq_con_numero.NEXTVAL,(SELECT pr_id FROM(SELECT pr_id FROM proveedores ORDER BY dbms_random.value )WHERE rownum = 1),
 '12-03-2012',(SELECT em_id FROM(SELECT em_id FROM empresa ORDER BY dbms_random.value )WHERE rownum = 1),null);
 
+INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES 
+(seq_con_numero.NEXTVAL,(SELECT pr_id FROM(SELECT pr_id FROM proveedores ORDER BY dbms_random.value )WHERE rownum = 1),
+'12-03-2012',(SELECT em_id FROM(SELECT em_id FROM empresa ORDER BY dbms_random.value )WHERE rownum = 1),fn_importar_binario_clob('condiciones.pdf'));
+
 -----MAQUINARIA
 
 INSERT INTO maquinaria (ma_id,ma_nombre,ma_palabraclv,ma_descripcion_) VALUES (seq_ma_id.NEXTVAL,'Calderos',
