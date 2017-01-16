@@ -87,11 +87,12 @@ contador_variedad_eq number;
 
 BEGIN 
 
-select count(cp.ca_id) into contador_variedad_eq
+select count(ca.ca_codigo) into contador_variedad_eq
 from CATALOGO_PROVEEDOR_EQ ca, proveedores p
 where ca.pr_id = p.pr_id and p.pr_id=id_proveedor;
 
 return contador_variedad_eq;
+end;
 
 /
 create or replace function fn_resultado_rubro_4(id_proveedor proveedores.pr_id%type) return number is
@@ -169,7 +170,7 @@ resultado_6 number;
 position number :=0;
 
 cursor proveedores_conocidos is 
-Select distinct p.pr_id from proveedores p, contrato c where p.pr_id = c.pr_id; 
+Select distinct p.pr_id from proveedores p, contrato c, catalogo_proveedor_mp mp where p.pr_id = c.pr_id and p.pr_id=mp.pr_id; 
 
 REGISTRO number;
 begin
@@ -218,7 +219,7 @@ end;
 
 
 
-create or replace procedure PR_Resultado_eval_no_conocidos(id_empresa empresa.em_id%type) is --Proveedores conocidos
+create or replace procedure PR_Resultado_eval_nc(id_empresa empresa.em_id%type) is --Proveedores no conocidos
 
 resultado_1 number;
 
@@ -230,7 +231,7 @@ resultado_6 number;
 position number :=0;
 
 cursor proveedores_no_conocidos is 
-Select distinct p.pr_id from proveedores p where  p.pr_id not in (Select c.pr_id from contrato c);  
+Select distinct p.pr_id from proveedores p, catalogo_proveedor_mp mp where  p.pr_id not in (Select c.pr_id from contrato c) and p.pr_id=mp.pr_id;  
 
 REGISTRO number;
 begin
@@ -303,7 +304,7 @@ END;
 CREATE OR REPLACE PROCEDURE PR_EVALUACION_A_PROVEEDORES_MP(id_empresa empresa.em_id%type) IS
 BEGIN 
 PR_RESULTADO_EVALUACION_PC(id_empresa);
-PR_RESULTADO_EVAL_NO_CONOCIDOS(id_empresa);
+PR_Resultado_eval_nc(id_empresa);
 PR_AGREGA_POSICION_mp;
 END;
 /
@@ -322,7 +323,7 @@ resultado_6 number;
 position number :=0;
 
 cursor proveedores_conocidos is 
-Select distinct p.pr_id from proveedores p, contrato c where p.pr_id = c.pr_id; 
+Select distinct p.pr_id from proveedores p, contrato c, catalogo_proveedor_eq e where p.pr_id = c.pr_id and p.pr_id=e.pr_id; 
 
 REGISTRO number;
 begin
@@ -344,7 +345,7 @@ begin
 		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_2,null,id_empresa,'2 EQUIPO');
 		
 		resultado_3_EQ:= fn_resultado_rubro_3_EQ(REGISTRO);
-		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_3,null,id_empresa,'3 EQUIPO');
+		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_3_EQ,null,id_empresa,'3 EQUIPO');
 		
 		resultado_4:= fn_resultado_rubro_4(REGISTRO);
 		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_4,null,id_empresa,'4 EQUIPO');
@@ -356,7 +357,7 @@ begin
 		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_6,null,id_empresa,'6 EQUIPO');
 		
 		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,(100+resultado_1+resultado_2
-		+resultado_3+resultado_4+resultado_5+resultado_6),null,id_empresa,'TOTAL EQUIPO');
+		+resultado_3_EQ+resultado_4+resultado_5+resultado_6),null,id_empresa,'TOTAL EQUIPO');
 		
 		-- FALTA PONER LA POSICION PERO NO SE COMO 
 		
@@ -368,15 +369,13 @@ begin
 	
 COMMIT;
 end;
+
 /
-
-
-
-create or replace procedure PR_Resultado_eval_no_conocidos_EQ(id_empresa empresa.em_id%type) is --Proveedores conocidos
+create or replace procedure PR_Resultado_eval_nc_eq(id_empresa empresa.em_id%type) is --Proveedores no conocidos
 
 resultado_1 number;
 
-resultado_3_EQ number;
+resultado_3 number;
 
 resultado_5 number;
 resultado_6 number;
@@ -384,7 +383,7 @@ resultado_6 number;
 position number :=0;
 
 cursor proveedores_no_conocidos is 
-Select distinct p.pr_id from proveedores p where  p.pr_id not in (Select c.pr_id from contrato c);  
+Select distinct p.pr_id from proveedores p, catalogo_proveedor_eq mp where  p.pr_id not in (Select c.pr_id from contrato c) and p.pr_id=mp.pr_id;  
 
 REGISTRO number;
 begin
@@ -403,7 +402,7 @@ begin
 		END IF;
 		
 		
-		resultado_3_EQ:= fn_resultado_rubro_3_EQ(REGISTRO);
+		resultado_3:= fn_resultado_rubro_3_EQ(REGISTRO);
 		insert into table(select PR_RESULTADOEVALUACION from proveedores where pr_id = REGISTRO) values (sysdate,resultado_3,null,id_empresa,'3 EQUIPO');
 		
 	
@@ -424,6 +423,8 @@ begin
 	
 COMMIT;
 end;
+
+
 /
 
 create or replace PROCEDURE pr_agrega_posicion_EQ IS     -- PARA PONER LA POSICION 
@@ -457,7 +458,7 @@ END;
 CREATE OR REPLACE PROCEDURE PR_EVALUACION_A_PROVEEDORES_EQ(id_empresa empresa.em_id%type) IS
 BEGIN 
 PR_RESULTADO_EVALUACION_PC_EQ(id_empresa);
-PR_RESULTADO_EVAL_NO_CONOCIDOS_EQ(id_empresa);
+PR_Resultado_eval_nc_eq(id_empresa);
 PR_AGREGA_POSICION_EQ;
 END;
 /

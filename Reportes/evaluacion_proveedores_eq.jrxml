@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="resultado_evaluacion" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3bbc6d15-aa3f-4962-bfdf-b128d858dd6a">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="evaluacion_proveedores_eq" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="55dfe503-2e1e-4c9f-a53d-89f52f66d2d6">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -9,7 +9,7 @@
 	<queryString>
 		<![CDATA[select DISTINCT p.pr_id,n.RES_RESULTADO,p.pr_nombre, to_char(n.res_año,'dd-mm-yyyy'), e.em_nombre, n.res_posicion
 from proveedores p, table(p.pr_resultadoevaluacion) n, empresa e
-where n.res_rubro = upper('total materia prima') and e.em_id = n.res_IDPRODUCTOR
+where n.res_rubro = upper('total equipo') and e.em_id = n.res_IDPRODUCTOR
 and to_char(n.res_año,'yyyy')=$P{año_evaluacion}
 order by n.res_posicion]]>
 	</queryString>
@@ -25,17 +25,17 @@ order by n.res_posicion]]>
 	<title>
 		<band height="79" splitType="Stretch">
 			<rectangle>
-				<reportElement x="22" y="60" width="511" height="5" forecolor="#00CC33" backcolor="#00CC33" uuid="c4612d78-8c12-4618-8c49-bff27d2eff5f"/>
+				<reportElement x="10" y="51" width="511" height="5" forecolor="#00CC33" backcolor="#00CC33" uuid="c2e5a965-f7e2-44f6-b4df-7d800e887fe0"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="31" y="24" width="429" height="35" uuid="fe52070d-85ee-4ce7-9ed7-56e671a0b6f6"/>
+				<reportElement x="19" y="14" width="409" height="35" uuid="42f1818d-6c9a-4766-b13d-b8a595f2f4f8"/>
 				<textElement>
 					<font size="18" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[Resultado evauacion a proveedores - Materia Prima:]]></text>
+				<text><![CDATA[Resultado evauacion a proveedores - Equipo:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="460" y="24" width="71" height="35" uuid="3d975c22-4bdc-4815-82e7-bc50332ed95e"/>
+				<reportElement x="428" y="15" width="91" height="35" uuid="ae1ab93c-2925-4054-93af-6dd8aa6f0d8b"/>
 				<textElement>
 					<font size="18" isBold="true" isItalic="true"/>
 				</textElement>
@@ -45,70 +45,70 @@ order by n.res_posicion]]>
 	</title>
 	<pageHeader>
 		<band height="66" splitType="Stretch">
+			<textField>
+				<reportElement x="230" y="10" width="100" height="20" uuid="54e2bcd0-6e55-429f-afde-79b2e82bc196"/>
+				<textFieldExpression><![CDATA[$F{EM_NOMBRE}]]></textFieldExpression>
+			</textField>
 			<staticText>
-				<reportElement x="31" y="19" width="220" height="20" uuid="4195229f-74d9-470a-a94e-4695577b6131"/>
-				<textElement>
-					<font size="12" isItalic="true"/>
-				</textElement>
-				<text><![CDATA[Empresa que realizo la evaluacion:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="32" y="40" width="219" height="20" uuid="92c54bd1-89f2-47a6-a8b8-27eb47641d6b"/>
+				<reportElement x="11" y="31" width="219" height="20" uuid="a20b293b-543f-4f7b-b58a-56db0e4345b2"/>
 				<textElement>
 					<font size="12" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Fecha de la evaluacion:]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="10" y="10" width="220" height="20" uuid="b49f7df9-1ae4-4c55-896e-090f6dbd20d2"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Empresa que realizo la evaluacion:]]></text>
+			</staticText>
 			<textField>
-				<reportElement x="251" y="40" width="100" height="20" uuid="f866375a-4c7c-4c6d-9d02-376d6e6ac720"/>
+				<reportElement x="231" y="30" width="100" height="20" uuid="55b28fcd-a58c-4c19-825f-ee799f024266"/>
 				<textFieldExpression><![CDATA[$F{TO_CHAR(N.RES_AÑO,'DD-MM-YYYY')}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="251" y="19" width="100" height="20" uuid="3ce3c5ee-f004-4a88-ba5b-9d05d7816c2f"/>
-				<textFieldExpression><![CDATA[$F{EM_NOMBRE}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="47" splitType="Stretch">
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement x="1" y="32" width="555" height="1" forecolor="#666666" uuid="6a0b9912-61cb-4b69-83b7-e02b0cf9d45e"/>
+			</line>
 			<staticText>
-				<reportElement x="218" y="19" width="100" height="20" uuid="0b222eb2-9489-4206-9574-464683d07230"/>
+				<reportElement x="26" y="9" width="100" height="20" uuid="b8e456b3-5f5b-4546-b8a8-ba2b8c357f6c"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Posicion ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="10" width="100" height="20" uuid="ee8d1f3e-62f0-430b-b1be-1a61a956eb25"/>
 				<textElement>
 					<font size="12" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Proveedor]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="386" y="18" width="112" height="20" uuid="a915e20e-eb8a-4bf9-b00d-64fb619f6ca0"/>
+				<reportElement x="398" y="9" width="112" height="20" uuid="3fe6bfb0-8d10-4680-b744-5311fffd8153"/>
 				<textElement>
 					<font size="12" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Resultado]]></text>
 			</staticText>
-			<line>
-				<reportElement x="0" y="40" width="555" height="1" forecolor="#666666" uuid="526f3cdf-953b-4972-962f-c854d89bb9e5"/>
-			</line>
-			<staticText>
-				<reportElement x="43" y="18" width="100" height="20" uuid="54f76e9e-6621-498c-9d91-256ed93250b6"/>
-				<textElement>
-					<font size="12" isItalic="true"/>
-				</textElement>
-				<text><![CDATA[Posicion ]]></text>
-			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="32" splitType="Stretch">
+		<band height="28" splitType="Stretch">
 			<textField>
-				<reportElement x="218" y="6" width="100" height="20" uuid="ef5ab431-87d7-4f97-8576-51614db5a19c"/>
-				<textFieldExpression><![CDATA[$F{PR_NOMBRE}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="386" y="6" width="112" height="20" uuid="f5a095ad-ac43-40cd-b5b0-ad5abc741e20"/>
+				<reportElement x="407" y="0" width="126" height="20" uuid="fa5c677f-c4c1-41d2-ac7b-3a451bf06b80"/>
 				<textFieldExpression><![CDATA[$F{RES_RESULTADO}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="43" y="6" width="100" height="20" uuid="cc24164b-8ad5-4598-a51c-fe423c506b2d"/>
+				<reportElement x="229" y="0" width="100" height="20" uuid="da0940c4-0877-4ce8-b2a7-31edafa4cf9e"/>
+				<textFieldExpression><![CDATA[$F{PR_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="51" y="0" width="100" height="20" uuid="5b0b47bb-d89d-4563-9192-c177e06f8d28"/>
 				<textFieldExpression><![CDATA[$F{RES_POSICION}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -119,12 +119,12 @@ order by n.res_posicion]]>
 	<pageFooter>
 		<band height="54" splitType="Stretch">
 			<textField>
-				<reportElement x="208" y="28" width="80" height="20" uuid="cdd23d63-c235-47e3-9e55-346991abe2a7"/>
+				<reportElement x="196" y="34" width="80" height="20" uuid="e0899d5b-e972-45bd-8247-b2a85e28502f"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="288" y="28" width="40" height="20" uuid="1c004c94-c9e9-4c53-abb6-c75a194281be"/>
+				<reportElement x="276" y="34" width="40" height="20" uuid="335ab79b-b294-4957-8208-de12ce99f7da"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
