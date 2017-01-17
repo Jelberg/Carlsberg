@@ -152,6 +152,6 @@ INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VA
 INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,13,19,6000,null,2);
 INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,14,18,6000,null,2);
 INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,15,17,6000,null,2);
-INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,16,23.6000,null,2);
+INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,16,23,6000,null,2);
 INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,17,66,6000,null,2);
 INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,18,69,6000,null,2);
