@@ -1,37 +1,25 @@
-INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) 
-VALUES (seq_pe_id.NEXTVAL,(SELECT con_numero FROM(SELECT con_numero FROM contrato ORDER BY dbms_random.value )WHERE rownum = 1),
-(Select con_fechaemision from (SELECT con_fechaemision FROM contrato ORDER BY dbms_random.value )WHERE to_char(con_fechaemision,'YYYY')= '2016' and rownum = 1 )
-,'en proceso',null,'materia prima',NULL,NULL,'12-12-2016');
-
-INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) 
-VALUES (seq_pe_id.NEXTVAL,(SELECT con_numero FROM(SELECT con_numero FROM contrato ORDER BY dbms_random.value )WHERE rownum = 1),
-(Select con_fechaemision from (SELECT con_fechaemision FROM contrato ORDER BY dbms_random.value )WHERE to_char(con_fechaemision,'YYYY')= '2016' and rownum = 1 ),
-'en proceso',null,'equipo',NULL,NULL,'22-06-2016');
-
-INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) 
-VALUES (seq_pe_id.NEXTVAL,(SELECT con_numero FROM(SELECT con_numero FROM contrato ORDER BY dbms_random.value )WHERE rownum = 1),
-(Select con_fechaemision from (SELECT con_fechaemision FROM contrato ORDER BY dbms_random.value )WHERE to_char(con_fechaemision,'YYYY')= '2016' and rownum = 1 )
-,'cancelada',null,'materia prima',NULL,NULL,'05-05-2016');
-
-INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) 
-VALUES (seq_pe_id.NEXTVAL,(SELECT con_numero FROM(SELECT con_numero FROM contrato ORDER BY dbms_random.value )WHERE rownum = 1),
-(Select con_fechaemision from (SELECT con_fechaemision FROM contrato ORDER BY dbms_random.value )WHERE to_char(con_fechaemision,'YYYY')= '2015' and rownum = 1 ),
-'finalizada','22-09-2015','materia prima',123,23423,'22-09-2015');
-
-INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) 
-VALUES (seq_pe_id.NEXTVAL,(SELECT con_numero FROM(SELECT con_numero FROM contrato ORDER BY dbms_random.value )WHERE rownum = 1),
-(Select con_fechaemision from (SELECT con_fechaemision FROM contrato ORDER BY dbms_random.value )WHERE to_char(con_fechaemision,'YYYY')= '2015' and rownum = 1 ),
-'finalizada','22-03-2015','materia prima',234,23421,'11-03-2015');
-
-INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) 
-VALUES (seq_pe_id.NEXTVAL,(SELECT con_numero FROM(SELECT con_numero FROM contrato ORDER BY dbms_random.value )WHERE rownum = 1),
-(Select con_fechaemision from (SELECT con_fechaemision FROM contrato ORDER BY dbms_random.value )WHERE to_char(con_fechaemision,'YYYY')= '2016' and rownum = 1 ),
-'finalizada','02-03-2016','materia prima',543,12211,'02-02-2016');
-
--------------------------------
-
-INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) 
-VALUES (seq_pe_id.NEXTVAL,5,
-'14-03-2013',
-'finalizada','28-03-2013','materia prima',54443,12211,'20-03-2013');
-
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(SELECT con_numero FROM(SELECT con_numero FROM contrato ORDER BY dbms_random.value )WHERE rownum = 1),(Select con_fechaemision from (SELECT con_fechaemision FROM contrato ORDER BY dbms_random.value )WHERE to_char(con_fechaemision,'YYYY')= '2016' and rownum = 1 ),'en proceso',null,'materia prima',NULL,NULL,'12-12-2016');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(SELECT con_numero FROM(SELECT con_numero FROM contrato ORDER BY dbms_random.value )WHERE rownum = 1),(Select con_fechaemision from (SELECT con_fechaemision FROM contrato ORDER BY dbms_random.value )WHERE to_char(con_fechaemision,'YYYY')= '2016' and rownum = 1 ),'en proceso',null,'equipo',NULL,NULL,'22-06-2016');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(SELECT con_numero FROM(SELECT con_numero FROM contrato ORDER BY dbms_random.value )WHERE rownum = 1),(Select con_fechaemision from (SELECT con_fechaemision FROM contrato ORDER BY dbms_random.value )WHERE to_char(con_fechaemision,'YYYY')= '2016' and rownum = 1 ),'cancelada',null,'materia prima',NULL,NULL,'05-05-2016');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(SELECT con_numero FROM(SELECT con_numero FROM contrato ORDER BY dbms_random.value )WHERE rownum = 1),(Select con_fechaemision from (SELECT con_fechaemision FROM contrato ORDER BY dbms_random.value )WHERE to_char(con_fechaemision,'YYYY')= '2015' and rownum = 1 ),'finalizada','22-09-2015','materia prima',123,23423,'22-09-2015');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(SELECT con_numero FROM(SELECT con_numero FROM contrato ORDER BY dbms_random.value )WHERE rownum = 1),(Select con_fechaemision from (SELECT con_fechaemision FROM contrato ORDER BY dbms_random.value )WHERE to_char(con_fechaemision,'YYYY')= '2015' and rownum = 1 ),'finalizada','22-03-2015','materia prima',234,23421,'11-03-2015');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(SELECT con_numero FROM(SELECT con_numero FROM contrato ORDER BY dbms_random.value )WHERE rownum = 1),(Select con_fechaemision from (SELECT con_fechaemision FROM contrato ORDER BY dbms_random.value )WHERE to_char(con_fechaemision,'YYYY')= '2016' and rownum = 1 ),'finalizada','02-03-2016','materia prima',543,12211,'02-02-2016');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,5,'14-03-2013','finalizada','28-03-2013','materia prima',54443,12211,'20-03-2013');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(select con_numero from contrato where pr_id=(select pr_id from proveedores where pr_nombre='Fields')),'12-12-2015','finalizada','01-01-2016','materia prima',543,255211,'01-01-2016');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(select con_numero from contrato where pr_id=(select pr_id from proveedores where pr_nombre='Fields')),'10-02-2016','finalizada','07-03-2016','materia prima',543,262211,'07-03-2016');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(select con_numero from contrato where pr_id=(select pr_id from proveedores where pr_nombre='Fields')),'01-05-2016','finalizada','02-05-2016','materia prima',543,262211,'02-05-2016');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(select con_numero from contrato where pr_id=(select pr_id from proveedores where pr_nombre='Fields')),'03-06-2016','finalizada','04-07-2016','materia prima',543,262211,'04-07-2016');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(select con_numero from contrato where pr_id=(select pr_id from proveedores where pr_nombre='Fields')),'06-08-2016','finalizada','06-09-2016','materia prima',543,262211,'06-09-2016');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(select con_numero from contrato where pr_id=(select pr_id from proveedores where pr_nombre='Fields')),'05-11-2016','finalizada','08-12-2016','materia prima',543,262211,'08-12-2016');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(select con_numero from contrato where pr_id=(select pr_id from proveedores where pr_nombre='Fields')),'10-01-2016','finalizada','10-02-2016','materia prima',543,262211,'10-02-2016');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(select con_numero from contrato where pr_id=(select pr_id from proveedores where pr_nombre='Fields')),'10-03-2016','finalizada','12-04-2016','materia prima',543,262211,'12-04-2016');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(select con_numero from contrato where pr_id=(select pr_id from proveedores where pr_nombre='Fields')),'05-05-2016','finalizada','06-06-2016','materia prima',543,262211,'06-06-2016');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(select con_numero from contrato where pr_id=(select pr_id from proveedores where pr_nombre='Fields')),'10-07-2016','finalizada','12-08-2016','materia prima',543,262211,'12-08-2016');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(select con_numero from contrato where pr_id=(select pr_id from proveedores where pr_nombre='Fields')),'04-09-2016','finalizada','05-10-2016','materia prima',543,262211,'05-10-2016');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(select con_numero from contrato where pr_id=(select pr_id from proveedores where pr_nombre='Fields')),'07-10-2016','finalizada','10-12-2016','materia prima',543,262211,'08-11-2016');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(select con_numero from contrato where pr_id=(select pr_id from proveedores where pr_nombre='Fields')),'10-12-2015','finalizada','03-01-2016','materia prima',543,262211,'03-01-2016');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(select con_numero from contrato where pr_id=(select pr_id from proveedores where pr_nombre='Fields')),'04-06-2016','finalizada','04-07-2016','materia prima',543,262211,'04-07-2016');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(select con_numero from contrato where pr_id=(select pr_id from proveedores where pr_nombre='Fields')),'08-04-2016','finalizada','08-05-2016','materia prima',543,262211,'08-05-2016');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(select con_numero from contrato where pr_id=(select pr_id from proveedores where pr_nombre='Fields')),'10-10-2016','finalizada','12-11-2016','materia prima',543,262211,'12-11-2016');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(select con_numero from contrato where pr_id=(select pr_id from proveedores where pr_nombre='Fields')),'01-09-2016','finalizada','03-10-2016','materia prima',543,262211,'03-10-2016');
+INSERT INTO pedido (pe_id,con_numero,pe_fechapedido,pe_status,pe_fechaentrega,pe_tipo,pe_numfactura,pe_total,pe_fechasolicitada) VALUES (seq_pe_id.NEXTVAL,(select con_numero from contrato where pr_id=(select pr_id from proveedores where pr_nombre='Fields')),'05-10-2016','finalizada','06-12-2016','materia prima',543,262211,'08-11-2016');
