@@ -7,14 +7,14 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select distinct c.ce_nombreingles,p.pc_cantidad, p.pc_tipo, round((sum(pm.pro_cantidadenml)/p.pc_cantidad),0) cantidad_producida, e.em_nombre, p.pc_id
+		<![CDATA[select distinct c.ce_nombreingles,p.pc_cantidad, p.pc_tipo, round((sum(pm.pro_cantidadenml)/p.pc_cantidad),0) cantidad_producida, e.em_nombre, p.pc_id, c.ce_id, p.pc_id
 
 from empresa e, produccionmensual pm, presentacion_cerveza p, cerveza c
 
 where c.ce_id=p.ce_id and p.ce_id = pm.ce_id and p.pc_id=pm.pc_id
  and e.em_id=pm.em_id and upper(e.em_nombre)=upper($P{Nombre empresa})
 
-group by  c.ce_nombreingles, e.em_nombre , p.pc_tipo, p.pc_cantidad,p.pc_id
+group by  c.ce_nombreingles, e.em_nombre , p.pc_tipo, p.pc_cantidad,p.pc_id,c.ce_id, p.pc_id
 
 order by c.ce_nombreingles, p.pc_cantidad]]>
 	</queryString>
@@ -24,6 +24,7 @@ order by c.ce_nombreingles, p.pc_cantidad]]>
 	<field name="CANTIDAD_PRODUCIDA" class="java.math.BigDecimal"/>
 	<field name="EM_NOMBRE" class="java.lang.String"/>
 	<field name="PC_ID" class="java.math.BigDecimal"/>
+	<field name="CE_ID" class="java.math.BigDecimal"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -137,8 +138,12 @@ order by c.ce_nombreingles, p.pc_cantidad]]>
 				<textFieldExpression><![CDATA[$F{CANTIDAD_PRODUCIDA}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="211" y="0" width="14" height="20" uuid="e8b48829-4c81-4e64-8c19-7934d8cb7f86"/>
+				<reportElement x="211" y="0" width="14" height="20" uuid="b9cc0317-d472-430c-9476-56c2bff1abcc"/>
 				<textFieldExpression><![CDATA[$F{PC_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="38" y="0" width="28" height="20" uuid="d935b404-e97f-4508-8766-270033605696"/>
+				<textFieldExpression><![CDATA[$F{CE_ID}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

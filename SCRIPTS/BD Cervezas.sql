@@ -53,7 +53,7 @@ CREATE OR REPLACE TYPE FORMAPAGO AS OBJECT (
     FPAGO_TIEMPOCUOTAS VARCHAR2(300),
     FPAGO_CANTCUOTAS   NUMBER(7),
     FPAGO_DATOSCUENTAS DATOSCUENTA
-);   ---->>> NO SE SI SE PUEDE PONER ASI
+);
 /
 
 CREATE OR REPLACE TYPE CONTACTO AS OBJECT (
@@ -161,7 +161,7 @@ create table ESTILO
    ES_NOMBRETEMPORADA   VARCHAR2(300),
    ES_TEMPERATURA       MEDIDA,
    constraint PK_ESTILO primary key (ES_ID)
-)nested table ES_COMIDA store as comidas;                         --los nombres no pueden ser iguales, genera error
+)nested table ES_COMIDA store as comidas;                         
 
 
 --- que es abu? ABV 
@@ -179,8 +179,8 @@ create table CERVEZA
    CE_ABV               VARCHAR2(10)             not null,
    CE_TEMPORADA         VARCHAR2(300)            not null
       constraint CHC_CE_TEMPORADA_CERVEZA check (CE_TEMPORADA in ('clasica','temporada')),
-   CE_FOTOS             BLOB,                                                                         -- CONJUNTO DE FOTOS
-   CE_DESCRIPCION       VARCHAR2(100),                                                                          --POR QUE CLOB??
+   CE_FOTOS             BLOB,                                                                        
+   CE_DESCRIPCION       VARCHAR2(100),                                                                          
    CE_PAGINAWEB         VARCHAR2(300),
    CE_SABOR             VARCHAR2(10),
    constraint PK_CERVEZA primary key (CE_ID)
@@ -209,7 +209,7 @@ create table DISTRIBUCION_CERVEZA
 NESTED TABLE DIS_CER_DISTRIBUCION STORE AS DISTRI;
 
 
---CREATE OR REPLACE TYPE TELEFONO_VA AS VARRAY(5) OF VARCHAR2(15);
+
 
 
 create table PROVEEDORES 
@@ -218,10 +218,9 @@ create table PROVEEDORES
    PA_ID                NUMBER(7)               not null,
    PR_NOMBRE            VARCHAR2(300)  unique    not null,
    PR_CORREO            VARCHAR2(300)  unique    not null,
-  -- PR_TELEFONO          TELEFONO_VA                     ,  -- >>>NO VA POR, QUE YA ESTA EN CONTACTO
-   PR_FORMASENVIO       FORMAS_ENVIO_VA           ,                       ------Esto no se sacaba con la entidad envios?O es un check de envios?
-   PR_FORMASPAGO        FORMAPAGO_NT,                                                                 -----YO CREO QUE FORMAS DE ENVIO ES UN VARRAY ---LO QUE NO SE ES DONDE SE VE ESO EN EL CONTRATO
-   PR_CONTACTOS         CONTACTO,                                                                     ----- AUNQUE AUN ASI NO LE VEO LA UTILIDAD PORQUE TAMBIEN SE PUEDE USAR LA ENTIDAD ENVIOS AGREGANDO ATRIBUTO TIPOO_ENVIO
+   PR_FORMASENVIO       FORMAS_ENVIO_VA           ,                       
+   PR_FORMASPAGO        FORMAPAGO_NT,                                                               
+   PR_CONTACTOS         CONTACTO,                                                                    
    PR_RESULTADOEVALUACION RESULTADOEVALUACION_NT,
    PR_WEB               VARCHAR2(300),
    constraint PK_PROVEEDORES primary key (PR_ID)
@@ -234,7 +233,7 @@ create table ENVIOS
    CI_ID                NUMBER(7)               not null,
    PR_ID                NUMBER(7)               not null,
    EN_COSTO             NUMBER(7)               not null,
-   EN_TIEMPO_HORAS      NUMBER(7)                  not null,                                   ----Este tiempo cual es?
+   EN_TIEMPO_HORAS      NUMBER(7)                  not null,                                   
    constraint PK_ENVIOS primary key (EN_ID,CI_ID, PR_ID)
 );
 
@@ -280,7 +279,7 @@ create table MAQUINARIA
 (
    MA_ID                NUMBER(7)               not null,
    MA_NOMBRE            VARCHAR2(300)            not null,
-   MA_PALABRACLV        RECETAPROCESOBASICO_NT            ,           ---- Esto deberia de seer un check -- RECETAPROCESOBASICO_NT
+   MA_PALABRACLV        RECETAPROCESOBASICO_NT            ,           
    MA_DESCRIPCION_      VARCHAR2(100)                  not null,
    constraint PK_MAQUINARIA primary key (MA_ID)
 )NESTED TABLE MA_PALABRACLV STORE AS ACTIVIDAD_PROCESO;  
@@ -290,7 +289,7 @@ create table CATALOGO_PROVEEDOR_EQ
 (
    CA_CODIGO            NUMBER(7)               not null,
    CA_NOMBRE            VARCHAR2(300)            not null,
-   CA_DESCRIPCION       VARCHAR2(50)                 not null,                                           -- PORQUE CLOB?
+   CA_DESCRIPCION       VARCHAR2(50)                 not null,                                           
    CA_PRECIOUNITARIO    NUMBER(7)               not null,
    CA_ESPECIFICAIONESTECNICAS CLOB                 not null,
    CA_FOTOS             FOTOS_NT ,                                                                     
@@ -304,7 +303,7 @@ create table MATERIA_PRIMA
 (
    MP_ID                NUMBER(7)               not null,
    MP_NOMBRE            VARCHAR2(300)            not null,
-   MP_DESCRIPCION       VARCHAR2(50)                not null,                                                    --POR QUE CLOB?
+   MP_DESCRIPCION       VARCHAR2(50)                not null,                                                    
    MP_FORMASDISLUPULO   VARCHAR2(300),
    constraint PK_MATERIA_PRIMA primary key (MP_ID)
 );
@@ -326,7 +325,6 @@ create table VARIEDAD
 
 create table V_C 
 (
-   --VC_ID                NUMBER(7)               not null,  -- NO TIENE ID PROPIA 
    VAR_ID               NUMBER(7)               not null,
    PA_ID                NUMBER(7)               not null,
    constraint PK_V_C primary key (VAR_ID, PA_ID)
@@ -341,7 +339,7 @@ create table CATALOGO_PROVEEDOR_MP
    VAR_ID               NUMBER(7)             ,
    CP_NOMBRE            VARCHAR2(300)            not null,
    CP_DESCRIPCION       VARCHAR2(300)            not null,
-   CP_FOTOS             FOTOS_NT,                                                                              --CONJUTO DE FOTOS
+   CP_FOTOS             FOTOS_NT,                                                                             
    constraint PK_CATALOGO_PROVEEDOR_MP primary key (CP_ID)
 ) NESTED TABLE CP_FOTOS STORE AS FOTOS_MATERIA_P;
 
@@ -360,8 +358,6 @@ create table PEDIDO
    constraint PK_PEDIDO primary key (PE_ID)
 );
 
---No estoy muy seguro de pago y cuentas
---LO QUE CREO ES QUE TIPOPAGO ES TABLA ANIDADA, ORQUE SI NO,NO LE VEO EL USO 
 
 
 create table PAGO 
@@ -411,7 +407,7 @@ create table PRESENTACION
    PRE_TIPO             VARCHAR2(300)            not null
       constraint CKC_PRE_TIPO_PRESENTA check (PRE_TIPO in ('bolsa','saco','caja','sachet','otros')),
    PRE_PRECIOU          NUMBER(7)               not null,
-   PRE_DESCRIPCION      VARCHAR2(40),                                                               -- PORQUE CLOB?
+   PRE_DESCRIPCION      VARCHAR2(40),                                                              
    constraint PK_PRESENTACION primary key (PRE_ID)
 );
 
@@ -425,7 +421,7 @@ create table DETALLE_PEDIDO
    constraint PK_DETALLE_PEDIDO primary key (DET_ID, PE_ID)
 );
 
-create table DESCUENTOPEDIDIOPARAPRODUCCION 
+/*create table DESCUENTOPEDIDIOPARAPRODUCCION 
 (
    --DES_ID               NUMBER(7)               not null,
    PRO_FECHA            DATE                 not null,
@@ -436,8 +432,25 @@ create table DESCUENTOPEDIDIOPARAPRODUCCION
    DET_ID               NUMBER(7)               not null,
    PE_ID                NUMBER(7)               not null,
    DES_CANTIDAD         NUMBER(7)               not null,
-   constraint PK_DESCUENTO primary key (PRO_FECHA,FA_ID,EM_ID,PC_ID,CE_ID,DET_ID,PE_ID)     -- PORQUE TIENE ID PROPIA??
+   constraint PK_DESCUENTO primary key (PRO_FECHA,FA_ID,EM_ID,PC_ID,CE_ID,DET_ID,PE_ID)     
+   
+);*/
+
+create table DESCUENTOPEDIDIOPARAPRODUCCION 
+(
+   DES_ID               NUMBER(7)               not null,
+   PRO_FECHA            DATE                 not null,
+   FA_ID                NUMBER(7)               not null,
+   EM_ID                NUMBER(7)               not null,
+   PC_ID                NUMBER(7)               not null,
+   CE_ID                NUMBER(7)               not null,
+   DET_ID               NUMBER(7)               not null,
+   PE_ID                NUMBER(7)               not null,
+   DES_CANTIDAD         NUMBER(7)               not null,
+   constraint PK_DESCUENTO primary key (des_id)     
+   
 );
+
 
 /*
 //=============================================//
@@ -697,14 +710,6 @@ alter table detalle_pedido
 add constraint fk_dp_catalogoEQ foreign key (ca_codigo,pr_id)
 references catalogo_proveedor_EQ (ca_codigo,pr_id);
 
----------------Este alter es por el not null que esta mal colocado en pedido
-
-alter table pedido modify pe_fechasolicitada date not null ;
-
-alter table pedido drop column pe_fechaentrega;
-
-alter table pedido
-add pe_fechaentrega date;
 
 /*
 //=============================================//
@@ -855,4 +860,8 @@ create sequence seq_en_id
    increment by 1
    
    ;
-
+    create sequence seq_des_pred_id
+   start with 1
+   increment by 1
+   
+   ;
