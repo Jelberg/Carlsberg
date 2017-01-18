@@ -451,7 +451,8 @@ create table DESCUENTOPEDIDIOPARAPRODUCCION
    
 );
 
-create table false_receta(
+create table false_tab_receta(
+false_id  number(7),
 nombre_mp varchar2(50),
 cantidad_ml number(9,2),
 cantidad_producible number(9)
@@ -870,4 +871,15 @@ create sequence seq_en_id
    start with 1
    increment by 1
    
+   ;
+    create sequence seq_des_pred_id
+   start with 1
+   increment by 1
+   
+   ;
+    create sequence seq_false_id
+   start with 1
+   increment by 1
+   maxvalue 60
+   cycle
    ;

@@ -30,7 +30,7 @@ drop table ESTILO cascade constraints;
 
 drop table FABRICA cascade constraints;
 
-
+drop table false_tab_receta;
 
 drop table MAQUINARIA cascade constraints;
 
@@ -117,3 +117,5 @@ DROP SEQUENCE seq_det_id;
 DROP SEQUENCE seq_va_id;
 DROP SEQUENCE seq_des_id;
 DROP SEQUENCE seq_pag_id;
+DROP SEQUENCE seq_false_id;
+DROP SEQUENCE seq_des_pred_id;

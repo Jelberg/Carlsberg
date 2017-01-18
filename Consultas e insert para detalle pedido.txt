@@ -1,21 +1,21 @@
 
-
 ---- Consulta que retorna la cantidad de lo que se halla en el invetario
-select (sum(dp.det_cantidad)- sum(des.des_cantidad)) cantidas_inventario, mp.CP_NOMBRE
+select (sum(dp.det_cantidad)- sum(des.des_cantidad)) cantidas_inventario, m.MP_NOMBRE
 
 from detalle_pedido dp, pedido p, presentacion pre, catalogo_proveedor_mp mp, DESCUENTOPEDIDIOPARAPRODUCCION des, 
-empresa e, contrato c
+empresa e, contrato c, materia_prima m
 
 where   
 dp.PRE_ID=pre.pre_id 
 and e.em_id=des.EM_ID
 and dp.pe_id = p.pe_id
 and pre.CP_ID=mp.cp_id
---and des.pe_id=dp.PE_ID
+and des.pe_id=dp.PE_ID
+and m.mp_id= mp.mp_id
 and p.PE_STATUS = 'finalizada'
 and upper(e.EM_NOMBRE)= upper('carlsberg group')
 
-group by mp.CP_NOMBRE;
+group by  m.MP_NOMBRE;
 
 
 --- cursor que retorna la cantidad en ml de la receta de una cerveza en especifico con su presentacion 
