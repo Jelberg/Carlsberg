@@ -42,3 +42,20 @@ INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VA
 INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,(Select p.pe_id from pedido p, contrato c, proveedores pr, empresa e where c.con_numero= p.con_numero and pr.pr_nombre ='Fields' and to_char(p.pe_fechapedido,'yyyy')='2016' and e.em_nombre='Carlsberg group' and rownum=1 ),(Select p.pre_id from presentacion p, catalogo_proveedor_mp m, materia_prima mp, proveedores pr where mp.mp_id=m.mp_id and m.cp_id=p.cp_id and m.pr_id = pr.pr_id and pr.pr_nombre='Fields' and mp.mp_nombre='Adjuntos (Grits)' and rownum =1),6000,null,(Select pr_id from proveedores where pr_nombre = 'Fields'));
 INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,(Select p.pe_id from pedido p, contrato c, proveedores pr, empresa e where c.con_numero= p.con_numero and pr.pr_nombre ='Fields' and to_char(p.pe_fechapedido,'yyyy')='2016' and e.em_nombre='Carlsberg group' and rownum=1 ),(Select p.pre_id from presentacion p, catalogo_proveedor_mp m, materia_prima mp, proveedores pr where mp.mp_id=m.mp_id and m.cp_id=p.cp_id and m.pr_id = pr.pr_id and pr.pr_nombre='Fields' and mp.mp_nombre='Lupulo' and rownum =1),6000,null,(Select pr_id from proveedores where pr_nombre = 'Fields'));
 
+
+
+----------------------- MI VERSION DE LA PRIMERA CONSULTA (LEONARDO)-------------------------------
+
+select (sum(dp.det_cantidad)) cantidas_inventario, 
+mp.CP_NOMBRE
+
+from detalle_pedido dp, pedido p, presentacion pre, catalogo_proveedor_mp mp, DESCUENTOPEDIDIOPARAPRODUCCION des, 
+empresa e, contrato c
+
+where   
+mp.cp_id=pre.cp_id and pre.pre_id=dp.pre_id and dp.pe_id=p.pe_id and p.con_numero=c.con_numero and c.em_id=e.em_id and e.em_nombre='Carlsberg group' --and p.pe_id=des.pe_id and dp.det_id=des.det_id
+ --pre.pre_id = dp.pre_id and mp.cp_id =pre.cp_id and des.DET_ID=dp.DET_ID and des.em_id=e.em_id
+--and c.em_id=e.em_id and c.CON_NUMERO=p.CON_NUMERO and  p.pe_id = dp.pe_id and p.PE_STATUS = 'finalizada'
+--and upper(e.EM_NOMBRE)= upper('carlsberg group')
+
+group by mp.CP_NOMBRE; 
