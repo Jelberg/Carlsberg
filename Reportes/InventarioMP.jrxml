@@ -6,16 +6,25 @@
 	<parameter name="nombre empresa" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\elber\\OneDrive\\Documentos\\GitHub\\Carlsberg\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
 	<queryString>
-		<![CDATA[select (sum(dp.det_cantidad)- sum(des.des_cantidad)) cantidas_inventario, mp.CP_NOMBRE
-from detalle_pedido dp, pedido p, presentacion pre, catalogo_proveedor_mp mp, DESCUENTOPEDIDIOPARAPRODUCCION des
-where p.pe_id = dp.pe_id
-and pre.pre_id = dp.pre_id and mp.cp_id =pre.cp_id and des.DET_ID=dp.DET_ID
+		<![CDATA[select (sum(dp.det_cantidad)- sum(des.des_cantidad)) cantidas_inventario, mp.CP_NOMBRE,e.em_nombre,e.em_id
+from detalle_pedido dp, pedido p, presentacion pre, catalogo_proveedor_mp mp, DESCUENTOPEDIDIOPARAPRODUCCION des,
+empresa e, contrato c, materia_prima m
 
-group by mp.cp_nombre]]>
+where
+ pre.pre_id = dp.pre_id and mp.cp_id =pre.cp_id and des.DET_ID=dp.DET_ID and des.em_id=e.em_id
+and c.em_id=e.em_id and c.CON_NUMERO=p.CON_NUMERO and  p.pe_id = dp.pe_id and p.PE_STATUS = 'finalizada'
+and upper(e.EM_NOMBRE)= upper($P{nombre empresa})
+
+group by mp.CP_NOMBRE, e.em_nombre,e.em_id]]>
 	</queryString>
 	<field name="CANTIDAS_INVENTARIO" class="java.math.BigDecimal"/>
 	<field name="CP_NOMBRE" class="java.lang.String"/>
+	<field name="EM_NOMBRE" class="java.lang.String"/>
+	<field name="EM_ID" class="java.math.BigDecimal"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -34,46 +43,68 @@ group by mp.cp_nombre]]>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="39" splitType="Stretch">
+		<band height="90" splitType="Stretch">
 			<staticText>
-				<reportElement x="23" y="6" width="131" height="20" uuid="23019221-4cbd-4d6e-9d5d-a545250c8a2d"/>
+				<reportElement x="256" y="6" width="137" height="20" uuid="23019221-4cbd-4d6e-9d5d-a545250c8a2d"/>
 				<textElement>
-					<font size="12" isItalic="true"/>
+					<font size="14" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Empresa productora:]]></text>
 			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="363" y="70" width="141" height="20" uuid="8294abf0-cd73-4a0f-9ba0-0ba1078162e2"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="48" y="6" width="171" height="78" uuid="0fc21446-148c-443a-ac52-0bc960f7ee91"/>
+				<subreportParameter name="id empresa">
+					<subreportParameterExpression><![CDATA[$F{EM_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subreporte_in_mp_logo.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="376" y="26" width="100" height="20" uuid="af290939-f7c8-47ec-b795-5d8eea73a117"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EM_NOMBRE}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="32" splitType="Stretch">
+		<band height="42" splitType="Stretch">
+			<rectangle>
+				<reportElement x="19" y="4" width="507" height="32" forecolor="#999999" uuid="53b8d203-e3b4-41e0-90fb-c4fe6c0a82b9"/>
+			</rectangle>
 			<staticText>
-				<reportElement x="23" y="12" width="100" height="20" uuid="4c66abaf-c1be-4dd4-95e2-f0cbc88b79f6"/>
+				<reportElement x="107" y="12" width="100" height="20" uuid="4c66abaf-c1be-4dd4-95e2-f0cbc88b79f6"/>
 				<textElement>
-					<font size="12" isItalic="true"/>
+					<font size="14" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Materia Prima]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="154" y="12" width="100" height="20" uuid="b9392700-c879-45d2-9330-cd3028d826fc"/>
+				<reportElement x="345" y="12" width="100" height="20" uuid="b9392700-c879-45d2-9330-cd3028d826fc"/>
 				<textElement>
-					<font size="12" isItalic="true"/>
+					<font size="14" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Cantidad]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="32" splitType="Stretch">
-			<rectangle>
-				<reportElement x="0" y="1" width="555" height="30" forecolor="#999999" uuid="df4f08a2-a39a-486c-96b5-0690f6bd8457"/>
-			</rectangle>
+		<band height="23" splitType="Stretch">
 			<textField>
-				<reportElement x="23" y="5" width="100" height="20" uuid="77425838-0e62-40a0-b9af-0fddbd528685"/>
-				<textFieldExpression><![CDATA[$F{CP_NOMBRE}]]></textFieldExpression>
+				<reportElement x="355" y="2" width="100" height="20" uuid="77a628fb-5013-4c43-9107-046df263bac7"/>
+				<textFieldExpression><![CDATA[$F{CANTIDAS_INVENTARIO}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="154" y="5" width="100" height="20" uuid="5eb7197a-5049-4c4f-bad3-4adfea08d0ac"/>
-				<textFieldExpression><![CDATA[$F{CANTIDAS_INVENTARIO}]]></textFieldExpression>
+				<reportElement x="124" y="2" width="100" height="20" uuid="8e23a506-3b14-43b8-9df2-7b64bee1d27e"/>
+				<textFieldExpression><![CDATA[$F{CP_NOMBRE}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -81,7 +112,17 @@ group by mp.cp_nombre]]>
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="206" y="24" width="80" height="20" uuid="087f342c-18b1-4b5d-aa94-244ce4100bf2"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="286" y="24" width="40" height="20" uuid="015d00c9-4690-454c-8ee5-be69b48fc6f3"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>

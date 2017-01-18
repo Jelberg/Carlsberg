@@ -374,33 +374,24 @@ INSERT INTO fabrica (fa_id,em_id,ci_id,fa_nombre,fa_fechaapertura) VALUES (seq_f
 (Select ci_id from ciudad where ci_nombre = 'West Yorkshire'),'Leeds Tetley Brewery','01-01-1822');
 
 -----CONTRATO
-INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES 
-(seq_con_numero.NEXTVAL,(SELECT pr_id FROM(SELECT pr_id FROM proveedores ORDER BY dbms_random.value )WHERE rownum = 1),
-'12-03-2010',(SELECT em_id FROM(SELECT em_id FROM empresa ORDER BY dbms_random.value )WHERE rownum = 1),null);
-
-INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES 
-(seq_con_numero.NEXTVAL,(SELECT pr_id FROM(SELECT pr_id FROM proveedores ORDER BY dbms_random.value )WHERE rownum = 1),
-'12-03-2016',(SELECT em_id FROM(SELECT em_id FROM empresa ORDER BY dbms_random.value )WHERE rownum = 1),null);
-
-INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES 
-(seq_con_numero.NEXTVAL,(SELECT pr_id FROM(SELECT pr_id FROM proveedores ORDER BY dbms_random.value )WHERE rownum = 1),
-'12-03-2015',(SELECT em_id FROM(SELECT em_id FROM empresa ORDER BY dbms_random.value )WHERE rownum = 1),null);
-
-INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES 
-(seq_con_numero.NEXTVAL,(SELECT pr_id FROM(SELECT pr_id FROM proveedores ORDER BY dbms_random.value )WHERE rownum = 1),
-'12-03-2014',(SELECT em_id FROM(SELECT em_id FROM empresa ORDER BY dbms_random.value )WHERE rownum = 1),null);
-
-INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES 
-(seq_con_numero.NEXTVAL,(SELECT pr_id FROM(SELECT pr_id FROM proveedores ORDER BY dbms_random.value )WHERE rownum = 1),
-'12-03-2013',(SELECT em_id FROM(SELECT em_id FROM empresa ORDER BY dbms_random.value )WHERE rownum = 1),null);
-
-INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES 
-(seq_con_numero.NEXTVAL,(SELECT pr_id FROM(SELECT pr_id FROM proveedores ORDER BY dbms_random.value )WHERE rownum = 1),
-'12-03-2012',(SELECT em_id FROM(SELECT em_id FROM empresa ORDER BY dbms_random.value )WHERE rownum = 1),null);
-
-INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES 
-(seq_con_numero.NEXTVAL,(SELECT pr_id FROM(SELECT pr_id FROM proveedores ORDER BY dbms_random.value )WHERE rownum = 1),
-'12-03-2012',(SELECT em_id FROM(SELECT em_id FROM empresa ORDER BY dbms_random.value )WHERE rownum = 1),fn_importar_binario_clob('condiciones.pdf'));
+INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES (seq_con_numero.NEXTVAL,(SELECT pr_id FROM proveedores where pr_nombre = 'Fields' ),'12-03-2016',(SELECT em_id FROM empresa where em_nombre = 'Carlsberg group'),null);
+INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES (seq_con_numero.NEXTVAL,(SELECT pr_id FROM proveedores where pr_nombre = 'Roy' ),'12-03-2016',(SELECT em_id FROM empresa where em_nombre = 'Carlsberg group'),null);
+INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES (seq_con_numero.NEXTVAL,(SELECT pr_id FROM proveedores where pr_nombre = 'Hayden' ),'12-03-2016',(SELECT em_id FROM empresa where em_nombre = 'Holsten-Brauerei AG'),null);
+INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES (seq_con_numero.NEXTVAL,(SELECT pr_id FROM proveedores where pr_nombre = 'Roy' ),'12-03-2016',(SELECT em_id FROM empresa where em_nombre = 'Holsten-Brauerei AG'),null);
+INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES (seq_con_numero.NEXTVAL,(SELECT pr_id FROM proveedores where pr_nombre = 'Fields' ),'12-03-2016',(SELECT em_id FROM empresa where em_nombre = 'Joshua tetley y Son Ltd'),null);
+INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES (seq_con_numero.NEXTVAL,(SELECT pr_id FROM proveedores where pr_nombre = 'Silva' ),'12-03-2016',(SELECT em_id FROM empresa where em_nombre = 'Joshua tetley y Son Ltd'),null);
+INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES (seq_con_numero.NEXTVAL,(SELECT pr_id FROM proveedores where pr_nombre = 'Fields' ),'12-03-2015',(SELECT em_id FROM empresa where em_nombre = 'Carlsberg group'),null);
+INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES (seq_con_numero.NEXTVAL,(SELECT pr_id FROM proveedores where pr_nombre = 'Roy' ),'12-03-2015',(SELECT em_id FROM empresa where em_nombre = 'Carlsberg group'),null);
+INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES(seq_con_numero.NEXTVAL,(SELECT pr_id FROM proveedores where pr_nombre = 'Hayden' ),'12-03-2015',(SELECT em_id FROM empresa where em_nombre = 'Holsten-Brauerei AG'),null);
+INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES (seq_con_numero.NEXTVAL,(SELECT pr_id FROM proveedores where pr_nombre = 'Roy' ),'12-03-2015',(SELECT em_id FROM empresa where em_nombre = 'Holsten-Brauerei AG'),null);
+INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES (seq_con_numero.NEXTVAL,(SELECT pr_id FROM proveedores where pr_nombre = 'Fields' ),'12-03-2015',(SELECT em_id FROM empresa where em_nombre = 'Joshua tetley y Son Ltd'),null);
+INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES (seq_con_numero.NEXTVAL,(SELECT pr_id FROM proveedores where pr_nombre = 'Silva' ),'12-03-2015',(SELECT em_id FROM empresa where em_nombre = 'Joshua tetley y Son Ltd'),null);
+INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES (seq_con_numero.NEXTVAL,(SELECT pr_id FROM proveedores where pr_nombre = 'Fields' ),'12-03-2014',(SELECT em_id FROM empresa where em_nombre = 'Carlsberg group'),null);
+INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES (seq_con_numero.NEXTVAL,(SELECT pr_id FROM proveedores where pr_nombre = 'Roy' ),'12-03-2014',(SELECT em_id FROM empresa where em_nombre = 'Carlsberg group'),null);
+INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES (seq_con_numero.NEXTVAL,(SELECT pr_id FROM proveedores where pr_nombre = 'Hayden' ),'12-03-2014',(SELECT em_id FROM empresa where em_nombre = 'Holsten-Brauerei AG'),null);
+INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES (seq_con_numero.NEXTVAL,(SELECT pr_id FROM proveedores where pr_nombre = 'Roy' ),'12-03-2014',(SELECT em_id FROM empresa where em_nombre = 'Holsten-Brauerei AG'),null);
+INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES (seq_con_numero.NEXTVAL,(SELECT pr_id FROM proveedores where pr_nombre = 'Fields' ),'12-03-2014',(SELECT em_id FROM empresa where em_nombre = 'Joshua tetley y Son Ltd'),null);
+INSERT INTO contrato (con_numero,pr_id,CON_FECHAEMISION,em_id,con_condicionesadicionales) VALUES (seq_con_numero.NEXTVAL,(SELECT pr_id FROM proveedores where pr_nombre = 'Silva' ),'12-03-2014',(SELECT em_id FROM empresa where em_nombre = 'Joshua tetley y Son Ltd'),null);
 
 -----MAQUINARIA
 
