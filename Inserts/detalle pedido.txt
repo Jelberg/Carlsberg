@@ -155,3 +155,33 @@ INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VA
 INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,16,23,6000,null,2);
 INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,17,66,6000,null,2);
 INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,18,69,6000,null,2);
+
+
+-------------------Para la cerveza tuborg 
+
+INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,(Select p.pe_id from pedido p, contrato c, proveedores pr, empresa e where c.con_numero= p.con_numero and pr.pr_nombre ='Fields' and to_char(p.pe_fechapedido,'yyyy')='2016' and e.em_nombre='Carlsberg group' and rownum=1 ),(Select p.pre_id from presentacion p, catalogo_proveedor_mp m, materia_prima mp, proveedores pr where mp.mp_id=m.mp_id and m.cp_id=p.cp_id and m.pr_id = pr.pr_id and pr.pr_nombre='Fields' and mp.mp_nombre='Levadura' and rownum =1),6000,null,(Select pr_id from proveedores where pr_nombre = 'Fields'));
+INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,(Select p.pe_id from pedido p, contrato c, proveedores pr, empresa e where c.con_numero= p.con_numero and pr.pr_nombre ='Fields' and to_char(p.pe_fechapedido,'yyyy')='2016' and e.em_nombre='Carlsberg group' and rownum=1 ),(Select p.pre_id from presentacion p, catalogo_proveedor_mp m, materia_prima mp, proveedores pr where mp.mp_id=m.mp_id and m.cp_id=p.cp_id and m.pr_id = pr.pr_id and pr.pr_nombre='Fields' and mp.mp_nombre='Agua' and rownum =1),6000,null,(Select pr_id from proveedores where pr_nombre = 'Fields'));
+INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,(Select p.pe_id from pedido p, contrato c, proveedores pr, empresa e where c.con_numero= p.con_numero and pr.pr_nombre ='Fields' and to_char(p.pe_fechapedido,'yyyy')='2016' and e.em_nombre='Carlsberg group' and rownum=1 ),(Select p.pre_id from presentacion p, catalogo_proveedor_mp m, materia_prima mp, proveedores pr where mp.mp_id=m.mp_id and m.cp_id=p.cp_id and m.pr_id = pr.pr_id and pr.pr_nombre='Fields' and mp.mp_nombre='Adjuntos (Grits)' and rownum =1),6000,null,(Select pr_id from proveedores where pr_nombre = 'Fields'));
+INSERT INTO detalle_pedido (det_id,pe_id,pre_id,det_cantidad,ca_codigo,pr_id) VALUES (seq_det_id.NEXTVAL,(Select p.pe_id from pedido p, contrato c, proveedores pr, empresa e where c.con_numero= p.con_numero and pr.pr_nombre ='Fields' and to_char(p.pe_fechapedido,'yyyy')='2016' and e.em_nombre='Carlsberg group' and rownum=1 ),(Select p.pre_id from presentacion p, catalogo_proveedor_mp m, materia_prima mp, proveedores pr where mp.mp_id=m.mp_id and m.cp_id=p.cp_id and m.pr_id = pr.pr_id and pr.pr_nombre='Fields' and mp.mp_nombre='Lupulo' and rownum =1),6000,null,(Select pr_id from proveedores where pr_nombre = 'Fields'));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
