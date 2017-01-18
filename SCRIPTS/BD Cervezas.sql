@@ -451,6 +451,12 @@ create table DESCUENTOPEDIDIOPARAPRODUCCION
    
 );
 
+create table false_receta(
+nombre_mp varchar2(50),
+cantidad_ml number(9,2),
+cantidad_producible number(9)
+);
+
 
 /*
 //=============================================//
