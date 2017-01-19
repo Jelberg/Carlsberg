@@ -22,6 +22,23 @@ and des.pe_id=dp.PE_ID
 and m.mp_id= mp.mp_id
 and p.PE_STATUS = 'finalizada'
 and upper(e.EM_NOMBRE)= upper($P{nombre empresa})
+group by  m.MP_NOMBRE,pre.pre_medida.me_unidad, e.em_nombre, e.em_id
+
+union
+
+select (sum(dp.det_cantidad)) cantidas_inventario, m.MP_NOMBRE as nombre_inv,
+pre.pre_medida.me_unidad as unidad, e.em_nombre, e.em_id
+from detalle_pedido dp, pedido p, presentacion pre, catalogo_proveedor_mp mp,empresa e, contrato c, materia_prima m,
+DESCUENTOPEDIDIOPARAPRODUCCION des
+where
+dp.PRE_ID=pre.pre_id
+and dp.pe_id = p.pe_id
+and pre.CP_ID=mp.cp_id
+and m.mp_id= mp.mp_id
+and p.PE_STATUS = 'finalizada'
+and upper(e.em_nombre) = upper($P{nombre empresa})
+and dp.det_id not in (Select det_id from DESCUENTOPEDIDIOPARAPRODUCCION des )
+and dp.pe_id not in (Select pe_id from DESCUENTOPEDIDIOPARAPRODUCCION des )
 group by  m.MP_NOMBRE,pre.pre_medida.me_unidad, e.em_nombre, e.em_id]]>
 	</queryString>
 	<field name="CANTIDAS_INVENTARIO" class="java.math.BigDecimal"/>
