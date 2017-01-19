@@ -132,6 +132,39 @@ end;
 
 /
 
+create or replace procedure AutoProduccionMensual(cerveza cerveza.ce_nombreingles%type,presentacionCerveza presentacion_cerveza.pc_id%type, fabrica varchar2,fecha date) is
+menorValor number;
+idFabrica number;
+idEmpresa number;
+idCerveza number;
+producible number;
+mlbotella number;
+empresa varchar2(30);
+begin
+
+pr_llena_tabla_receta(cerveza,presentacionCerveza);
+
+select em_nombre into empresa from empresa where em_id=(select em_id from fabrica where fa_nombre=fabrica);
+
+pr_llena_tabla_receta_2(empresa);
+
+select cantidad_producible into menorValor from FALSE_TAB_RECETA where rownum=1 order by cantidad_producible desc ;
+
+select fa_id into idFabrica from fabrica where fa_nombre=fabrica;
+
+select em_id into idEmpresa from empresa where em_id=(select em_id from fabrica where fa_nombre=fabrica);
+
+select ce_id into idCerveza from cerveza where ce_nombreingles=cerveza and rownum=1;
+
+select pc_cantidad into mlbotella from presentacion_cerveza where pc_id=presentacionCerveza;
+
+producible:=mlbotella*menorValor;
+
+insert into produccionmensual (pro_fecha,fa_id,em_id,pc_id,ce_id,pro_cantidadenml) values(fecha,idFabrica ,idEmpresa,presentacionCerveza,idCerveza,producible);
+
+delete from false_tab_receta;
+end AutoProduccionMensual;
+
 
 
 
