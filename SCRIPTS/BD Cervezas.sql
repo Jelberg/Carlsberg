@@ -663,6 +663,9 @@ alter table PRODUCCIONMENSUAL
 alter table PRODUCCIONMENSUAL
    add constraint FK_PRO_PRESENTACION_CERVEZA foreign key (PC_ID,CE_ID)
    references PRESENTACION_CERVEZA(PC_ID,CE_ID);
+   
+alter table PRODUCCIONMENSUAL
+   alter column pro_cantidadenml number(12,0);
 
    
 --------------PRESENTACION 
