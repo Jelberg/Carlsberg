@@ -2,14 +2,14 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ficha_empresas_productoras" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="803f5403-bdc4-4e41-9197-342db9e39261">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="183"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\Users\\elber\\OneDrive\\Documentos\\GitHub\\Carlsberg\\Reportes\\"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[select em_nombre,em_fechaapertura, em_logo, em_id, p.pa_nombre, c.ci_nombre
 from empresa e, pais p, ciudad c
-where e.ci_id = c.ci_id and c.pa_id=p.pa_id]]>
+where e.ci_id = c.ci_id and c.pa_id=p.pa_id ]]>
 	</queryString>
 	<field name="EM_NOMBRE" class="java.lang.String"/>
 	<field name="EM_FECHAAPERTURA" class="java.math.BigDecimal"/>
@@ -41,13 +41,16 @@ where e.ci_id = c.ci_id and c.pa_id=p.pa_id]]>
 		<band height="13" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="260" splitType="Stretch">
+		<band height="552" splitType="Stretch">
 			<image>
 				<reportElement x="320" y="28" width="203" height="96" uuid="66512e9c-f7dc-4f86-b191-d5685c63ed40"/>
 				<imageExpression><![CDATA[$F{EM_LOGO}.getBinaryStream()]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="140" y="45" width="159" height="20" uuid="9662833e-f16d-4716-812a-f2777895d91c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{EM_FECHAAPERTURA}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -75,7 +78,7 @@ where e.ci_id = c.ci_id and c.pa_id=p.pa_id]]>
 				<text><![CDATA[Empresa:]]></text>
 			</staticText>
 			<subreport>
-				<reportElement x="4" y="142" width="551" height="100" uuid="34951a2c-bc3c-4fca-8166-9d2416104ec1"/>
+				<reportElement x="0" y="437" width="555" height="100" uuid="34951a2c-bc3c-4fca-8166-9d2416104ec1"/>
 				<subreportParameter name="id_empresa">
 					<subreportParameterExpression><![CDATA[$F{EM_ID}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -91,6 +94,9 @@ where e.ci_id = c.ci_id and c.pa_id=p.pa_id]]>
 			</staticText>
 			<textField>
 				<reportElement x="140" y="73" width="100" height="20" uuid="cad83355-4a08-45e2-a610-257c3c08ef2b"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{PA_NOMBRE}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -102,8 +108,27 @@ where e.ci_id = c.ci_id and c.pa_id=p.pa_id]]>
 			</staticText>
 			<textField>
 				<reportElement x="140" y="105" width="100" height="20" uuid="910b41aa-9a37-4adf-8c5a-90578eb3d758"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{CI_NOMBRE}]]></textFieldExpression>
 			</textField>
+			<subreport>
+				<reportElement x="56" y="303" width="454" height="87" uuid="47fc78f4-6941-425b-aaa7-33e41f8a2560"/>
+				<subreportParameter name="id_empresa">
+					<subreportParameterExpression><![CDATA[$F{EM_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subreporte_f_emp_fabricas.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="83" y="140" width="472" height="100" uuid="ca4a7b0c-8da3-4394-aa2a-5bc51884c755"/>
+				<subreportParameter name="id_empresa">
+					<subreportParameterExpression><![CDATA[$F{EM_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subreporte_f_em_produccionmen.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 	</detail>
 	<columnFooter>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subreporte_f_emp_fabricas" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="cea36a11-db6b-49df-861f-3e47d941b818">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_empresa" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select fa_nombre, pa_nombre, ci_nombre
+from fabrica f, pais p,ciudad c, empresa e
+where e.em_id = f.em_id and c.ci_id=e.ci_id and p.pa_id=c.pa_id and
+e.em_id=$P{id_empresa}]]>
+	</queryString>
+	<field name="FA_NOMBRE" class="java.lang.String"/>
+	<field name="PA_NOMBRE" class="java.lang.String"/>
+	<field name="CI_NOMBRE" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="17" y="3" width="100" height="20" uuid="471b9067-9419-4d47-9748-fdc0f37f8712"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nombre Fabricas ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="162" y="3" width="119" height="20" uuid="ff0124f3-8c73-4a3b-9988-53256bb83cee"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Ciudad de ubicacion ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="342" y="2" width="100" height="20" uuid="275f793c-8c2b-42fc-8de5-e44b9230179d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Pais]]></text>
+			</staticText>
+			<line>
+				<reportElement x="8" y="21" width="445" height="1" forecolor="#999999" uuid="648a9760-5f20-4f8d-b929-5a0fd8584cfa"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="17" y="6" width="100" height="20" uuid="724c0453-7d31-47a1-a175-41affa03419d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FA_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="173" y="6" width="100" height="20" uuid="a186f5bd-203d-4c07-aeeb-938eba6cd504"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CI_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="6" width="100" height="20" uuid="dd8e91d7-d1a7-4427-ba96-bba524483a69"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PA_NOMBRE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
