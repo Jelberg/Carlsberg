@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="f_descriptiva" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="339e6742-87a8-4941-877b-0b760e1b13fe">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="33"/>
 	<parameter name="Nombre cerveza" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -47,7 +47,7 @@ UPPER(c.ce_nombreingles) like UPPER($P{Nombre cerveza}||'%')]]>
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="413" splitType="Stretch">
+		<band height="431" splitType="Stretch">
 			<staticText>
 				<reportElement x="28" y="160" width="110" height="20" uuid="9e88d4ce-c89c-4c2e-a89a-e6d9e46d3b70"/>
 				<textElement>
@@ -153,7 +153,7 @@ UPPER(c.ce_nombreingles) like UPPER($P{Nombre cerveza}||'%')]]>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subreporte_fd_paisesdist.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="28" y="300" width="502" height="100" uuid="2d8c39af-331c-4ca7-8ea5-24e618ec85a3"/>
+				<reportElement x="2" y="331" width="553" height="100" uuid="2d8c39af-331c-4ca7-8ea5-24e618ec85a3"/>
 				<subreportParameter name="id_cerveza">
 					<subreportParameterExpression><![CDATA[$F{CE_ID}]]></subreportParameterExpression>
 				</subreportParameter>

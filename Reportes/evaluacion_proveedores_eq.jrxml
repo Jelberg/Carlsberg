@@ -32,7 +32,7 @@ order by n.res_posicion]]>
 				<textElement>
 					<font size="18" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[Resultado evauacion a proveedores - Equipo:]]></text>
+				<text><![CDATA[Resultado evaluacion a proveedores - Equipo:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="428" y="15" width="91" height="35" uuid="ae1ab93c-2925-4054-93af-6dd8aa6f0d8b"/>

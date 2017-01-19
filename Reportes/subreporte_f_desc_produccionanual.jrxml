@@ -7,21 +7,23 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select pc_tipo, pc_cantidad, sum(pm.PRO_CANTIDADENML)
+		<![CDATA[select pc_tipo, pc_cantidad, sum(pm.PRO_CANTIDADENML)*0.00001, to_char(pm.pro_fecha,'yyyy')
 from presentacion_cerveza pc, produccionmensual pm
 where pc.ce_id=$P{id_cerveza} and pc.pc_id = pm.pc_id and pc.ce_id=pm.ce_id
-group by pc_tipo, pc_cantidad]]>
+group by pc_tipo, pc_cantidad,to_char(pm.pro_fecha,'yyyy')
+order by to_char(pm.pro_fecha,'yyyy')]]>
 	</queryString>
 	<field name="PC_TIPO" class="java.lang.String"/>
 	<field name="PC_CANTIDAD" class="java.math.BigDecimal"/>
-	<field name="SUM(PM.PRO_CANTIDADENML)" class="java.math.BigDecimal"/>
+	<field name="SUM(PM.PRO_CANTIDADENML)*0.00001" class="java.math.BigDecimal"/>
+	<field name="TO_CHAR(PM.PRO_FECHA,&apos;YYYY&apos;)" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<columnHeader>
 		<band height="22" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="0" width="515" height="20" forecolor="#FFFFFF" backcolor="#CCFFCC" uuid="617a95e5-7738-4759-b1a3-68d761528d4f"/>
+				<reportElement x="0" y="0" width="555" height="20" forecolor="#FFFFFF" backcolor="#CCFFCC" uuid="617a95e5-7738-4759-b1a3-68d761528d4f"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="21" y="2" width="100" height="20" uuid="f2426f1b-90b5-4886-be63-03449891a542"/>
@@ -31,42 +33,65 @@ group by pc_tipo, pc_cantidad]]>
 				<text><![CDATA[Tipo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="125" y="2" width="100" height="20" uuid="6655970e-3d5b-4e4b-bff9-17315a73fdc4"/>
+				<reportElement x="168" y="0" width="100" height="20" uuid="6655970e-3d5b-4e4b-bff9-17315a73fdc4"/>
 				<textElement>
 					<font size="12" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Cantidad]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="237" y="2" width="100" height="20" uuid="7312db25-f17e-4448-a494-071a7f5eaa54"/>
+				<reportElement x="331" y="2" width="100" height="20" uuid="7312db25-f17e-4448-a494-071a7f5eaa54"/>
 				<textElement>
 					<font size="12" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Produccion Anual]]></text>
 			</staticText>
-		</band>
-	</columnHeader>
-	<detail>
-		<band height="22" splitType="Stretch">
-			<textField>
-				<reportElement x="21" y="0" width="100" height="20" uuid="8fc3a83a-c068-4890-a9ac-70ca5e2ce3ce"/>
-				<textFieldExpression><![CDATA[$F{PC_TIPO}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="125" y="0" width="51" height="20" uuid="69fa2bd2-634f-4820-94d3-6f656294e855"/>
-				<textFieldExpression><![CDATA[$F{PC_CANTIDAD}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="176" y="-2" width="49" height="20" uuid="d5384d5e-3360-4219-ab30-d390f64abbac"/>
+				<reportElement x="489" y="2" width="42" height="20" uuid="6e9dee24-fa58-414c-a247-b09f1f5cee9b"/>
 				<textElement>
 					<font size="12" isItalic="true"/>
 				</textElement>
+				<text><![CDATA[Año]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="41" y="0" width="100" height="20" uuid="87305f63-fb50-473e-9e8f-7786ba0d2e28"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PC_TIPO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="178" y="1" width="54" height="20" uuid="0751d8b6-f248-4516-962c-c34e1dc8c1e6"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PC_CANTIDAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="342" y="2" width="100" height="20" uuid="9abc1618-fdc3-4072-ba2e-6d4641b2a310"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SUM(PM.PRO_CANTIDADENML)*0.00001}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="488" y="2" width="43" height="20" uuid="4c0f4076-fa92-47f4-b0bf-05532b9f62f5"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TO_CHAR(PM.PRO_FECHA,'YYYY')}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="232" y="1" width="20" height="20" uuid="5bb8d6da-2bb0-4c45-bae0-b01e00bab9f4"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
 				<text><![CDATA[ml]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="237" y="1" width="100" height="20" uuid="934896aa-8a2e-4c99-a0e3-4800fc3d4fa7"/>
-				<textFieldExpression><![CDATA[$F{SUM(PM.PRO_CANTIDADENML)}]]></textFieldExpression>
-			</textField>
 		</band>
 	</detail>
 </jasperReport>

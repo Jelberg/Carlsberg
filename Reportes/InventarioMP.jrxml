@@ -10,19 +10,23 @@
 		<defaultValueExpression><![CDATA["C:\\Users\\elber\\OneDrive\\Documentos\\GitHub\\Carlsberg\\Reportes\\"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select (sum(dp.det_cantidad)- sum(des.des_cantidad)) cantidas_inventario, mp.CP_NOMBRE,e.em_nombre,e.em_id
+		<![CDATA[select (sum(dp.det_cantidad)- sum(des.des_cantidad)) cantidas_inventario, m.MP_NOMBRE as nombre_inv, pre.pre_medida.me_unidad as unidad, e.em_nombre, e.em_id
 from detalle_pedido dp, pedido p, presentacion pre, catalogo_proveedor_mp mp, DESCUENTOPEDIDIOPARAPRODUCCION des,
 empresa e, contrato c, materia_prima m
-
 where
- pre.pre_id = dp.pre_id and mp.cp_id =pre.cp_id and des.DET_ID=dp.DET_ID and des.em_id=e.em_id
-and c.em_id=e.em_id and c.CON_NUMERO=p.CON_NUMERO and  p.pe_id = dp.pe_id and p.PE_STATUS = 'finalizada'
+dp.PRE_ID=pre.pre_id
+and e.em_id=des.EM_ID
+and dp.pe_id = p.pe_id
+and pre.CP_ID=mp.cp_id
+and des.pe_id=dp.PE_ID
+and m.mp_id= mp.mp_id
+and p.PE_STATUS = 'finalizada'
 and upper(e.EM_NOMBRE)= upper($P{nombre empresa})
-
-group by mp.CP_NOMBRE, e.em_nombre,e.em_id]]>
+group by  m.MP_NOMBRE,pre.pre_medida.me_unidad, e.em_nombre, e.em_id]]>
 	</queryString>
 	<field name="CANTIDAS_INVENTARIO" class="java.math.BigDecimal"/>
-	<field name="CP_NOMBRE" class="java.lang.String"/>
+	<field name="NOMBRE_INV" class="java.lang.String"/>
+	<field name="UNIDAD" class="java.lang.String"/>
 	<field name="EM_NOMBRE" class="java.lang.String"/>
 	<field name="EM_ID" class="java.math.BigDecimal"/>
 	<background>
@@ -67,9 +71,9 @@ group by mp.CP_NOMBRE, e.em_nombre,e.em_id]]>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subreporte_in_mp_logo.jasper"]]></subreportExpression>
 			</subreport>
 			<textField>
-				<reportElement x="376" y="26" width="100" height="20" uuid="af290939-f7c8-47ec-b795-5d8eea73a117"/>
+				<reportElement x="326" y="37" width="204" height="20" uuid="a4d2b06e-b865-4d01-917d-8b9b65555cc4"/>
 				<textElement>
-					<font size="12" isItalic="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{EM_NOMBRE}]]></textFieldExpression>
 			</textField>
@@ -81,30 +85,50 @@ group by mp.CP_NOMBRE, e.em_nombre,e.em_id]]>
 				<reportElement x="19" y="4" width="507" height="32" forecolor="#999999" uuid="53b8d203-e3b4-41e0-90fb-c4fe6c0a82b9"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="107" y="12" width="100" height="20" uuid="4c66abaf-c1be-4dd4-95e2-f0cbc88b79f6"/>
+				<reportElement x="63" y="12" width="100" height="20" uuid="4c66abaf-c1be-4dd4-95e2-f0cbc88b79f6"/>
 				<textElement>
 					<font size="14" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Materia Prima]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="345" y="12" width="100" height="20" uuid="b9392700-c879-45d2-9330-cd3028d826fc"/>
+				<reportElement x="243" y="12" width="100" height="20" uuid="b9392700-c879-45d2-9330-cd3028d826fc"/>
 				<textElement>
 					<font size="14" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Cantidad]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="432" y="12" width="72" height="20" uuid="8177efc3-2807-4fca-88c3-f87e14979ff6"/>
+				<textElement>
+					<font size="14" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Unidad]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="23" splitType="Stretch">
+		<band height="26" splitType="Stretch">
 			<textField>
-				<reportElement x="355" y="2" width="100" height="20" uuid="77a628fb-5013-4c43-9107-046df263bac7"/>
+				<reportElement x="243" y="3" width="100" height="20" uuid="cb6e73fc-7620-4fe4-94c8-324f23bfb060"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{CANTIDAS_INVENTARIO}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="124" y="2" width="100" height="20" uuid="8e23a506-3b14-43b8-9df2-7b64bee1d27e"/>
-				<textFieldExpression><![CDATA[$F{CP_NOMBRE}]]></textFieldExpression>
+				<reportElement x="48" y="3" width="141" height="20" uuid="c2f356ce-49cb-4c69-b9ec-229c13a5d219"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMBRE_INV}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="426" y="3" width="100" height="20" uuid="10ce2fbf-11a6-48e4-92ec-378981a0f869"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UNIDAD}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
