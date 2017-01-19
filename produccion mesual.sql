@@ -26,10 +26,10 @@ end;
 
 --- De la misma tabla verifica con en inventario, y actualiza las cantidades producibles
 
-create or replace procedure pr_llena_cantidad_producible(empresa empresa.em_nombre%type) is
+create or replace procedure pr_llena_cantidad_producible(empresa empresa.em_nombre%type, id_receta FALSE_TAB_RECETA.FALSE_ID%type ) is
 
 cursor inventario is 
-select (sum(dp.det_cantidad)- sum(des.des_cantidad)) cantidas_inventario, m.MP_NOMBRE as nombre_inv
+select (sum(dp.det_cantidad)- sum(des.des_cantidad)) cantidas_inventario, m.MP_NOMBRE as nombre_inv, pre.pre_medida.me_unidad as unidad
 from detalle_pedido dp, pedido p, presentacion pre, catalogo_proveedor_mp mp, DESCUENTOPEDIDIOPARAPRODUCCION des, 
 empresa e, contrato c, materia_prima m
 where   
@@ -41,106 +41,96 @@ and des.pe_id=dp.PE_ID
 and m.mp_id= mp.mp_id
 and p.PE_STATUS = 'finalizada'
 and upper(e.EM_NOMBRE)= upper(empresa)
-group by  m.MP_NOMBRE;
+group by  m.MP_NOMBRE,pre.pre_medida.me_unidad;
 
-cursor receta is 
-select nombre_mp as nombre_rec, cantidad_ml as cant_rec
-from false_tab_receta;
 
-registro_1 receta%rowtype;
 registro_2 inventario%rowtype;
 
 producible number(10,2):=0;
 
-min_valor number (7);
-max_valor number (7);
 
-cont_num number(7);
+valor_nombre FALSE_TAB_RECETA.NOMBRE_MP%type;
+valor_ml   FALSE_TAB_RECETA.CANTIDAD_ML%type;
 
-valor_nombre varchar2(7);
-valor_ml   number(7);
+
 begin 	
 
-select false_id into min_valor from false_tab_receta where rownum=1 order by false_id;
-select false_id into max_valor from false_tab_receta where rownum=1 order by false_id desc;
 
-cont_num:= min_valor;
-
-while (cont_num <= max_valor) loop 
  open inventario;
      loop
        fetch inventario into registro_2;
-              select nombre_mp, cantidad_ml into valor_nombre, valor_ml from false_tab_receta where false_id = cont_num; 
-              DBMS_OUTPUT.PUT_LINE(valor_ml);
-              DBMS_OUTPUT.PUT_LINE(valor_nombre);
-					    if registro_2.nombre_inv = valor_nombre then 
-                    producible := (registro_2.cantidas_inventario/valor_ml);
-                   -- DBMS_OUTPUT.PUT_LINE(producible);
-                      if (producible > 0) then 
-                     --DBMS_OUTPUT.PUT_LINE('Si produce');
-                        	update false_tab_receta set cantidad_producible = producible 
-                        	where upper(nombre_mp) = upper(valor_nombre) ;
-                          producible:=0;
-                      end if;
-                end if;
+              select nombre_mp, cantidad_ml into valor_nombre, valor_ml from false_tab_receta where false_id = id_receta; 
+            
+				if registro_2.nombre_inv = valor_nombre then 
+						   if registro_2.unidad = 'ml' or registro_2.unidad = 'ML' OR registro_2.unidad = 'mililitro' or registro_2.unidad = 'mililitros' then
+								producible := (registro_2.cantidas_inventario/valor_ml);
+								DBMS_OUTPUT.PUT_LINE(producible);
+								if (producible > 0) then 
+									update false_tab_receta set cantidad_producible = producible 
+									where upper(nombre_mp) = upper(valor_nombre) ;
+									producible:=0;
+								end if;
+								
+							elsif registro_2.unidad = 'l' or registro_2.unidad = 'L' OR registro_2.unidad = 'litro' or registro_2.unidad = 'litros' then
+								producible := ((registro_2.cantidas_inventario)*1000/valor_ml);
+								DBMS_OUTPUT.PUT_LINE(producible);
+								if (producible > 0) then 
+									update false_tab_receta set cantidad_producible = producible 
+									where upper(nombre_mp) = upper(valor_nombre) ;
+									producible:=0;
+								end if;
+								
+							elsif registro_2.unidad = 'kg' or registro_2.unidad = 'KG' OR registro_2.unidad = 'kilogramo' or registro_2.unidad = 'kilogramos' then
+								producible := (((registro_2.cantidas_inventario)/0.001)/valor_ml);
+								DBMS_OUTPUT.PUT_LINE(producible);
+								if (producible > 0) then 
+									update false_tab_receta set cantidad_producible = producible 
+									where upper(nombre_mp) = upper(valor_nombre) ;
+									producible:=0;
+								end if;
+							elsif registro_2.unidad = 'gr' or registro_2.unidad = 'GR' OR registro_2.unidad = 'gramo' or registro_2.unidad = 'gramos' then
+								producible := ((registro_2.cantidas_inventario)*0.001/valor_ml);
+								DBMS_OUTPUT.PUT_LINE(producible);
+								if (producible > 0) then 
+									update false_tab_receta set cantidad_producible = producible 
+									where upper(nombre_mp) = upper(valor_nombre) ;
+									producible:=0;
+								end if;
+							end if;
+			    end if;
                 exit when inventario%NOTFOUND;
-			  end loop;
-      cont_num:= cont_num+1;
 end loop;
 close inventario;
+
 END;
 
 
 /
 
+create or replace procedure pr_llena_tabla_receta_2(empresa empresa.em_nombre%type) is
 
+id_receta number (7);
+mx_val number(7);
+min_val number(7);
+cont number(7);
 
-create or replace procedure pr_llena_cantidad_producible(empresa empresa.em_nombre%type) is
+begin 
 
-cursor inventario is 
-select (sum(dp.det_cantidad)- sum(des.des_cantidad)) cantidas_inventario, m.MP_NOMBRE as nombre
-from detalle_pedido dp, pedido p, presentacion pre, catalogo_proveedor_mp mp, DESCUENTOPEDIDIOPARAPRODUCCION des, 
-empresa e, contrato c, materia_prima m
-where   
-dp.PRE_ID=pre.pre_id 
-and e.em_id=des.EM_ID
-and dp.pe_id = p.pe_id
-and pre.CP_ID=mp.cp_id
-and des.pe_id=dp.PE_ID
-and m.mp_id= mp.mp_id
-and p.PE_STATUS = 'finalizada'
-and upper(e.EM_NOMBRE)= upper(empresa)
-group by  m.MP_NOMBRE;
+ Select false_id into min_val from false_tab_receta where rownum =1 order by false_id;
+  Select false_id into mx_val from (Select false_id from false_tab_receta order by false_id desc) where rownum=1;
+  cont := min_val;
+  
+  while( cont <= mx_val) loop
+  DBMS_OUTPUT.PUT_LINE(cont);
+  pr_llena_cantidad_producible(empresa,cont);
+  cont:= cont + 1;
+  DBMS_OUTPUT.PUT_LINE(cont);
+  DBMS_OUTPUT.PUT_LINE(mx_val);
+	end loop;
 
-nombre varchar2(50);
-cantidad number(10,2);
-
-cursor receta is 
-select nombre_mp, cantidad_ml from false_tab_receta;
-
-rec_nombre varchar2(50);
-rec_cantidad number(10,2);
-
-registro_1 receta%rowtype;
-registro_2 inventario%rowtype;
-
-producible number(10,2):=0;
-
-begin 	
-		for registro_1 in receta loop
-			for registro_2 in inventario loop
-					if registro_2.nombre = registro_1.nombre_mp then 
-						producible := (registro_2.cantidas_inventario/registro_1.cantidad_ml);
-						if (producible > 0) then 
-							update false_tab_receta set cantidad_producible = round(producible,0) 
-							where registro_1.nombre_mp = registro_2.nombre and registro_1.cantidad_ml=registro_2.cantidas_inventario;
-						end if;
-					end if;
-			end loop;
-	    end loop;
 end;
 
-
+/
 
 
 
