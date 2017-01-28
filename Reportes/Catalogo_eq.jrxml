@@ -10,7 +10,7 @@
 		<defaultValueExpression><![CDATA["C:\\Users\\elber\\OneDrive\\Documentos\\GitHub\\Carlsberg\\Reportes\\"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select c.ca_nombre, c.ca_descripcion, c.ca_preciounitario ,c.ca_codigo, p.pr_nombre
+		<![CDATA[select c.ca_nombre, c.ca_descripcion, c.ca_preciounitario ,c.ca_codigo, p.pr_nombre, c.ca_especificaionestecnicas
 from catalogo_proveedor_eq c, proveedores p
 where p.pr_id = c.pr_id and upper(p.pr_nombre) = upper($P{nombre proveedor})]]>
 	</queryString>
@@ -19,6 +19,7 @@ where p.pr_id = c.pr_id and upper(p.pr_nombre) = upper($P{nombre proveedor})]]>
 	<field name="CA_PRECIOUNITARIO" class="java.math.BigDecimal"/>
 	<field name="CA_CODIGO" class="java.math.BigDecimal"/>
 	<field name="PR_NOMBRE" class="java.lang.String"/>
+	<field name="CA_ESPECIFICAIONESTECNICAS" class="oracle.jdbc.OracleClob"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -65,7 +66,7 @@ where p.pr_id = c.pr_id and upper(p.pr_nombre) = upper($P{nombre proveedor})]]>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="190" splitType="Stretch">
+		<band height="150" splitType="Stretch">
 			<staticText>
 				<reportElement x="12" y="26" width="70" height="20" uuid="6be6613a-72be-4012-879a-cb7620947c2c"/>
 				<textElement>
@@ -80,8 +81,8 @@ where p.pr_id = c.pr_id and upper(p.pr_nombre) = upper($P{nombre proveedor})]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{CA_NOMBRE}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="99" y="155" width="446" height="20" uuid="72f57af8-988d-493d-ada2-54891f3a3bc0"/>
+			<textField bookmarkLevel="1">
+				<reportElement x="99" y="118" width="446" height="20" uuid="72f57af8-988d-493d-ada2-54891f3a3bc0"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
@@ -95,7 +96,7 @@ where p.pr_id = c.pr_id and upper(p.pr_nombre) = upper($P{nombre proveedor})]]>
 				<textFieldExpression><![CDATA[$F{CA_PRECIOUNITARIO}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="11" y="155" width="71" height="20" uuid="463347db-6294-4f3d-87a0-389a2335070e"/>
+				<reportElement x="11" y="118" width="71" height="20" uuid="463347db-6294-4f3d-87a0-389a2335070e"/>
 				<textElement>
 					<font size="12" isItalic="true"/>
 				</textElement>
