@@ -10,3 +10,5 @@
 *  MARCA DE MAYOR PRODUCCION ANUAL POR EMPRESA(NO SE SI ENTRA EN EL REPORTE ANTERIOR)
 *  Top 3 de las empresas segun produccion a nivel mundial anualmente
 *  Top 3 de las preferidas de los consumidores a ivel mundial anualmente
+*  Top 3 de las fabricas con mayor produccion anual
+*  Estilo de cerveza mas producido y distribuido anualmente
